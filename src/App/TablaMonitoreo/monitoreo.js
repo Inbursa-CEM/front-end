@@ -1,7 +1,7 @@
 import '../../Styles/App.css'
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Header from '../Comunes/header';
+import Header from '../Layouts/header';
 import EmpleadosTabla from './tablaMonitoreo';
 
 const Monitoreo = () => {

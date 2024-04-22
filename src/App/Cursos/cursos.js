@@ -2,7 +2,7 @@ import '../../Styles/App.css'
 import '../../Styles/cursos.css'
 import { Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Header from '../Comunes/header';
+import Header from '../Layouts/header';
 import CursosTabla from './tablaCursos';
 
 const Cursos = () => {

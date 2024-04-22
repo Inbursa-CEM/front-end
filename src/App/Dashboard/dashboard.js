@@ -1,7 +1,7 @@
 import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";
-import Header from "../Comunes/header";
+import Header from "../Layouts/header";
 import PromedioServicioCliente from "./promServClien";
 import DuracionPromedioLlamada from "./promDuraCall";
 import NumeroLlamadasAtendidas from "./numCallsAtend";
