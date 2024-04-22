@@ -1,0 +1,16 @@
+.header{
+  display: flex;
+  color: white;
+  padding: 20px; 
+}
+
+.menuIconos{
+  display: flex;
+  gap: 10px;
+}
+
+.tagEmpleado{
+  display: flex;
+  margin-left: auto;
+  gap: 20px;
+}
