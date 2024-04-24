@@ -1,7 +1,7 @@
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import { Fab } from '@mui/material';
-import "../../Styles/OneOnOne.css";
+import "../../Styles/JoinCall.css";
 import { useState } from 'react';
 
 const JoinCall = () => {
