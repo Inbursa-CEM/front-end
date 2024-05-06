@@ -12,6 +12,9 @@ const Monitoreo = () => {
                 <div className='tablaMonitoreo'>
                     <EmpleadosTabla />
                 </div>    
+                <div className='botonAgregar'>
+                    <Button className='botonAgregar' variant='contained' color='primary'/>
+                </div>
             </div>
         </div>
     );
