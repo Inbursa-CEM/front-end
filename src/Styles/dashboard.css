@@ -1,3 +1,15 @@
+.PaginaDashboard{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.botonesReportes{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
+}
+
 .dashboard{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -5,7 +17,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    margin: 20px;
+    margin: 10px;
     width: 75%;
 }
 

@@ -16,54 +16,60 @@ const Dashboard = () => {
   return (
     <div>
       <Header />
-      <div className="dashboard">
-        <div className="item">
-          <h4>Llamadas promedio por agente</h4>
-          <h1>5</h1>
-          <div className="indicador">
-            <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
-            <h3 className="porcentajeUp">0.56%</h3>
+      <div className="PaginaDashboard"> 
+        <div className="dashboard">
+          <div className="item">
+            <h4>Llamadas promedio por agente</h4>
+            <h1>5</h1>
+            <div className="indicador">
+              <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
+              <h3 className="porcentajeUp">0.56%</h3>
+            </div>
+          </div>
+          <div className="item">
+            <h4> Promedio de probelmas resueltos por agente</h4>
+            <h1>3</h1>
+            <div className="indicador">
+              <KeyboardDoubleArrowDownIcon sx={{color:red[900],fontSize:60}}/>
+              <h3 className="porcentajeDown">0.56%</h3>
+            </div>
+          </div>
+          <div className="item">
+            <h4>Velocidad promedio de respuesta</h4>
+            <h1>2 min</h1>
+            <div className="indicador">
+              <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
+              <h3 className="porcentajeUp">0.56%</h3>
+            </div>
+          </div>
+          <div className="item">
+            <h4>Promedio de servicio</h4>
+            <PromedioServicioCliente />
+          </div>
+          <div className="item">
+            <h4>Duración promedio de llamadas</h4>
+            <DuracionPromedioLlamada />
+          </div>
+          <div className="item">
+            <h4>Número de llamadas atendidas</h4>
+            <NumeroLlamadasAtendidas />
+          </div>
+          <div className="item">
+            <h4>Total de problemas resuletos</h4>
+            <ProblemasResueltos />
+          </div>
+          <div className="item">
+            <h4>Total de problemas no resueltos</h4>
+            <ProblemasNoResueltos />
+          </div>
+          <div className="item">
+            <h4>Resolución del primer contacto</h4>
+            <ResolucionPrimerContacto />
           </div>
         </div>
-        <div className="item">
-          <h4> Promedio de probelmas resueltos por agente</h4>
-          <h1>3</h1>
-          <div className="indicador">
-            <KeyboardDoubleArrowDownIcon sx={{color:red[900],fontSize:60}}/>
-            <h3 className="porcentajeDown">0.56%</h3>
-          </div>
-        </div>
-        <div className="item">
-          <h4>Velocidad promedio de respuesta</h4>
-          <h1>2 min</h1>
-          <div className="indicador">
-            <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
-            <h3 className="porcentajeUp">0.56%</h3>
-          </div>
-        </div>
-        <div className="item">
-          <h4>Promedio de servicio</h4>
-          <PromedioServicioCliente />
-        </div>
-        <div className="item">
-          <h4>Duración promedio de llamadas</h4>
-          <DuracionPromedioLlamada />
-        </div>
-        <div className="item">
-          <h4>Número de llamadas atendidas</h4>
-          <NumeroLlamadasAtendidas />
-        </div>
-        <div className="item">
-          <h4>Total de problemas resuletos</h4>
-          <ProblemasResueltos />
-        </div>
-        <div className="item">
-          <h4>Total de problemas no resueltos</h4>
-          <ProblemasNoResueltos />
-        </div>
-        <div className="item">
-          <h4>Resolución del primer contacto</h4>
-          <ResolucionPrimerContacto />
+        <div className="botonesReportes">
+          <button className="botonAzulMarino">Descargar análisis</button>
+          <button className="botonAzulClaro">Descargar transcripciones</button>
         </div>
       </div>
     </div>
