@@ -101,7 +101,7 @@ const Dashboard = () => {
             </button>
           )}
           {opcionesTranscripciones ? (
-            <div className="ventanaReportes">
+            <div className="ventanaTranscripciones">
               <OpcionesTranscripciones />
               <button className="botonAzulMarino" onClick={handleTranscripciones}>
                 Descargar

@@ -56,3 +56,23 @@
     border-radius: 20px;
     text-align: center;
 }
+
+.ventanaReportes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--azul-hielo);
+    align-items: center;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.ventanaTranscripciones{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--azul-hielo);
+    align-items: center;
+    border-radius: 20px;
+    padding: 15px;
+}
