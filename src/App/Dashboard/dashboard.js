@@ -8,21 +8,37 @@ import NumeroLlamadasAtendidas from "./numCallsAtend";
 import ProblemasResueltos from "./probResueltos";
 import ProblemasNoResueltos from "./probNoResueltos";
 import ResolucionPrimerContacto from "./resoluPrimerCont";
-import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
-import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import { red,green } from "@mui/material/colors";
+import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
+import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
+import { red, green } from "@mui/material/colors";
+import OpcionesDocumentos from "./opcionesDocumentos";
+import OpcionesTranscripciones from "./opcionesTranscripciones";
+import { useState } from "react";
 
 const Dashboard = () => {
+  const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
+  const [opcionesTranscripciones, setOpcionesTranscripciones] = useState(false);
+
+  const handleAnalisis = () => {
+    setOpcionesAnalisis(!opcionesAnalisis);
+  };
+
+  const handleTranscripciones = () => {
+    setOpcionesTranscripciones(!opcionesTranscripciones);
+  };
+
   return (
     <div>
       <Header />
-      <div className="PaginaDashboard"> 
+      <div className="PaginaDashboard">
         <div className="dashboard">
           <div className="item">
             <h4>Llamadas promedio por agente</h4>
             <h1>5</h1>
             <div className="indicador">
-              <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
+              <KeyboardDoubleArrowUpIcon
+                sx={{ color: green[900], fontSize: 60 }}
+              />
               <h3 className="porcentajeUp">0.56%</h3>
             </div>
           </div>
@@ -30,7 +46,9 @@ const Dashboard = () => {
             <h4> Promedio de probelmas resueltos por agente</h4>
             <h1>3</h1>
             <div className="indicador">
-              <KeyboardDoubleArrowDownIcon sx={{color:red[900],fontSize:60}}/>
+              <KeyboardDoubleArrowDownIcon
+                sx={{ color: red[900], fontSize: 60 }}
+              />
               <h3 className="porcentajeDown">0.56%</h3>
             </div>
           </div>
@@ -38,7 +56,9 @@ const Dashboard = () => {
             <h4>Velocidad promedio de respuesta</h4>
             <h1>2 min</h1>
             <div className="indicador">
-              <KeyboardDoubleArrowUpIcon sx={{color:green[900],fontSize:60}}/>
+              <KeyboardDoubleArrowUpIcon
+                sx={{ color: green[900], fontSize: 60 }}
+              />
               <h3 className="porcentajeUp">0.56%</h3>
             </div>
           </div>
@@ -68,8 +88,30 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="botonesReportes">
-          <button className="botonAzulMarino">Descargar análisis</button>
-          <button className="botonAzulClaro">Descargar transcripciones</button>
+          {opcionesAnalisis ? (
+            <div className="ventanaReportes">
+              <OpcionesDocumentos />
+              <button className="botonAzulMarino" onClick={handleAnalisis}>
+                Descargar
+              </button>
+            </div>
+          ) : (
+            <button className="botonAzulMarino" onClick={handleAnalisis}>
+              Descargar análisis
+            </button>
+          )}
+          {opcionesTranscripciones ? (
+            <div className="ventanaReportes">
+              <OpcionesTranscripciones />
+              <button className="botonAzulMarino" onClick={handleTranscripciones}>
+                Descargar
+              </button>
+            </div>
+          ) : (
+            <button className="botonAzulMarino" onClick={handleTranscripciones}>
+              Descargar transcripciones
+            </button>
+          )}
         </div>
       </div>
     </div>
