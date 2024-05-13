@@ -57,6 +57,21 @@
     text-align: center;
 }
 
+.opcionesTranscripciones{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    background-color: var(--azul-hielo);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.cerrarOpciones{
+    height: 20px;
+    width: 10px;
+}
+
 .ventanaReportes{
     display: flex;
     flex-direction: column;

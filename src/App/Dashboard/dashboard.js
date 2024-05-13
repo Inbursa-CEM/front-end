@@ -14,16 +14,18 @@ import { red, green } from "@mui/material/colors";
 import OpcionesDocumentos from "./opcionesDocumentos";
 import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
+import { Button } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Dashboard = () => {
   const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
   const [opcionesTranscripciones, setOpcionesTranscripciones] = useState(false);
 
-  const handleAnalisis = () => {
+  const ocultarAnalisis = () => {
     setOpcionesAnalisis(!opcionesAnalisis);
   };
 
-  const handleTranscripciones = () => {
+  const ocultarTranscripciones = () => {
     setOpcionesTranscripciones(!opcionesTranscripciones);
   };
 
@@ -90,25 +92,27 @@ const Dashboard = () => {
         <div className="botonesReportes">
           {opcionesAnalisis ? (
             <div className="ventanaReportes">
+              <Button className="cerrarOpciones" onClick={ocultarAnalisis}> <CloseIcon /> </Button>
               <OpcionesDocumentos />
-              <button className="botonAzulMarino" onClick={handleAnalisis}>
+              <button className="botonAzulMarino" onClick={ocultarAnalisis}>
                 Descargar
               </button>
             </div>
           ) : (
-            <button className="botonAzulMarino" onClick={handleAnalisis}>
+            <button className="botonAzulMarino" onClick={ocultarAnalisis}>
               Descargar análisis
             </button>
           )}
           {opcionesTranscripciones ? (
             <div className="ventanaTranscripciones">
+              <Button className="cerrarOpciones" onClick={ocultarTranscripciones}> <CloseIcon /> </Button>
               <OpcionesTranscripciones />
-              <button className="botonAzulMarino" onClick={handleTranscripciones}>
+              <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
                 Descargar
               </button>
             </div>
           ) : (
-            <button className="botonAzulMarino" onClick={handleTranscripciones}>
+            <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
               Descargar transcripciones
             </button>
           )}
