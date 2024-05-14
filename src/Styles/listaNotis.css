@@ -1,0 +1,11 @@
+.container {
+    margin: 5px;
+}
+
+.button {
+    background-color: var(--azul-claro) !important;
+}
+
+.icon {
+    color: var(--azul-oscuro);
+}
