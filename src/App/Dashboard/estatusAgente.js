@@ -14,7 +14,7 @@ const size = {
 export default function EstatusAgentes() {
   return (
     <PieChart
-    colors={['#f44336', '#4caf50']}
+    colors={['#CD0101','#07B11E']}
       series={[
         {
           arcLabel: (item) => `${item.label} (${item.value})`,

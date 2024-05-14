@@ -11,7 +11,7 @@ import EstatusAgentes from "./estatusAgente";
 import PromedioDuracionLlamadas from "./promDuracionLlamadas";
 import PromedioCalidadServicio from "./promCalidadServicio";
 import SentimientoPromedioAgente from "./sentimientoPromedioAgente";
-import TotalProblemasResueltos from "./totalProblemasResueltos";
+import TotalProblemasAtendidos from "./totalProblemasAtendidos";
 import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
 import NumeroLlamadasDepartamento from "./numeroLlamadasDepto";
 import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
@@ -64,9 +64,9 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>Total de reportes resueltos por agente</h4>
+            <h4>Total de reportes atendidos por agente</h4>
             <div className="indicador">
-              <TotalProblemasResueltos />
+              <TotalProblemasAtendidos />
             </div>
           </div>
           <div className="item">
