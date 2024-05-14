@@ -7,13 +7,13 @@ export default function NumeroLlamadasAtendidas() {
       series={[
         {
           data: [
-            { id: 0, value: 10, label: 'series A' },
-            { id: 1, value: 15, label: 'series B' },
-            { id: 2, value: 20, label: 'series C' },
+            { id: 0, value: 10, label: 'Angel Rodriguez' },
+            { id: 1, value: 15, label: 'Esteban Arce' },
+            { id: 2, value: 20, label: 'Rodolfo Cota' },
           ],
         },
       ]}
-      width={320}
+      width={450}
       height={200}
     />
   );

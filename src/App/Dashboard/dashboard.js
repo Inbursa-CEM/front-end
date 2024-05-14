@@ -10,6 +10,13 @@ import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
+import EstatusAgentes from "./estatusAgente";
+import PromedioDuracionLlamadas from "./promDuracionLlamadas";
+import PromedioCalidadServicio from "./promCalidadServicio";
+import SentimientoPromedioAgente from "./sentimientoPromedioAgente";
+import TotalProblemasResueltos from "./totalProblemasResueltos";
+import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
 
 const Dashboard = () => {
   const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
@@ -31,45 +38,50 @@ const Dashboard = () => {
           <div className="item">
             <h4>Llamadas atendidas por agente</h4>
             <div className="indicador">
-              
-              {/* <KeyboardDoubleArrowUpIcon
-                sx={{ color: green[900], fontSize: 60 }}
-              /> */}
-              {/* <h3 className="porcentajeUp">0.56%</h3> */}
+              <NumeroLlamadasAtendidas />
             </div>
           </div>
           <div className="item">
             <h4> Promedio de duración de llamadas por agente</h4>
             <div className="indicador">
-              {/* <KeyboardDoubleArrowDownIcon
-                sx={{ color: red[900], fontSize: 60 }}
-              /> */}
-              {/* <h3 className="porcentajeDown">0.56%</h3> */}
+              <PromedioDuracionLlamadas />
             </div>
           </div>
           <div className="item">
             <h4>Estatus de agentes al momento</h4>
             <div className="indicador">
-              {/* <KeyboardDoubleArrowUpIcon
-                sx={{ color: green[900], fontSize: 60 }}
-              /> */}
-              {/* <h3 className="porcentajeUp">0.56%</h3> */}
+             <EstatusAgentes />
             </div>
           </div>
           <div className="item">
             <h4>Promedio de calidad de servicio por agente</h4>
+            <div className="indicador">
+              <PromedioCalidadServicio />
+            </div>
           </div>
           <div className="item">
             <h4>Sentimiento promedio en llamadas por agente</h4>
+            <div className="indicador">
+              <SentimientoPromedioAgente />
+            </div>
           </div>
           <div className="item">
             <h4>Total de reportes resueltos por agente</h4>
+            <div className="indicador">
+              <TotalProblemasResueltos />
+            </div>
           </div>
           <div className="item">
             <h4>Total de llamadas atendidas a nivel departamento</h4>
+            <div className="indicador">
+              <NumeroLlamadasAtendidas />
+            </div>
           </div>
           <div className="item">
             <h4>Velocidad promedio de respuesta</h4>
+            <div className="indicador">
+              <VelocidadPromedioRespuesta />
+            </div>
           </div>
           <div className="item">
             <h4>KPI DE SKIAF</h4>
