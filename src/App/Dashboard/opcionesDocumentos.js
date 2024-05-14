@@ -25,7 +25,6 @@ const OpcionesDocumentos = () => {
         })
     }
 
-
     const { llamadasPromAgente, promedioProbResAgente, velPromRespuesta, promServicio, duracionPromLlamadas, numLlamadasAtendidas, totalProbResueltos } = opciones;
 
     return (

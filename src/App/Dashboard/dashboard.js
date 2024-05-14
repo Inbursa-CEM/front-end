@@ -35,7 +35,7 @@ const Dashboard = () => {
       <div className="PaginaDashboard">
         <div className="dashboard">
           <div className="item">
-            <h4>Llamadas promedio por agente</h4>
+            <h4>Llamadas atendidas por agente</h4>
             <h1>5</h1>
             <div className="indicador">
               <KeyboardDoubleArrowUpIcon
@@ -45,7 +45,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4> Promedio de probelmas resueltos por agente</h4>
+            <h4> Promedio de duración de llamadas por agente</h4>
             <h1>3</h1>
             <div className="indicador">
               <KeyboardDoubleArrowDownIcon
@@ -55,7 +55,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>Velocidad promedio de respuesta</h4>
+            <h4>Estatus de agentes al momento</h4>
             <h1>2 min</h1>
             <div className="indicador">
               <KeyboardDoubleArrowUpIcon
@@ -65,27 +65,27 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>Promedio de servicio</h4>
+            <h4>Promedio de calidad de servicio por agente</h4>
             <PromedioServicioCliente />
           </div>
           <div className="item">
-            <h4>Duración promedio de llamadas</h4>
+            <h4>Sentimiento promedio en llamadas por agente</h4>
             <DuracionPromedioLlamada />
           </div>
           <div className="item">
-            <h4>Número de llamadas atendidas</h4>
+            <h4>Total de reportes resueltos por agente</h4>
             <NumeroLlamadasAtendidas />
           </div>
           <div className="item">
-            <h4>Total de problemas resuletos</h4>
+            <h4>Total de llamadas atendidas a nivel departamento</h4>
             <ProblemasResueltos />
           </div>
           <div className="item">
-            <h4>Total de problemas no resueltos</h4>
+            <h4>Velocidad promedio de respuesta</h4>
             <ProblemasNoResueltos />
           </div>
           <div className="item">
-            <h4>Resolución del primer contacto</h4>
+            <h4>KPI DE SKIAF</h4>
             <ResolucionPrimerContacto />
           </div>
         </div>
