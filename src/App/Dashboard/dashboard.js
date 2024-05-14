@@ -86,7 +86,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="botonesReportes">
-          {opcionesAnalisis ? (
+          {/* {opcionesAnalisis ? (
             <div className="ventanaReportes">
               <Button className="cerrarOpciones" onClick={ocultarAnalisis}> <CloseIcon /> </Button>
               <OpcionesDocumentos />
@@ -111,7 +111,7 @@ const Dashboard = () => {
             <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
               Descargar transcripciones
             </button>
-          )}
+          )} */}
         </div>
       </div>
     </div>

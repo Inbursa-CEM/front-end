@@ -1,6 +1,7 @@
 import * as React from "react";
 import { BarChart } from "@mui/x-charts";
 import { useState } from "react";
+import { axisClasses } from "@mui/x-charts";
 
 export default function PromedioDuracionLlamadas() {
   const [agentes, setAgentes] = useState([
@@ -20,6 +21,9 @@ export default function PromedioDuracionLlamadas() {
       ]}
       height={280}
       width={600}
+      sx={{[`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
+        transform: "rotateZ(-45deg)"
+      }}}
       xAxis={[{ data: agentes, scaleType: 'band' }]}
     />
   );
