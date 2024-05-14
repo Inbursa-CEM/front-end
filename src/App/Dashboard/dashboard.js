@@ -2,21 +2,19 @@ import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";
 import Header from "../Layouts/header";
-import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import { red, green } from "@mui/material/colors";
 import OpcionesDocumentos from "./opcionesDocumentos";
 import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
-import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
 import EstatusAgentes from "./estatusAgente";
 import PromedioDuracionLlamadas from "./promDuracionLlamadas";
 import PromedioCalidadServicio from "./promCalidadServicio";
 import SentimientoPromedioAgente from "./sentimientoPromedioAgente";
 import TotalProblemasResueltos from "./totalProblemasResueltos";
 import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
+import NumeroLlamadasDepartamento from "./numeroLlamadasDepto";
+import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
 
 const Dashboard = () => {
   const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
@@ -74,7 +72,7 @@ const Dashboard = () => {
           <div className="item">
             <h4>Total de llamadas atendidas a nivel departamento</h4>
             <div className="indicador">
-              <NumeroLlamadasAtendidas />
+              <NumeroLlamadasDepartamento />
             </div>
           </div>
           <div className="item">

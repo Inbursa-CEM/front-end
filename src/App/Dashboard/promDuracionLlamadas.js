@@ -11,7 +11,7 @@ export default function PromedioDuracionLlamadas() {
         },
       ]}
       width={500}
-      height={300}
+      height={250}
     />
   );
 }

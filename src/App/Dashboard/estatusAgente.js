@@ -8,7 +8,7 @@ const data = [
 
 const size = {
   width: 500,
-  height: 200,
+  height: 250,
 };
 
 export default function EstatusAgentes() {
