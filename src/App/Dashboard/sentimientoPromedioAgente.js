@@ -1,13 +1,24 @@
 import * as React from 'react';
-import { BarChart } from '@mui/x-charts/BarChart';
+import { PieChart } from '@mui/x-charts/PieChart';
 
-export default function SentimientoPromedioAgente() {
+const data = [
+  { id: 0, value: 10, label: 'Humberto Taboada' },
+  { id: 1, value: 15, label: 'Cristian Nodal' },
+  { id: 2, value: 20, label: 'Adolf Berterame' },
+];
+
+export default function PromedioCalidadServicio() {
   return (
-    <BarChart
-      xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
-      series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
-      width={350}
-      height={250}
+    <PieChart
+      series={[
+        {
+          data,
+          highlightScope: { faded: 'global', highlighted: 'item' },
+          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+        },
+      ]}
+      height={200}
+      width={500}
     />
   );
 }

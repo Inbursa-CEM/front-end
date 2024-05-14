@@ -1,24 +1,17 @@
 import * as React from 'react';
-import { PieChart } from '@mui/x-charts/PieChart';
+import { LineChart } from '@mui/x-charts/LineChart';
 
-const data = [
-  { id: 0, value: 10, label: 'Humberto Taboada' },
-  { id: 1, value: 15, label: 'Cristian Nodal' },
-  { id: 2, value: 20, label: 'Adolf Berterame' },
-];
-
-export default function PromedioCalidadServicio() {
+export default function PromedioDuracionLlamadas() {
   return (
-    <PieChart
+    <LineChart
+      xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
       series={[
         {
-          data,
-          highlightScope: { faded: 'global', highlighted: 'item' },
-          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+          data: [2, 5.5, 2, 8.5, 1.5, 5],
         },
       ]}
-      height={200}
       width={500}
+      height={250}
     />
   );
 }
