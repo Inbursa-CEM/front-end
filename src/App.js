@@ -9,7 +9,7 @@ import OneOnOne from "./App/TablaMonitoreo/OneOnOne";
 function App() {
   return (
     <div className="App">
-      <JoinCall/ >
+      <JoinCall />
       <OneOnOne />
     </div>
   );
