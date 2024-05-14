@@ -1,17 +1,26 @@
-import * as React from 'react';
-import { LineChart } from '@mui/x-charts/LineChart';
+import * as React from "react";
+import { BarChart } from "@mui/x-charts";
+import { useState } from "react";
 
 export default function PromedioDuracionLlamadas() {
+  const [agentes, setAgentes] = useState([
+    "Diego Manja",
+    "Alan Ávila",
+    "Gerardo Dominguez",
+    "Irene Paredes",
+  ]);
+
+  const xAxisData = agentes.map((_, index) => index);
+  const seriesData = [2, 5.5, 2, 8.5];
+
   return (
-    <LineChart
-      xAxis={[{ data: [1, 2, 3, 5, 8, 10] }]}
+    <BarChart
       series={[
-        {
-          data: [2, 5.5, 2, 8.5, 1.5, 5],
-        },
+        { data: [35, 44, 24, 34] },
       ]}
-      width={500}
-      height={250}
+      height={280}
+      width={600}
+      xAxis={[{ data: agentes, scaleType: 'band' }]}
     />
   );
 }

@@ -82,7 +82,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>KPI DE SKIAF</h4>
+            <h4>Promedio de Servicio a nivel departamento</h4>
           </div>
         </div>
         <div className="botonesReportes">
