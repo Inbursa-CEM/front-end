@@ -31,7 +31,7 @@ function PieCenterLabel({ children }) {
   );
 }
 
-export default function PromedioServicioCliente() {
+export default function NumeroLlamadasDepartamento() {
   return (
     <PieChart series={[{ data, innerRadius: 80 }]} {...size}>
       <PieCenterLabel>Promedio Servicio</PieCenterLabel>

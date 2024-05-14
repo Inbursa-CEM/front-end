@@ -13,7 +13,7 @@ const xLabels = [
   'Page G',
 ];
 
-export default function ResolucionPrimerContacto() {
+export default function VelocidadPromedioRespuesta() {
   return (
     <BarChart
       width={350}

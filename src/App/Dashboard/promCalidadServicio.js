@@ -50,7 +50,7 @@ const dataset = [
 
 const valueFormatter = (value) => `${value}mm`;
 
-export default function ProblemasNoResueltos() {
+export default function PromedioCalidadServicio() {
   return (
     <BarChart
       dataset={dataset}

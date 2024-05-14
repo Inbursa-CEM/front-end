@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 
-export default function ProblemasResueltos() {
+export default function SentimientoPromedioAgente() {
   return (
     <BarChart
       xAxis={[{ scaleType: 'band', data: ['group A', 'group B', 'group C'] }]}
