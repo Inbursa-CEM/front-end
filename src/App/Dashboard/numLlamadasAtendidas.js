@@ -1,13 +1,33 @@
 import * as React from 'react';
 import { PieChart } from '@mui/x-charts/PieChart';
-
-const data = [
-  { id: 0, value: 10, label: 'Humberto Taboada' },
-  { id: 1, value: 15, label: 'Cristian Nodal' },
-  { id: 2, value: 20, label: 'Adolf Berterame' },
-];
+import { useState, useCallback, useEffect } from 'react';
 
 export default function PromedioCalidadServicio() {
+
+  const [url, setUrl] = useState("http://10.48.81.212:8080/llamada/numLlamadas");
+  const [data, setData] = useState([]);
+
+  const descargar = useCallback(() => {
+    console.log("Descargando datos");
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+
+        const dataFormateada = data.map((agente, index) => ({
+          id: index,
+          value: agente.numLlamadas,
+          label: agente.idAgente,
+        }));
+        
+        setData(dataFormateada);
+      })
+      .catch((error) => console.log(error));
+  });
+
+  useEffect(() => {
+    descargar();
+  }, []);
+
   return (
     <PieChart
       series={[

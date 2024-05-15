@@ -1,30 +1,53 @@
 import * as React from "react";
-import { BarChart } from "@mui/x-charts";
-import { useState } from "react";
-import { axisClasses } from "@mui/x-charts";
+import { useState, useCallback, useEffect } from "react";
+import { LineChart,axisClasses } from "@mui/x-charts";
 
-export default function PromedioDuracionLlamadas() {
-  const [agentes, setAgentes] = useState([
-    "Diego Manja",
-    "Alan Ávila",
-    "Gerardo Dominguez",
-    "Irene Paredes",
-  ]);
+export default function PromedioCalidadLlamadas() {
+  
+  const [url, setUrl] = useState("http://10.48.81.212:8080/llamada/promedioDuracion");
+  const [agentes, setAgentes] = useState([]);
+  const [promedios, setPromedios] = useState([]);
 
-  const xAxisData = agentes.map((_, index) => index);
-  const seriesData = [2, 5.5, 2, 8.5];
+  const descargar = useCallback(() => {
+      console.log("Descargando datos");
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const arrNuevo = data.map((agente) => {
+            const infoAgente = {
+              agente: agente.idAgente,
+              promedioDuracion: agente.tiempoPromedio,
+            };
+            return infoAgente;
+          });
+          const idsAgente = data.map((agente) => agente.idAgente);
+          setAgentes(idsAgente);
+          const promedios = data.map((agente) => agente.tiempoPromedio);
+          setPromedios(promedios);
+        })
+        .catch((error) => console.log(error));
+  })
+
+  useEffect(() => {
+    descargar();
+  }, []);
 
   return (
-    <BarChart
+    <LineChart
+      xAxis={[{ data: agentes, scaleType: 'band'}]}
       series={[
-        { data: [35, 44, 24, 34] },
+        
+        {
+          data: promedios,
+          area: true
+        },
       ]}
-      height={280}
-      width={600}
+      width={900}
+      height={250}
       sx={{[`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-        transform: "rotateZ(-45deg)"
+        transform: "rotateZ(-70deg) translateY(60px) translateX(-60px)",
+        fontSize: "20px !important",
       }}}
-      xAxis={[{ data: agentes, scaleType: 'band' }]}
     />
   );
 }

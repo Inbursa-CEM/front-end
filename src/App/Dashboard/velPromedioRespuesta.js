@@ -4,7 +4,9 @@ import {Gauge, gaugeClasses} from "@mui/x-charts/Gauge";
 const settings = {
   width: 200,
   height: 200,
-  value: 99,
+  value: 2,
+  valueMax: 5,
+  vbalueMin: 0,
 };
 
 export default function VelocidadPromedioRespuesta() {
