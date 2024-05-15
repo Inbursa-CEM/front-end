@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <div className="header">
       <div className="menuIconos">
-        <OpcionIcono icono={<SupportAgentIcon />} texto="Monitoreo" ruta="/" />
+        <OpcionIcono icono={<SupportAgentIcon />} texto="Monitoreo" ruta="/monitoreo" />
         <OpcionIcono icono={<QueryStatsIcon />} texto="Estadísticas" ruta="/dashboard" />
         <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
       </div>
