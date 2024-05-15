@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from 'react';
 
 export default function PromedioCalidadServicio() {
 
-  const [url, setUrl] = useState("http://10.48.81.212:8080/llamada/numLlamadas");
+  const [url, setUrl] = useState("http://localhost:8080/llamada/numLlamadasPorAgente");
   const [data, setData] = useState([]);
 
   const descargar = useCallback(() => {

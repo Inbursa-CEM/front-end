@@ -4,7 +4,7 @@ import { LineChart,axisClasses } from "@mui/x-charts";
 
 export default function PromedioCalidadLlamadas() {
   
-  const [url, setUrl] = useState("http://10.48.81.212:8080/llamada/promedioDuracion");
+  const [url, setUrl] = useState("http://192.168.1.34:8080/llamada/reportesAtendidosPorAgente");
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
