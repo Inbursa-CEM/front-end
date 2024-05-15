@@ -1,0 +1,6 @@
+.listaCursos{
+    max-height: 250 !important;
+    overflow: 'auto' !important;
+    width:1000 !important;
+    background-color: white;
+}
