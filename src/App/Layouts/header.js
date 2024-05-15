@@ -15,7 +15,7 @@ const Header = () => {
         <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
       </div>
       <div className="tagEmpleado">
-        <TagEmpleado icono={<FaceIcon/>} texto="Juan Pérez" subtexto="Administrador" />
+        <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
       </div>
     </div>
   );
