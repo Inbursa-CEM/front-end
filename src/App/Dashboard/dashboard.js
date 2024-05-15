@@ -15,6 +15,7 @@ import TotalProblemasAtendidos from "./totalProblemasAtendidos";
 import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
 import NumeroLlamadasDepartamento from "./numeroLlamadasDepto";
 import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
+import PromedioServicioGeneral from "./promServicioGeneral";
 
 const Dashboard = () => {
   const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
@@ -83,35 +84,12 @@ const Dashboard = () => {
           </div>
           <div className="item">
             <h4>Promedio de Servicio a nivel departamento</h4>
+            <div className="indicador">
+              <PromedioServicioGeneral />
+            </div>
           </div>
         </div>
         <div className="botonesReportes">
-          {/* {opcionesAnalisis ? (
-            <div className="ventanaReportes">
-              <Button className="cerrarOpciones" onClick={ocultarAnalisis}> <CloseIcon /> </Button>
-              <OpcionesDocumentos />
-              <button className="botonAzulMarino" onClick={ocultarAnalisis}>
-                Descargar
-              </button>
-            </div>
-          ) : (
-            <button className="botonAzulMarino" onClick={ocultarAnalisis}>
-              Descargar análisis
-            </button>
-          )}
-          {opcionesTranscripciones ? (
-            <div className="ventanaTranscripciones">
-              <Button className="cerrarOpciones" onClick={ocultarTranscripciones}> <CloseIcon /> </Button>
-              <OpcionesTranscripciones />
-              <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
-                Descargar
-              </button>
-            </div>
-          ) : (
-            <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
-              Descargar transcripciones
-            </button>
-          )} */}
         </div>
       </div>
     </div>
