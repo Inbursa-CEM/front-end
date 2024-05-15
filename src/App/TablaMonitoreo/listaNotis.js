@@ -3,7 +3,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Fab from "@mui/material/Fab";
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Collapse from "@mui/material/Collapse";
 
 import "../../Styles/listaNotis.css";
@@ -14,6 +14,19 @@ const Notificaciones = () => {
     const showList = () => {
         setNotificaciones(!notificaciones);
     }
+
+    // const [url, setUrl] = useState("http://localhost:3000/obtenerNotificaciones");
+
+    // const descarga = useCallback(() => {
+    //     fetch(url)
+    //         .then(response => response.json())
+    //         .then(data => {
+
+    //             const format = data.map((item) => {
+    //                 return item;
+    //             });
+    //         })
+    // }, []);
 
     return (
         <div className="container">
