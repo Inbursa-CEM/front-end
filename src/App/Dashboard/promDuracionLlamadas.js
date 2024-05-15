@@ -27,7 +27,8 @@ export default function PromedioDuracionLlamadas() {
       width={900}
       height={250}
       sx={{[`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-        transform: "rotateZ(-70deg) translateY(60px) translateX(-60px)"
+        transform: "rotateZ(-70deg) translateY(60px) translateX(-60px)",
+        fontSize: "20px !important",
       }}}
     />
   );

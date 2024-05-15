@@ -3,8 +3,8 @@ import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { useState, useCallback } from 'react';
 
 const data = [
-  { value: 5, label: 'En llamada' },
-  { value: 10, label: 'Libre' }
+  { value: 3, label: 'En llamada' },
+  { value: 4, label: 'Libre' }
 ];
 
 const size = {
