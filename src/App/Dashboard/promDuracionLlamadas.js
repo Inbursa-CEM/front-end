@@ -6,7 +6,7 @@ import { useState, useCallback, useEffect } from 'react';
 export default function PromedioDuracionLlamadas() {
 
 
-  const [url, setUrl] = useState("http://192.168.1.34:8080/llamada/promedioDuracion");
+  const [url, setUrl] = useState("http://192.168.1.34:8080/llamada/promedioDuracionPorAgente");
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
