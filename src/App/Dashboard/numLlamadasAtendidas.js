@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { PieChart } from '@mui/x-charts/PieChart';
-import { useState, useCallback, useEffect } from 'react';
+import * as React from "react";
+import { PieChart } from "@mui/x-charts/PieChart";
+import { useState, useCallback, useEffect } from "react";
 
 export default function PromedioCalidadServicio() {
-
-  const [url, setUrl] = useState("http://localhost:8080/llamada/numLlamadasPorAgente");
+  const [url, setUrl] = useState(
+    "http://localhost:8080/llamada/numLlamadasPorAgente"
+  );
   const [data, setData] = useState([]);
 
   const descargar = useCallback(() => {
@@ -12,13 +13,12 @@ export default function PromedioCalidadServicio() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-
         const dataFormateada = data.map((agente, index) => ({
           id: index,
           value: agente.numLlamadas,
           label: agente.idAgente,
         }));
-        
+
         setData(dataFormateada);
       })
       .catch((error) => console.log(error));
@@ -33,8 +33,8 @@ export default function PromedioCalidadServicio() {
       series={[
         {
           data,
-          highlightScope: { faded: 'global', highlighted: 'item' },
-          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
+          highlightScope: { faded: "global", highlighted: "item" },
+          faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
         },
       ]}
       height={200}
@@ -42,4 +42,3 @@ export default function PromedioCalidadServicio() {
     />
   );
 }
-                         

@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Gauge, gaugeClasses} from "@mui/x-charts/Gauge";
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 
 const settings = {
   width: 200,
@@ -26,7 +26,10 @@ export default function VelocidadPromedioRespuesta() {
         },
       })}
     >
-    <text x="50%" y="65%" textAnchor="middle" dy="0.3em" fontSize="1.5em"> min </text>
+      <text x="50%" y="65%" textAnchor="middle" dy="0.3em" fontSize="1.5em">
+        {" "}
+        min{" "}
+      </text>
     </Gauge>
   );
 }

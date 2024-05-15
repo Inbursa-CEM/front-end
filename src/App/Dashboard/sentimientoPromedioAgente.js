@@ -1,10 +1,11 @@
-import * as React from 'react';
-import { BarChart } from '@mui/x-charts';
-import { useState, useCallback, useEffect } from 'react';
+import * as React from "react";
+import { BarChart } from "@mui/x-charts";
+import { useState, useCallback, useEffect } from "react";
 
 export default function SentimientoPromedioAgente() {
-
-  const [url, setUrl] = useState("http://localhost:8080/llamada/sentimientoPorAgente");
+  const [url, setUrl] = useState(
+    "http://localhost:8080/llamada/sentimientoPorAgente"
+  );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
 
@@ -28,9 +29,9 @@ export default function SentimientoPromedioAgente() {
     descargar();
   }, []);
 
-  return (    
+  return (
     <BarChart
-      xAxis={[{ scaleType: 'band', data: agentes }]}
+      xAxis={[{ scaleType: "band", data: agentes }]}
       series={data}
       width={500}
       height={250}

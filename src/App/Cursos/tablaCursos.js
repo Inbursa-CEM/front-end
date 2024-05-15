@@ -1,30 +1,38 @@
-import '../../Styles/App.css';
-import React from 'react';
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
+import "../../Styles/App.css";
+import React from "react";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 
 const CursosTabla = () => {
   // Datos de ejemplo de empleados
   const empleados = [
-    { 
-      nombre: 'Juan',
-      fortalezas: 'Organización, Comunicación',
-      debilidades: 'Procrastinación',
-      cursos: ['Gestión del tiempo', 'Comunicación efectiva'],
-      fechaAsignacion: '2023-05-10'
+    {
+      nombre: "Juan",
+      fortalezas: "Organización, Comunicación",
+      debilidades: "Procrastinación",
+      cursos: ["Gestión del tiempo", "Comunicación efectiva"],
+      fechaAsignacion: "2023-05-10",
     },
-    { 
-      nombre: 'María',
-      fortalezas: 'Creatividad, Trabajo en equipo',
-      debilidades: 'Gestión del tiempo',
-      cursos: ['Liderazgo', 'Resolución de conflictos'],
-      fechaAsignacion: '2023-06-15'
+    {
+      nombre: "María",
+      fortalezas: "Creatividad, Trabajo en equipo",
+      debilidades: "Gestión del tiempo",
+      cursos: ["Liderazgo", "Resolución de conflictos"],
+      fechaAsignacion: "2023-06-15",
     },
-    { 
-      nombre: 'Pedro',
-      fortalezas: 'Responsabilidad, Adaptabilidad',
-      debilidades: 'Resolución de problemas',
-      cursos: ['Gestión del estrés', 'Toma de decisiones'],
-      fechaAsignacion: '2023-07-20'
+    {
+      nombre: "Pedro",
+      fortalezas: "Responsabilidad, Adaptabilidad",
+      debilidades: "Resolución de problemas",
+      cursos: ["Gestión del estrés", "Toma de decisiones"],
+      fechaAsignacion: "2023-07-20",
     },
   ];
 
@@ -60,6 +68,6 @@ const CursosTabla = () => {
       </Table>
     </TableContainer>
   );
-}
+};
 
 export default CursosTabla;

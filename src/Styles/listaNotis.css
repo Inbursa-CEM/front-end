@@ -1,11 +1,21 @@
-.container {
-    margin: 5px;
+.container-notis {
+  margin: 5px;
+  position: relative;
 }
 
-.button {
-    background-color: var(--azul-claro) !important;
+.button-notis {
+  background-color: var(--azul-claro) !important;
 }
 
-.icon {
-    color: var(--azul-oscuro);
+.icon-notis {
+  color: var(--azul-oscuro);
+}
+
+.collapse-container {
+  margin: 0.5rem;
+  position: absolute;
+  z-index: 10 !important;
+  background-color: var(--gris);
+  border-radius: 15px;
+  box-shadow: 12px 10px 55px -8px rgba(128, 128, 128, 0.88);
 }

@@ -34,12 +34,11 @@ const Principal = () => {
             </div>
             <div className="box-6">
               <h2 className="texto">Cursos y Recomendaciones</h2>
- 
+
               <Sugerencias area={idArea} idOperador={idOperador}></Sugerencias>
             </div>
           </div>
         </div>
-        
       </div>
       <div className="box-7">
         <h2 className="texto">Agregar Cursos</h2>

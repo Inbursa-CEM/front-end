@@ -5,8 +5,7 @@ import SupportAgentIcon from "@mui/icons-material/SupportAgent";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import FaceIcon from "@mui/icons-material/Face";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import ChatIcon from "@mui/icons-material/Chat";
+import Notificaciones from "../TablaMonitoreo/listaNotis";
 
 const Header = () => {
   return (
@@ -17,6 +16,7 @@ const Header = () => {
         <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
       </div>
       <div className="tagEmpleado">
+        <Notificaciones />
         <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
       </div>
     </div>

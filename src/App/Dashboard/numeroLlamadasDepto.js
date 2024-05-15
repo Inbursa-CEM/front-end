@@ -1,6 +1,5 @@
-import { Gauge, gaugeClasses } from '@mui/x-charts/Gauge';
-import * as React from 'react';
-
+import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
+import * as React from "react";
 
 export default function NumeroLlamadasDepartamento() {
   return (
@@ -13,13 +12,10 @@ export default function NumeroLlamadasDepartamento() {
       sx={{
         [`& .${gaugeClasses.valueText}`]: {
           fontSize: 40,
-          transform: 'translate(0px, 0px)',
+          transform: "translate(0px, 0px)",
         },
       }}
-      text={
-         ({ value, valueMax }) => `${value} / ${valueMax}`
-      }
+      text={({ value, valueMax }) => `${value} / ${valueMax}`}
     />
   );
 }
-

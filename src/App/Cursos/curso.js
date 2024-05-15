@@ -3,73 +3,80 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import { IconButton } from "@mui/material";
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import SaveAltIcon from '@mui/icons-material/SaveAlt';
+import TextField from "@mui/material/TextField";
+import SaveAltIcon from "@mui/icons-material/SaveAlt";
 import { useState } from "react";
 
-
-
-const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario }) => {
-  
-  const [newFecha,setFecha] = useState(fecha);
-  const [newPrioridad,setPrioridad] = useState(prioridad);
-  const [newEstado,setEstado] = useState(estado);
-  const [idAgente,setAgente] = useState(idUsuario);
+const Curso = ({
+  idCurso,
+  nombre,
+  url,
+  descripcion,
+  prioridad,
+  estado,
+  fecha,
+  idUsuario,
+}) => {
+  const [newFecha, setFecha] = useState(fecha);
+  const [newPrioridad, setPrioridad] = useState(prioridad);
+  const [newEstado, setEstado] = useState(estado);
+  const [idAgente, setAgente] = useState(idUsuario);
 
   const modificarFecha = (evento) => {
     setFecha(evento.target.value);
-  }
-  const modificarPrioridad= (evento) => {
+  };
+  const modificarPrioridad = (evento) => {
     setPrioridad(parseInt(evento.target.value));
-  }
+  };
 
   const modificarEstado = (evento) => {
     setEstado(evento.target.value);
-  }
-
+  };
 
   const options = {
-    method: 'POST',
-    headers:{
-        'Content-type' : 'application/json',
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
     },
-    body:JSON.stringify({idCurso,idAgente})
-
+    body: JSON.stringify({ idCurso, idAgente }),
   };
-  
+
   const Eliminar = () => {
     console.log(idCurso);
-    fetch("http://localhost:8080/curso/desasignar",options)
+    fetch("http://localhost:8080/curso/desasignar", options)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
       })
       .catch((error) => console.log(error));
   };
-  
-  const options2 = {
-    method: 'POST',
-    headers:{
-        'Content-type' : 'application/json',
-    },
-    body:JSON.stringify({idCurso,idAgente,newPrioridad,newEstado,newFecha})
 
+  const options2 = {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify({
+      idCurso,
+      idAgente,
+      newPrioridad,
+      newEstado,
+      newFecha,
+    }),
   };
-  
+
   const Guardar = () => {
     console.log(options2.body);
-    fetch("http://localhost:8080/curso/modificarAsignacion",options2)
+    fetch("http://localhost:8080/curso/modificarAsignacion", options2)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
       })
       .catch((error) => console.log(error));
   };
-
 
   return (
     <ListItem disablePadding>
@@ -86,11 +93,8 @@ const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario
         <DeleteRoundedIcon />
       </IconButton>
       <IconButton onClick={Guardar}>
-        <SaveAltIcon/>
+        <SaveAltIcon />
       </IconButton>
-
-          
-      
     </ListItem>
   );
 };

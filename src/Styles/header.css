@@ -14,8 +14,14 @@
   display: flex;
   margin-left: auto;
   gap: 20px;
+  position: relative;
 }
 
 .contenedor {
   width: 290px;
+}
+
+.collapse.cerrar.sesion {
+  position: absolute;
+  z-index: 10 !important;
 }

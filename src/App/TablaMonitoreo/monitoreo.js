@@ -1,6 +1,9 @@
 import "../../Styles/App.css";
 import Header from "../Layouts/header";
+import TagEmpleado from "../Layouts/tagEmpleado";
+import Notificaciones from "./listaNotis";
 import EmpleadosTabla from "./tablaMonitoreo";
+import FaceIcon from "@mui/icons-material/Face";
 
 const Monitoreo = () => {
   return (

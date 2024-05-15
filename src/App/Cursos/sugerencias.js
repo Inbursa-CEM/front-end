@@ -1,8 +1,5 @@
 import * as React from "react";
-
-
 import { v4 as uuidv5 } from "uuid";
-
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import Sugerencia from "./sugerencia";
@@ -40,15 +37,13 @@ const Sugerencias = (props) => {
               nombre={sug.nombre}
               url={sug.url}
               descripcion={sug.url}
-              idCurso= {sug.idCurso}
+              idCurso={sug.idCurso}
               idUsuario={props.idOperador}
               key={sug.id}
             />
           );
         })}
       </Paper>
-
-     
     </div>
   );
 };

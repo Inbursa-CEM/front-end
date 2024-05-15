@@ -21,11 +21,12 @@ const TagEmpleado = ({ icono, texto, subtexto }) => {
       <Button onClick={showCerrarSesion} className="botonGris">
         {icono} {texto} {subtexto}
       </Button>
+      <div className="collapse-cerrar-sesion">
       <Collapse in={desplegar} style={{ transitionDuration: ".4s" }}>
         <Button className="botonAzulClaro" onClick={cerrarSesion}>
           Cerrar sesión
         </Button>
-      </Collapse>
+      </Collapse></div>
     </div>
   );
 };

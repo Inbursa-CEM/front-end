@@ -6,24 +6,17 @@ import ListItemText from "@mui/material/ListItemText";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { useRef } from "react";
 
-
-
 const Sugerencia = ({ idCurso, nombre, descripcion, url, idUsuario }) => {
-  
-    
-  
   const options = {
-    method: 'POST',
-    headers:{
-        'Content-type' : 'application/json',
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
     },
-    body:JSON.stringify({idCurso,idUsuario})
-
+    body: JSON.stringify({ idCurso, idUsuario }),
   };
 
   const Asignar = () => {
-    
-    fetch("http://localhost:8080/curso/asignar",options)
+    fetch("http://localhost:8080/curso/asignar", options)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

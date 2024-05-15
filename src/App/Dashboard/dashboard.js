@@ -5,8 +5,8 @@ import Header from "../Layouts/header";
 import OpcionesDocumentos from "./opcionesDocumentos";
 import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
-import { Button } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
+import { Button } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
 import EstatusAgentes from "./estatusAgente";
 import PromedioDuracionLlamadas from "./promDuracionLlamadas";
 import PromedioCalidadServicio from "./promCalidadServicio";
@@ -49,7 +49,7 @@ const Dashboard = () => {
           <div className="item">
             <h4>Estatus de agentes al momento</h4>
             <div className="indicador">
-             <EstatusAgentes />
+              <EstatusAgentes />
             </div>
           </div>
           <div className="item">
@@ -89,8 +89,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <div className="botonesReportes">
-        </div>
+        <div className="botonesReportes"></div>
       </div>
     </div>
   );
