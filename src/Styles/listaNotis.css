@@ -1,5 +1,6 @@
 .container {
     margin: 5px;
+    position: relative;
 }
 
 .button {
@@ -8,4 +9,13 @@
 
 .icon {
     color: var(--azul-oscuro);
+}
+
+.collapse-container {
+    margin: 0.5rem;
+    position: absolute;
+    z-index: 10 !important;
+    background-color: var(--gris);
+    border-radius: 15px;
+    box-shadow: 12px 10px 55px -8px rgba(128,128,128,0.88);;
 }

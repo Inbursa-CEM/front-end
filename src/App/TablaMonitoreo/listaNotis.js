@@ -33,19 +33,22 @@ const Notificaciones = () => {
             <Fab onClick={showList} className="button">
                 <NotificationsActiveIcon className="icon" />
             </Fab>
-            <Collapse in={notificaciones} style={{ transitionDuration: ".4s"}}>
-                <List>
-                    <ListItem>
-                        <ListItemText primary="Notificación 1" secondary="Hace 10 minutos" />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Notificación 2" secondary="Hace 20 minutos" />
-                    </ListItem>
-                    <ListItem>
-                        <ListItemText primary="Notificación 3" secondary="Hace 30 minutos" />
-                    </ListItem>
-                </List>
-            </Collapse>
+            <div className="collapse-container">
+                <Collapse in={notificaciones} style={{ transitionDuration: ".4s" }}>
+                    <List>
+                        <ListItem>
+                            <ListItemText primary="Notificación 1" secondary="Hace 10 minutos" />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary="Notificación 2" secondary="Hace 20 minutos" />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemText primary="Notificación 3" secondary="Hace 30 minutos" />
+                        </ListItem>
+                    </List>
+                </Collapse>
+            </div>
+
         </div>
 
     );
