@@ -33,7 +33,7 @@ const AgregarCurso = () => {
       
       const Guardar = () => {
         
-        fetch("http://localhost:8080/curso/crear")
+        fetch("http://localhost:8080/curso/crear",options)
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
