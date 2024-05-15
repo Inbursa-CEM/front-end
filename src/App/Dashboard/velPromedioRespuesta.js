@@ -6,7 +6,7 @@ const settings = {
   height: 200,
   value: 2,
   valueMax: 5,
-  vbalueMin: 0,
+  valueMin: 0,
 };
 
 export default function VelocidadPromedioRespuesta() {

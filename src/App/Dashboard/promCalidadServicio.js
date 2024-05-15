@@ -4,7 +4,7 @@ import { LineChart,axisClasses } from "@mui/x-charts";
 
 export default function PromedioCalidadLlamadas() {
   
-  const [url, setUrl] = useState("http://192.168.1.34:8080/llamada/reportesAtendidosPorAgente");
+  const [url, setUrl] = useState("http://192.168.1.34:8080/llamada/promedioServicioPorAgente");
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
@@ -15,14 +15,14 @@ export default function PromedioCalidadLlamadas() {
         .then((data) => {
           const arrNuevo = data.map((agente) => {
             const infoAgente = {
-              agente: agente.idAgente,
-              promedioDuracion: agente.tiempoPromedio,
+              agente: agente.idUsuario,
+              promedioDuracion: agente.promedioProblemasResueltos,
             };
             return infoAgente;
           });
-          const idsAgente = data.map((agente) => agente.idAgente);
+          const idsAgente = data.map((agente) => agente.idUsuario);
           setAgentes(idsAgente);
-          const promedios = data.map((agente) => agente.tiempoPromedio);
+          const promedios = data.map((agente) => agente.promedioProblemasResueltos);
           setPromedios(promedios);
         })
         .catch((error) => console.log(error));

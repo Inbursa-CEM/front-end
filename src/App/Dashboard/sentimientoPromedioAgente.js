@@ -1,24 +1,39 @@
 import * as React from 'react';
-import { PieChart } from '@mui/x-charts/PieChart';
+import { BarChart } from '@mui/x-charts';
+import { useState, useCallback, useEffect } from 'react';
 
-const data = [
-  { id: 0, value: 10, label: 'Humberto Taboada' },
-  { id: 1, value: 15, label: 'Cristian Nodal' },
-  { id: 2, value: 20, label: 'Adolf Berterame' },
-];
+export default function SentimientoPromedioAgente() {
 
-export default function PromedioCalidadServicio() {
-  return (
-    <PieChart
-      series={[
-        {
-          data,
-          highlightScope: { faded: 'global', highlighted: 'item' },
-          faded: { innerRadius: 30, additionalRadius: -30, color: 'gray' },
-        },
-      ]}
-      height={200}
+  const [url, setUrl] = useState("http://localhost:8080/llamada/sentimientoPorAgente");
+  const [data, setData] = useState([]);
+  const [agentes, setAgentes] = useState([]);
+
+  const descargar = useCallback(() => {
+    console.log("Descargando datos");
+    fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        const dataFormateada = data.map((agente) => ({
+          data: [agente.positivo, agente.negativo, agente.neutral],
+        }));
+        const agentes = data.map((agente) => agente.idUsuario);
+        setAgentes(agentes);
+        setData(dataFormateada);
+        console.log(dataFormateada);
+      })
+      .catch((error) => console.log(error));
+  });
+  console.log(data);
+  useEffect(() => {
+    descargar();
+  }, []);
+
+  return (    
+    <BarChart
+      xAxis={[{ scaleType: 'band', data: agentes }]}
+      series={data}
       width={500}
+      height={250}
     />
   );
 }
