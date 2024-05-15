@@ -2,20 +2,20 @@ import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";
 import Header from "../Layouts/header";
-import PromedioServicioCliente from "./promServClien";
-import DuracionPromedioLlamada from "./promDuraCall";
-import NumeroLlamadasAtendidas from "./numCallsAtend";
-import ProblemasResueltos from "./probResueltos";
-import ProblemasNoResueltos from "./probNoResueltos";
-import ResolucionPrimerContacto from "./resoluPrimerCont";
-import KeyboardDoubleArrowUpIcon from "@mui/icons-material/KeyboardDoubleArrowUp";
-import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
-import { red, green } from "@mui/material/colors";
 import OpcionesDocumentos from "./opcionesDocumentos";
 import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
 import { Button } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import EstatusAgentes from "./estatusAgente";
+import PromedioDuracionLlamadas from "./promDuracionLlamadas";
+import PromedioCalidadServicio from "./promCalidadServicio";
+import SentimientoPromedioAgente from "./sentimientoPromedioAgente";
+import TotalProblemasAtendidos from "./totalProblemasAtendidos";
+import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
+import NumeroLlamadasDepartamento from "./numeroLlamadasDepto";
+import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
+import PromedioServicioGeneral from "./promServicioGeneral";
 
 const Dashboard = () => {
   const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
@@ -35,87 +35,61 @@ const Dashboard = () => {
       <div className="PaginaDashboard">
         <div className="dashboard">
           <div className="item">
-            <h4>Llamadas promedio por agente</h4>
-            <h1>5</h1>
+            <h4>Llamadas atendidas por agente</h4>
             <div className="indicador">
-              <KeyboardDoubleArrowUpIcon
-                sx={{ color: green[900], fontSize: 60 }}
-              />
-              <h3 className="porcentajeUp">0.56%</h3>
+              <NumeroLlamadasAtendidas />
             </div>
           </div>
           <div className="item">
-            <h4> Promedio de probelmas resueltos por agente</h4>
-            <h1>3</h1>
+            <h4> Promedio de duración de llamadas por agente</h4>
             <div className="indicador">
-              <KeyboardDoubleArrowDownIcon
-                sx={{ color: red[900], fontSize: 60 }}
-              />
-              <h3 className="porcentajeDown">0.56%</h3>
+              <PromedioDuracionLlamadas />
+            </div>
+          </div>
+          <div className="item">
+            <h4>Estatus de agentes al momento</h4>
+            <div className="indicador">
+             <EstatusAgentes />
+            </div>
+          </div>
+          <div className="item">
+            <h4>Promedio de calidad de servicio por agente</h4>
+            <div className="indicador">
+              <PromedioCalidadServicio />
+            </div>
+          </div>
+          <div className="item">
+            <h4>Sentimiento promedio en llamadas por agente</h4>
+            <div className="indicador">
+              <SentimientoPromedioAgente />
+            </div>
+          </div>
+          <div className="item">
+            <h4>Total de reportes atendidos por agente</h4>
+            <div className="indicador">
+              <TotalProblemasAtendidos />
+            </div>
+          </div>
+          <div className="item">
+            <h4>Total de llamadas atendidas a nivel departamento</h4>
+            <div className="indicador">
+              <NumeroLlamadasDepartamento />
             </div>
           </div>
           <div className="item">
             <h4>Velocidad promedio de respuesta</h4>
-            <h1>2 min</h1>
             <div className="indicador">
-              <KeyboardDoubleArrowUpIcon
-                sx={{ color: green[900], fontSize: 60 }}
-              />
-              <h3 className="porcentajeUp">0.56%</h3>
+              <VelocidadPromedioRespuesta />
             </div>
           </div>
           <div className="item">
-            <h4>Promedio de servicio</h4>
-            <PromedioServicioCliente />
-          </div>
-          <div className="item">
-            <h4>Duración promedio de llamadas</h4>
-            <DuracionPromedioLlamada />
-          </div>
-          <div className="item">
-            <h4>Número de llamadas atendidas</h4>
-            <NumeroLlamadasAtendidas />
-          </div>
-          <div className="item">
-            <h4>Total de problemas resuletos</h4>
-            <ProblemasResueltos />
-          </div>
-          <div className="item">
-            <h4>Total de problemas no resueltos</h4>
-            <ProblemasNoResueltos />
-          </div>
-          <div className="item">
-            <h4>Resolución del primer contacto</h4>
-            <ResolucionPrimerContacto />
+            <h4>Promedio de Servicio a nivel departamento</h4>
+            <div className="indicador">
+              <PromedioServicioGeneral />
+            </div>
           </div>
         </div>
         <div className="botonesReportes">
-          {opcionesAnalisis ? (
-            <div className="ventanaReportes">
-              <Button className="cerrarOpciones" onClick={ocultarAnalisis}> <CloseIcon /> </Button>
-              <OpcionesDocumentos />
-              <button className="botonAzulMarino" onClick={ocultarAnalisis}>
-                Descargar
-              </button>
-            </div>
-          ) : (
-            <button className="botonAzulMarino" onClick={ocultarAnalisis}>
-              Descargar análisis
-            </button>
-          )}
-          {opcionesTranscripciones ? (
-            <div className="ventanaTranscripciones">
-              <Button className="cerrarOpciones" onClick={ocultarTranscripciones}> <CloseIcon /> </Button>
-              <OpcionesTranscripciones />
-              <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
-                Descargar
-              </button>
-            </div>
-          ) : (
-            <button className="botonAzulMarino" onClick={ocultarTranscripciones}>
-              Descargar transcripciones
-            </button>
-          )}
         </div>
       </div>
     </div>
