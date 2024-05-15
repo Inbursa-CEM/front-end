@@ -15,12 +15,12 @@ const Lista_Cursos = (props) => {
     const arrNuevo = (await data).map((curso) => {
       const cursoNuevo = {
         id:uuidv4(),
-        idCurso: curso.id,
+        idCurso: curso.idCurso,
         nombre: curso.nombre,
         url: curso.url,
         descripcion: curso.descripcion,
         prioridad: curso.prioridad,
-        estado: curso.prioridad,
+        estado: curso.estado,
         fecha: curso.fecha,
       };
       return cursoNuevo;
@@ -36,6 +36,7 @@ const Lista_Cursos = (props) => {
     <div>
       <Paper style={{ margin: "20px", overflow: "auto", maxHeight: 250 }}>
         {arrCursos.map((curso) => {
+          console.log("A:" + curso.idCurso);
           return (
             <Curso idCurso={curso.idCurso} 
             nombre={curso.nombre} 

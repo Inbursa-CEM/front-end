@@ -24,11 +24,11 @@ const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario
     setFecha(evento.target.value);
   }
   const modificarPrioridad= (evento) => {
-    setPrioridad(100);
+    setPrioridad(parseInt(evento.target.value));
   }
 
   const modificarEstado = (evento) => {
-    setEstado("URGENTE");
+    setEstado(evento.target.value);
   }
 
 
@@ -37,12 +37,12 @@ const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario
     headers:{
         'Content-type' : 'application/json',
     },
-    body:JSON.stringify({idCurso,idUsuario})
+    body:JSON.stringify({idCurso,idAgente})
 
   };
   
   const Eliminar = () => {
-    console.log(options.body);
+    console.log(idCurso);
     fetch("http://localhost:8080/curso/desasignar",options)
       .then((response) => response.json())
       .then((data) => {
