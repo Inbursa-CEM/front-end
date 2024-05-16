@@ -8,7 +8,7 @@ import "dayjs/locale/es-mx";
 
 import "../../Styles/OneOnOne.css";
 
-const OneOnOne = () => {
+const OneOnOne = ({ id }) => {
     const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
     const [fechaFinal, setFechaFinal] = useState(null);
 
@@ -34,7 +34,7 @@ const OneOnOne = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    idUsuario: 1,
+                    idUsuario: {id},
                     contenido: "La fecha para tu sesión con el supervisor es el " + fechaFinal.format("DD/MM/YYYY HH:mm")
                 })
             });
