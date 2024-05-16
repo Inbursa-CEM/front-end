@@ -20,3 +20,7 @@
     box-shadow: 12px 10px 55px -8px rgba(128,128,128,0.88);
     max-width: 20rem;
 }
+
+.checkbox {
+    margin-left: 1.5rem;
+}
