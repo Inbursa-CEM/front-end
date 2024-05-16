@@ -1,10 +1,11 @@
 import * as React from "react";
+import { LineChart } from "@mui/x-charts/LineChart";
+import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
-import { LineChart, axisClasses } from "@mui/x-charts";
 
-export default function PromedioCalidadLlamadas() {
+export default function PromedioDuracionLlamadasAgente() {
   const [url, setUrl] = useState(
-    "http://localhost:8080/llamada/promedioServicioPorAgente"
+    "http://10.48.81.212:8080/llamada/promedioDuracionPorAgente"
   );
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
@@ -14,18 +15,9 @@ export default function PromedioCalidadLlamadas() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const arrNuevo = data.map((agente) => {
-          const infoAgente = {
-            agente: agente.idUsuario,
-            promedioDuracion: agente.promedioProblemasResueltos,
-          };
-          return infoAgente;
-        });
-        const idsAgente = data.map((agente) => agente.idUsuario);
-        setAgentes(idsAgente);
-        const promedios = data.map(
-          (agente) => agente.promedioProblemasResueltos
-        );
+        const nombresAgentes = data.map((agente) => agente.nombre);
+        setAgentes(nombresAgentes);
+        const promedios = data.map((agente) => agente.tiempoPromedio);
         setPromedios(promedios);
       })
       .catch((error) => console.log(error));

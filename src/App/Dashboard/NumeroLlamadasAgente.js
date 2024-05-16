@@ -2,9 +2,9 @@ import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
 
-export default function PromedioCalidadServicio() {
+export default function NumeroLlamadasPorAgente() {
   const [url, setUrl] = useState(
-    "http://localhost:8080/llamada/numLlamadasPorAgente"
+    "http://10.48.81.212:8080/llamada/numLlamadasPorAgente"
   );
   const [data, setData] = useState([]);
 

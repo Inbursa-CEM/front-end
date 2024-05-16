@@ -1,16 +1,15 @@
 import * as React from "react";
-import { BarChart } from "@mui/x-charts";
+import { BarChart } from "@mui/x-charts/BarChart";
 import { useState, useCallback, useEffect } from "react";
 
-export default function SentimientoPromedioAgente() {
+export default function ProblemasAtendidosAgente() {
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/sentimientoPorAgente"
+    "http://10.48.81.212:8080/llamada/reportesAtendidosPorAgente"
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
-  const [positivos, setPositivos] = useState([]);
-  const [neutrales, setNeutrales] = useState([]);
-  const [negativos, setNegativos] = useState([]);
+  const [resueltos, setResueltos] = useState([]);
+  const [noResueltos, setNoResueltos] = useState([]);
 
   const descargar = useCallback(() => {
     console.log("Descargando datos");
@@ -18,15 +17,13 @@ export default function SentimientoPromedioAgente() {
       .then((response) => response.json())
       .then((data) => {
         const agentes = data.map((agente) => agente.idUsuario);
-        const positivo = data.map((agente) => agente.positivo);
-        const negativo = data.map((agente) => agente.negativo);
-        const neutral = data.map((agente) => agente.neutral);
+        const resueltos = data.map((agente) => agente.problemasResueltos);
+        const noResueltos = data.map((agente) => agente.problemasNoResueltos);
 
         setAgentes(agentes);
         setData([
-          { label: 'Positivo', data: positivo },
-          { label: 'Negativo', data: negativo },
-          { label: 'Neutral', data: neutral },
+          { label: 'Resueltos', data: resueltos },
+          { label: 'Pendientes', data: noResueltos }
         ]);
       })
       .catch((error) => console.log(error));
