@@ -17,16 +17,17 @@ const TagEmpleado = ({ icono, texto, subtexto }) => {
   };
 
   return (
-    <div className="tagEmpleado">
+    <div>
       <Button onClick={showCerrarSesion} className="botonGris">
         {icono} {texto} {subtexto}
       </Button>
       <div className="collapse-cerrar-sesion">
-      <Collapse in={desplegar} style={{ transitionDuration: ".4s" }}>
-        <Button className="botonAzulClaro" onClick={cerrarSesion}>
-          Cerrar sesión
-        </Button>
-      </Collapse></div>
+        <Collapse in={desplegar} style={{ transitionDuration: ".4s" }}>
+          <Button className="botonAzulClaro boton-cerrar-sesion" onClick={cerrarSesion}>
+            Cerrar sesión
+          </Button>
+        </Collapse>
+      </div>
     </div>
   );
 };

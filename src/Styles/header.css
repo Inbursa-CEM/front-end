@@ -11,17 +11,21 @@
 }
 
 .tagEmpleado{
-  display: flex;
   margin-left: auto;
-  gap: 20px;
-  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .contenedor {
   width: 290px;
 }
 
-.collapse.cerrar.sesion {
+.collapse-cerrar-sesion {
   position: absolute;
   z-index: 10 !important;
+}
+
+.boton-cerrar-sesion {
+  width: 190px !important;
+  margin-top: 10px !important;
 }

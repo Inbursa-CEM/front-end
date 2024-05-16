@@ -120,7 +120,7 @@ const EmpleadosTabla = () => {
               <TableCell className="tabla-celda">{agente.cliente}</TableCell>
               <TableCell className="tabla-celda">{`$${agente.saldo}`}</TableCell>
               <TableCell className="tabla-celda">{agente.duracion}</TableCell>
-              <TableCell><OneOnOne></OneOnOne></TableCell>
+              <TableCell><OneOnOne id={agente.id}></OneOnOne></TableCell>
             </TableRow>
           ))}
         </TableBody>
