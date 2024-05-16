@@ -8,9 +8,6 @@ export default function SentimientoPromedioAgente() {
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
-  const [positivos, setPositivos] = useState([]);
-  const [neutrales, setNeutrales] = useState([]);
-  const [negativos, setNegativos] = useState([]);
 
   const descargar = useCallback(() => {
     console.log("Descargando datos");
