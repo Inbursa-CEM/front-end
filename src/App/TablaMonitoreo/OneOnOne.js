@@ -16,7 +16,7 @@ const OneOnOne = ({ id }) => {
     setFechaSeleccionada(newValue);
 
     if (newValue) {
-      const fecha = newValue.format("DD/MM/YYYY HH:mm");
+      setFechaFinal(newValue); 
     }
   };
 
@@ -26,7 +26,7 @@ const OneOnOne = ({ id }) => {
     }
   }, [fechaFinal]);
 
-  const mandarOneonOne = async (fechaFinal) => {
+  const mandarOneonOne = async (fechaFinal, id) => {
     try {
       const response = await fetch(
         "http://localhost:8080/notificacion/mandarOneonOne",
@@ -36,22 +36,18 @@ const OneOnOne = ({ id }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            idUsuario: { id },
+            idUsuario: id, 
             contenido:
               "La fecha para tu sesión con el supervisor es el " +
               fechaFinal.format("DD/MM/YYYY HH:mm"),
           }),
         }
       );
-
       if (!response.ok) {
         throw new Error("Error al llamar al API");
       }
-
       const data = await response.json();
       console.log("Respuesta del servidor:", data);
-
-      // Aquí puedes manejar la respuesta del servidor según tus necesidades
     } catch (error) {
       console.error("Error:", error.message);
     }
@@ -59,7 +55,9 @@ const OneOnOne = ({ id }) => {
 
   const handleAccept = () => {
     setFechaFinal(fechaSeleccionada);
-    mandarOneonOne(fechaSeleccionada);
+    if (fechaSeleccionada) {
+      mandarOneonOne(fechaSeleccionada, id);
+    }
   };
 
   return (

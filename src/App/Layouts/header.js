@@ -17,6 +17,8 @@ const Header = () => {
       </div>
       <div className="tagEmpleado">
         <Notificaciones />
+        {/* asi se debe mandar el id */}
+        {/* < OneOnOne id={} /> */}
         <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
       </div>
     </div>
