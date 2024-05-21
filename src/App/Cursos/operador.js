@@ -5,6 +5,8 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
+import { IconButton } from "@mui/material";
+import PopProfile from "./popProfile";
 
 
 
@@ -17,10 +19,8 @@ const Operador = ({idUsuario, nombre, setOperador }) => {
 
   return (
     <ListItem disablePadding>
+      <PopProfile></PopProfile>
       <ListItemButton onClick={changeOperador}>
-        <ListItemIcon>
-          <AccountCircleRoundedIcon />
-        </ListItemIcon>
         <ListItemText primary={nombre} />
       </ListItemButton>
     </ListItem>

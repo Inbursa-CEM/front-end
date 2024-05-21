@@ -36,7 +36,7 @@ const Lista_Cursos = (props) => {
     <div>
       <Paper style={{ margin: "20px", overflow: "auto", maxHeight: 250 }}>
         {arrCursos.map((curso) => {
-          console.log("A:" + curso.idCurso);
+         
           return (
             <Curso idCurso={curso.idCurso} 
             nombre={curso.nombre} 

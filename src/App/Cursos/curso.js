@@ -10,20 +10,30 @@ import Checkbox from '@mui/material/Checkbox';
 import TextField from '@mui/material/TextField';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import { useState } from "react";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 
-
-
-const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario }) => {
-  
-  const [newFecha,setFecha] = useState(fecha);
-  const [newPrioridad,setPrioridad] = useState(prioridad);
-  const [newEstado,setEstado] = useState(estado);
-  const [idAgente,setAgente] = useState(idUsuario);
+const Curso = ({
+  idCurso,
+  nombre,
+  url,
+  descripcion,
+  prioridad,
+  estado,
+  fecha,
+  idUsuario,
+}) => {
+  const [newFecha, setFecha] = useState(fecha);
+  const [newPrioridad, setPrioridad] = useState(prioridad);
+  const [newEstado, setEstado] = useState(estado);
+  const [idAgente, setAgente] = useState(idUsuario);
 
   const modificarFecha = (evento) => {
-    setFecha(evento.target.value);
-  }
-  const modificarPrioridad= (evento) => {
+    setFecha(evento.format("DD/MM/YYYY HH:mm"));
+  };
+  const modificarPrioridad = (evento) => {
     setPrioridad(parseInt(evento.target.value));
   }
 
@@ -79,7 +89,16 @@ const Curso = ({idCurso, nombre,url,descripcion,prioridad,estado,fecha,idUsuario
         </ListItemIcon>
         <ListItemText primary={nombre} />
       </ListItemButton>
-      <TextField label={newFecha} onChange={modificarFecha}></TextField>
+      <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
+      <DemoContainer components={["DateTimePicker"]}> 
+      <DateTimePicker
+          className="select"
+          label={newFecha}
+          onChange={modificarFecha}
+          
+        />
+        </DemoContainer>
+        </LocalizationProvider>
       <TextField label={newPrioridad} onChange={modificarPrioridad}></TextField>
       <TextField label={newEstado} onChange={modificarEstado}></TextField>
       <IconButton onClick={Eliminar}>
