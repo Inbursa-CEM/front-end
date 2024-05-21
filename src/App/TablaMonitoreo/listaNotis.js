@@ -15,20 +15,20 @@ const Notificaciones = ({ id }) => {
 
   const showList = () => {
     setShow(!show);
+    descarga();
   };
 
   const url = `http://localhost:8080/notificacion/obtenerNotificaciones?idUsuario=${id}`;
-
-  const updateUrl =
-    "http://localhost:8080/notificacion/actualizarStatusNotificacion?idNotificacion=";
 
   const descarga = useCallback(() => {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
         const format = data.map((item) => ({
+          idNotificacion: item.idNotificacion,
           contenido: item.contenido,
           fechaHora: item.fechaHora,
+          leido: item.leido || false, // Añadimos un estado "leido"
         }));
         setNotificaciones(format);
       })
@@ -39,20 +39,24 @@ const Notificaciones = ({ id }) => {
     descarga();
   }, [descarga]);
 
-  const actualizarStatus = (event) => {
-    const idNotificacion = notificaciones[event.target.value]._id;
-    fetch(updateUrl + idNotificacion, {
+  const actualizarStatus = (idNotificacion) => {
+    const updateUrl = `http://localhost:8080/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
+    
+    fetch(updateUrl, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        status: true,
-      }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log("Respuesta del servidor:", data);
+        // Actualizar el estado de las notificaciones
+        setNotificaciones((prevNotificaciones) =>
+          prevNotificaciones.map((notif) =>
+            notif.idNotificacion === idNotificacion ? { ...notif, leido: true } : notif
+          )
+        );
       })
       .catch((error) => console.error("Error:", error.message));
   };
@@ -74,10 +78,8 @@ const Notificaciones = ({ id }) => {
                 <Checkbox
                   className="checkbox"
                   sx={{ "& .MuiSvgIcon-root": { fontSize: 28 } }}
-                  // checked={checked}
-
-                  // onChange={actualizarStatus}
-
+                  checked={notif.leido}
+                  onChange={() => actualizarStatus(notif.idNotificacion)} // Pasar función anónima
                   inputProps={{ "aria-label": "controlled" }}
                 />
               </ListItem>
