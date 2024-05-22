@@ -1,0 +1,14 @@
+.tabla {
+  margin: 20px auto !important;
+}
+
+.tabla-head {
+  background-color: var(--azul-oscuro) !important;
+  color: white !important;
+}
+
+.tabla-celda {
+  text-align: center !important;
+  font-family: "Poppins", sans-serif !important;
+  font-size: medium !important;
+}

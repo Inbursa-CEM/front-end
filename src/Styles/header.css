@@ -7,10 +7,26 @@
 .menuIconos{
   display: flex;
   gap: 10px;
+  padding-left: 30px;
 }
 
 .tagEmpleado{
-  display: flex;
   margin-left: auto;
-  gap: 20px;
+  display: flex;
+  align-items: center;
+  padding-right: 30px;
+}
+
+.contenedor {
+  width: 290px;
+}
+
+.collapse-cerrar-sesion {
+  position: absolute;
+  z-index: 10 !important;
+}
+
+.boton-cerrar-sesion {
+  width: 190px !important;
+  margin-top: 10px !important;
 }
