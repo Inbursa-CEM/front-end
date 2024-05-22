@@ -22,7 +22,7 @@ export default function NumeroLlamadasPorAgente() {
         setData(dataFormateada);
       })
       .catch((error) => console.log(error));
-  });
+  },[url]);
 
   useEffect(() => {
     descargar()
