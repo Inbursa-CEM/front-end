@@ -25,8 +25,14 @@ export default function PromedioServicioPorAgente() {
   });
 
   useEffect(() => {
-    descargar();
-  }, []);
+    descargar()
+
+    const intervalId = setInterval(() => {
+      descargar();
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(intervalId); 
+  }, [descargar]);
 
   return (
     <LineChart

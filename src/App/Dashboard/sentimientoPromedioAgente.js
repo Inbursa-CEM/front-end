@@ -29,10 +29,15 @@ export default function SentimientoPromedioAgente() {
       .catch((error) => console.log(error));
   });
 
-  console.log(data);
   useEffect(() => {
-    descargar();
-  }, []);
+    descargar()
+
+    const intervalId = setInterval(() => {
+      descargar();
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(intervalId); 
+  }, [descargar]);
 
   return (
     <BarChart

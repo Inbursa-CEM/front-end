@@ -13,16 +13,23 @@ export default function PromedioServicioGeneral() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setPromedio(data.promedioServicioGeneral);
+        setPromedio((data.promedioServicioGeneral).toFixed(2));
       })
       .catch((error) => console.log(error));
   });
 
   useEffect(() => {
-    descargar();
-  }, []);
+    descargar()
+
+    const intervalId = setInterval(() => {
+      descargar();
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(intervalId); 
+  }, [descargar]);
 
   return (
+    
     <Gauge
       width={250}
       height={200}

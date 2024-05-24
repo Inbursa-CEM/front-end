@@ -19,8 +19,14 @@ export default function NumeroLlamadasGeneral() {
   });
 
   useEffect(() => {
-    descargar();
-  }, []);
+    descargar()
+
+    const intervalId = setInterval(() => {
+      descargar();
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(intervalId); 
+  }, [descargar]);
 
   return (
     <Gauge
