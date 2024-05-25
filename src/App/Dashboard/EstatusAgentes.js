@@ -1,7 +1,7 @@
 import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
-import { act } from "react";
+
 
 export default function EstatusAgentes() {
 
@@ -32,14 +32,17 @@ export default function EstatusAgentes() {
   });
 
   useEffect(() => {
-    descargar()
+    // Llama a la función descargar inmediatamente al montar el componente
+    descargar();
 
-    const intervalId = setInterval(() => {
+    // Configura el intervalo para llamar a descargar cada 10 minutos (600000 ms)
+    const interval = setInterval(() => {
       descargar();
-    }, 30 * 60 * 1000);
+    }, 600000);
 
-    return () => clearInterval(intervalId); 
-  }, [descargar]);
+    // Limpia el intervalo al desmontar el componente
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <PieChart

@@ -30,14 +30,17 @@ export default function ProblemasAtendidosAgente() {
   });
 
   useEffect(() => {
-    descargar()
+    // Llama a la función descargar inmediatamente al montar el componente
+    descargar();
 
-    const intervalId = setInterval(() => {
+    // Configura el intervalo para llamar a descargar cada 10 minutos (600000 ms)
+    const interval = setInterval(() => {
       descargar();
-    }, 30 * 60 * 1000);
+    }, 600000);
 
-    return () => clearInterval(intervalId); 
-  }, [descargar]);
+    // Limpia el intervalo al desmontar el componente
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <BarChart
