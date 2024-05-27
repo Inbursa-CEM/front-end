@@ -1,6 +1,8 @@
 import * as React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
+import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
+import { Box } from "@mui/material";
 
 export default function ProblemasAtendidosAgente() {
   const [url, setUrl] = useState(
@@ -8,15 +10,13 @@ export default function ProblemasAtendidosAgente() {
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
-  const [resueltos, setResueltos] = useState([]);
-  const [noResueltos, setNoResueltos] = useState([]);
 
   const descargar = useCallback(() => {
     console.log("Descargando datos");
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const agentes = data.map((agente) => agente.idUsuario);
+        const agentes = data.map((agente) => agente.Usuario.nombre);
         const resueltos = data.map((agente) => agente.problemasResueltos);
         const noResueltos = data.map((agente) => agente.problemasNoResueltos);
 
@@ -45,12 +45,18 @@ export default function ProblemasAtendidosAgente() {
   return (
     <BarChart
       xAxis={[{ scaleType: "band", data: agentes }]}
-       series={data.map((item) => ({
+      series={data.map((item) => ({
         label: item.label,
         data: item.data,
       }))}
       width={500}
-      height={250}
+      height={230}
+      sx={{
+        [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
+          transform: "rotateZ(-70deg) translateX(-40px)",
+          fontSize: "10px !important",
+        },
+      }}
     />
   );
 }

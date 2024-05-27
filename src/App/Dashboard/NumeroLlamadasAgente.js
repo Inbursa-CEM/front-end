@@ -14,9 +14,9 @@ export default function NumeroLlamadasPorAgente() {
       .then((response) => response.json())
       .then((data) => {
         const dataFormateada = data.map((agente, index) => ({
-          id: index,
+          id: agente.idUsuario,
           value: agente.numLlamadas,
-          label: agente.idAgente,
+          label: agente.Usuario.nombre,
         }));
 
         setData(dataFormateada);
@@ -46,8 +46,9 @@ export default function NumeroLlamadasPorAgente() {
           faded: { innerRadius: 30, additionalRadius: -30, color: "gray" },
         },
       ]}
-      height={200}
+      height={250}
       width={500}
+      slotProps={{legend: {hidden: true}}}
     />
   );
 }

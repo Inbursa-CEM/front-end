@@ -1,5 +1,5 @@
 import * as React from "react";
-import { BarChart } from "@mui/x-charts";
+import { BarChart, axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 
 export default function SentimientoPromedioAgente() {
@@ -14,7 +14,7 @@ export default function SentimientoPromedioAgente() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const agentes = data.map((agente) => agente.idUsuario);
+        const agentes = data.map((agente) => agente.Usuario.nombre);
         const positivo = data.map((agente) => agente.positivo);
         const negativo = data.map((agente) => agente.negativo);
         const neutral = data.map((agente) => agente.neutral);
@@ -50,7 +50,13 @@ export default function SentimientoPromedioAgente() {
         data: item.data,
       }))}
       width={500}
-      height={250}
+      height={230}
+      sx={{
+        [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
+          transform: "rotateZ(-70deg) translateX(-50px)",
+          fontSize: "10px !important",
+        },
+      }}
     />
   );
 }
