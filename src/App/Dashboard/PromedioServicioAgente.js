@@ -14,11 +14,9 @@ export default function PromedioServicioPorAgente() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const idsAgente = data.map((agente) => agente.Usuario.nombre);
-        setAgentes(idsAgente);
-        const promedios = data.map(
-          (agente) => agente.promedioProblemasResueltos
-        );
+        const nombresAgente = data.map((agente) => agente.idUsuario + ' ' +agente.Usuario.nombre);
+        setAgentes(nombresAgente);
+        const promedios = data.map((agente) => agente.promedioProblemasResueltos);
         setPromedios(promedios);
       })
       .catch((error) => console.log(error));
