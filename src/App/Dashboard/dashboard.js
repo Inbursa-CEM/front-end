@@ -19,17 +19,6 @@ import NumeroLlamadasGeneral from "./NumeroLlamadasGeneral";
 
 
 const Dashboard = () => {
-  const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
-  const [opcionesTranscripciones, setOpcionesTranscripciones] = useState(false);
-
-  const ocultarAnalisis = () => {
-    setOpcionesAnalisis(!opcionesAnalisis);
-  };
-
-  const ocultarTranscripciones = () => {
-    setOpcionesTranscripciones(!opcionesTranscripciones);
-  };
-
   return (
     <div>
       <Header />
