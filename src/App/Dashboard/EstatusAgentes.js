@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 
 export default function EstatusAgentes() {
   const idSupervisor = sessionStorage.getItem("userId");
-  const [url, setUrl] = useState("http://10.48.81.212:8080/usuario/estatusAgente=${idSupervisor}")
+  const [url, setUrl] = useState(`http://10.48.81.212:8080/usuario/estatusAgente=${idSupervisor}`)
   const [data, setData] = useState([]);
 
   const size = {

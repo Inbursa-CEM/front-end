@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function PromedioServicioGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/promedioServicioGeneral=${idSupervisor}"
+    `http://10.48.81.212:8080/llamada/promedioServicioGeneral=${idSupervisor}`
   );
   const [promedio, setPromedio] = useState([0]);
 
