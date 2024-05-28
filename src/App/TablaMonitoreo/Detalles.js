@@ -4,12 +4,16 @@ import '../../Styles/Detalles.css';
 
 const ProfileCard = () => {
   const[telefono,setTelefono]=useState();
+  const[correo,setCorreo] =useState();
+  const[nombre,setNombre] =useState();
   const descargar= () =>{
-    fetch("localhost:8080/usuario/getTarjeta?idAgente=3")
+    fetch("http://localhost:8080/usuario/getTarjeta?idAgente=3")
           .then((response) => response.json())
           .then((data) => {
         
             setTelefono(data.telefono);
+            setCorreo(data.correo);
+            setNombre(data.nombre);
           })
           .catch((error) => console.log(error));  
   }
@@ -19,14 +23,14 @@ const ProfileCard = () => {
     return (
         <Card className="card">
             <div className="header">
-                <h1>Ares Ortiz Botello</h1>
+                <h1>{nombre}</h1>
             </div>
             <div className="contenedor">
                 <div className="izquierda">
                     <p className='label'>Teléfono:</p>
                     <p className="value">{telefono}</p>
                     <p className="label">Correo electrónico:</p>
-                    <p className="value">ares.ortizb@inbursa.mx</p>
+                    <p className="value">{correo}</p>
                     <p className='label'>Duración promedio de llamadas:</p>
                     <p className="value">5 minutos</p>
                     <p className="label">Promedio de calificación de llamadas:</p>
