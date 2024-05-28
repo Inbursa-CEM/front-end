@@ -2,8 +2,6 @@ import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";
 import Header from "../Layouts/header";
-import OpcionesDocumentos from "./opcionesDocumentos";
-import OpcionesTranscripciones from "./opcionesTranscripciones";
 import { useState } from "react";
 import { Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
