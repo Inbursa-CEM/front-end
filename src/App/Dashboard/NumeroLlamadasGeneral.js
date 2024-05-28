@@ -3,8 +3,9 @@ import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 
 export default function NumeroLlamadasGeneral() {
+  const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/numLlamadasTotales"
+    "http://10.48.81.212:8080/llamada/numLlamadasTotales=${idSupervisor}"
   );
   const [llamadas, setLlamadas] = useState([0]);
 
