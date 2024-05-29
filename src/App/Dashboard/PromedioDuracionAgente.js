@@ -4,9 +4,11 @@ import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 
 export default function PromedioDuracionLlamadasAgente() {
+  const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/promedioDuracionPorAgente"
+    `http://10.48.81.212:8080/llamada/promedioDuracionPorAgente?idSupervisor=${idSupervisor}`
   );
+
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
