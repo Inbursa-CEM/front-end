@@ -11,6 +11,7 @@ export default function PromedioServicioPorAgente() {
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
+  //Esta función se encarga de descargar los datos de la API y actualizar el estado de la variable data que alimenta al componente gráfico
   const descargar = useCallback(() => {
     console.log("Descargando datos");
     fetch(url)
