@@ -6,8 +6,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function NumeroLlamadasGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    // `http://10.48.81.212:8080/llamada/numLlamadasTotales=${idSupervisor}`
-    'http://10.48.81.212:8080/llamada/numLlamadasTotales'
+    `http://localhost:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
   );
   const [llamadas, setLlamadas] = useState([0]);
   const [meta, setMeta] = useState([100]);

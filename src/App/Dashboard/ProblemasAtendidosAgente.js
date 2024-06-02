@@ -18,15 +18,17 @@ export default function ProblemasAtendidosAgente() {
       .then((response) => response.json())
       .then((data) => {
         const agentes = data.map((agente) => agente.Usuario.nombre);
-        const promedioResueltos = data.map((agente) => parseFloat(agente.promedioProblemasResueltos));
+        const resueltos = data.map((agente) => agente.problemasResueltos);
+        const noResueltos = data.map((agente) => agente.problemasNoResueltos);
 
         setAgentes(agentes);
         setData([
-          { label: 'Promedio Problemas Resueltos', data: promedioResueltos }
+          { label: 'Resueltos', data: resueltos },
+          { label: 'Pendientes', data: noResueltos }
         ]);
       })
       .catch((error) => console.log(error));
-  }, [url]);  // Agregamos url como dependencia para useCallback
+  });
 
   useEffect(() => {
     // Llama a la función descargar inmediatamente al montar el componente
@@ -39,7 +41,7 @@ export default function ProblemasAtendidosAgente() {
 
     // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
-  }, [descargar]);  // Agregamos descargar como dependencia para useEffect
+  }, []);
 
   return (
     <BarChart

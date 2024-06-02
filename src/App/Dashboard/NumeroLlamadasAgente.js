@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function NumeroLlamadasPorAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://10.48.81.212:8080/llamada/numLlamadasPorAgente=${idSupervisor}`
+    `http://localhost:8080/llamada/numLlamadasPorAgente?idSupervisor=${idSupervisor}`
   );
   const [data, setData] = useState([]);
 
@@ -15,9 +15,9 @@ export default function NumeroLlamadasPorAgente() {
       .then((response) => response.json())
       .then((data) => {
         const dataFormateada = data.map((agente, index) => ({
-          id: agente.idUsuario,
+          id: index,
           value: agente.numLlamadas,
-          label: agente.Usuario.nombre,
+          label: agente.nombre,
         }));
 
         setData(dataFormateada);
@@ -33,11 +33,12 @@ export default function NumeroLlamadasPorAgente() {
     const interval = setInterval(() => {
       descargar();
     }, 600000);
-
+    
     // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
   }, []);
 
+  console.log("Data Formateada: ", data);
   return (
     <PieChart
       series={[
