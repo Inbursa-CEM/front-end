@@ -12,7 +12,7 @@ export default function EstatusAgentes() {
     width: 400,
     height: 200,
   };
-
+//Esta función se encarga de descargar los datos de la API y actualizar el estado de la variable data que alimenta al componente gráfico
   const descargar = useCallback(() => {
     console.log("Descargando datos");
     fetch(url)
