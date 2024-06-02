@@ -22,7 +22,7 @@ const LogIn = () => {
       body: JSON.stringify({ correo, password }),
     };
 
-    console.log("Enviando datos al servidor:", options.body)
+    console.log("Enviando datos al servidor:", options.body);
 
     fetch(url, options)
       .then((response) => {
@@ -32,7 +32,9 @@ const LogIn = () => {
         throw new Error("Error en la petición");
       })
       .then((data) => {
-        console.log("Datos obtenidos del servidor:", data);
+        sessionStorage.setItem("userId", data.idUsuario);
+        sessionStorage.setItem("userName", data.nombre);
+        sessionStorage.setItem("userRole", data.rol);
       })
       .then(() => {
         navegar("/monitoreo");
