@@ -35,6 +35,7 @@ const LogIn = () => {
         sessionStorage.setItem("userId", data.idUsuario);
         sessionStorage.setItem("userName", data.nombre);
         sessionStorage.setItem("userRole", data.rol);
+        sessionStorage.setItem("supervisorId", data.idSupervisor);
       })
       .then(() => {
         navegar("/monitoreo");

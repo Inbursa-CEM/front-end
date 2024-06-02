@@ -5,8 +5,9 @@ import { useState, useCallback, useEffect } from "react";
 import { Box } from "@mui/material";
 
 export default function ProblemasAtendidosAgente() {
+  const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/reportesAtendidosPorAgente"
+    `http://localhost:8080/llamada/reportesAtendidosPorAgente?idSupervisor=${idSupervisor}`
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
@@ -17,17 +18,15 @@ export default function ProblemasAtendidosAgente() {
       .then((response) => response.json())
       .then((data) => {
         const agentes = data.map((agente) => agente.Usuario.nombre);
-        const resueltos = data.map((agente) => agente.problemasResueltos);
-        const noResueltos = data.map((agente) => agente.problemasNoResueltos);
+        const promedioResueltos = data.map((agente) => parseFloat(agente.promedioProblemasResueltos));
 
         setAgentes(agentes);
         setData([
-          { label: 'Resueltos', data: resueltos },
-          { label: 'Pendientes', data: noResueltos }
+          { label: 'Promedio Problemas Resueltos', data: promedioResueltos }
         ]);
       })
       .catch((error) => console.log(error));
-  });
+  }, [url]);  // Agregamos url como dependencia para useCallback
 
   useEffect(() => {
     // Llama a la función descargar inmediatamente al montar el componente
@@ -40,7 +39,7 @@ export default function ProblemasAtendidosAgente() {
 
     // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
-  }, []);
+  }, [descargar]);  // Agregamos descargar como dependencia para useEffect
 
   return (
     <BarChart

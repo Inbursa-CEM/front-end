@@ -4,9 +4,10 @@ import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 
 export default function PromedioDuracionLlamadasAgente() {
-  const idSupervisor = sessionStorage.getItem("userId");
+  const idSupervisor = sessionStorage.getItem("supervisorId"); // Obtener el ID del supervisor
+
   const [url, setUrl] = useState(
-    `http://10.48.81.212:8080/llamada/promedioDuracionPorAgente?idSupervisor=${idSupervisor}`
+    `http://localhost:8080/llamada/promedioDuracionPorAgente?idSupervisor=${idSupervisor}`
   );
 
   const [agentes, setAgentes] = useState([]);
@@ -17,26 +18,23 @@ export default function PromedioDuracionLlamadasAgente() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const nombresAgentes = data.map((agente) => agente.nombre);
+        const nombresAgentes = data.map((agente) => agente.Usuario.nombre);
         setAgentes(nombresAgentes);
-        const promedios = data.map((agente) => agente.tiempoPromedio);
+        const promedios = data.map((agente) => parseFloat(agente.promedioDuracion));
         setPromedios(promedios);
       })
       .catch((error) => console.log(error));
-  });
+  }, [url]); // Añadir url como dependencia
 
   useEffect(() => {
-    // Llama a la función descargar inmediatamente al montar el componente
     descargar();
 
-    // Configura el intervalo para llamar a descargar cada 10 minutos (600000 ms)
     const interval = setInterval(() => {
       descargar();
     }, 600000);
 
-    // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
-  }, []);
+  }, [descargar]); // Añadir descargar como dependencia
 
   return (
     <LineChart

@@ -3,8 +3,9 @@ import { PieChart } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
 
 export default function NumeroLlamadasPorAgente() {
+  const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    "http://10.48.81.212:8080/llamada/numLlamadasPorAgente"
+    `http://10.48.81.212:8080/llamada/numLlamadasPorAgente=${idSupervisor}`
   );
   const [data, setData] = useState([]);
 
