@@ -10,14 +10,12 @@ import PromedioDuracionLlamadasAgente from "./PromedioDuracionAgente";
 import EstatusAgentes from "./EstatusAgentes";
 import PromedioServicioPorAgente from "./PromedioServicioAgente";
 import SentimientoPromedioAgente from "./SentimientoPromedioAgente";
-import TotalProblemasAtendidos from "./ProblemasAtendidosAgente";
 import VelocidadPromedioRespuesta from "./VelocidadPromedioRespuesta";
 import PromedioServicioGeneral from "./PromedioServicioGeneral";
 import ProblemasAtendidosAgente from "./ProblemasAtendidosAgente";
 import NumeroLlamadasGeneral from "./NumeroLlamadasGeneral";
 
-
-
+//Esta función es la encargada de crear y mostrar los componentes gráficos que representan cada KPI dentro del dashboard
 const Dashboard = () => {
   return (
     <div>
