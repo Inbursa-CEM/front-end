@@ -29,7 +29,7 @@ const OneOnOne = ({ id }) => {
   const mandarOneonOne = async (fechaFinal, id) => {
     try {
       const response = await fetch(
-        "http://localhost:8080/notificacion/mandarOneonOne",
+        `${process.env.REACT_APP_BACK_HOST}/notificacion/mandarOneonOne`,
         {
           method: "POST",
           headers: {

@@ -18,7 +18,7 @@ const Notificaciones = ({ id }) => {
     descarga();
   };
 
-  const url = `http://localhost:8080/notificacion/obtenerNotificaciones?idUsuario=${id}`;
+  const url = `${process.env.REACT_APP_BACK_HOST}/notificacion/obtenerNotificaciones?idUsuario=${id}`;
 
   const descarga = useCallback(() => {
     fetch(url)
@@ -40,7 +40,7 @@ const Notificaciones = ({ id }) => {
   }, [descarga]);
 
   const actualizarStatus = (idNotificacion) => {
-    const updateUrl = `http://localhost:8080/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
+    const updateUrl = `${process.env.REACT_APP_BACK_HOST}/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
     
     fetch(updateUrl, {
       method: "PUT",
