@@ -50,7 +50,7 @@ export default function PromedioDuracionLlamadasAgente() {
       height={250}
       sx={{
         [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-          transform: "rotateZ(-70deg) translateY(60px) translateX(-60px)",
+          transform: "rotateZ(-70deg) translateY(60px) translateX(-190px)",
           fontSize: "15px !important",
         },
       }}

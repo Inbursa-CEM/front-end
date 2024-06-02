@@ -16,7 +16,7 @@ export default function PromedioServicioPorAgente() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        const nombresAgente = data.map((agente) => agente.idUsuario + ' ' +agente.Usuario.nombre);
+        const nombresAgente = data.map((agente) => agente.Usuario.nombre);
         setAgentes(nombresAgente);
         const promedios = data.map((agente) => agente.promedioProblemasResueltos);
         setPromedios(promedios);
@@ -46,11 +46,11 @@ export default function PromedioServicioPorAgente() {
           area: true,
         },
       ]}
-      width={900}
+      width={1000}
       height={250}
       sx={{
         [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-          transform: "rotateZ(-70deg) translateX(-90px)",
+          transform: "rotateZ(-70deg) translateX(-170px)",
           fontSize: "20px !important",
         },
       }}

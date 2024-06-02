@@ -50,12 +50,12 @@ export default function SentimientoPromedioAgente() {
         label: item.label,
         data: item.data,
       }))}
-      width={500}
+      width={700}
       height={230}
       sx={{
         [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-          transform: "rotateZ(-70deg) translateX(-50px)",
-          fontSize: "10px !important",
+          transform: "rotateZ(-70deg) translateX(-120px)",
+          fontSize: "15px !important",
         },
       }}
     />

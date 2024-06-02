@@ -18,13 +18,15 @@ export default function ProblemasAtendidosAgente() {
       .then((response) => response.json())
       .then((data) => {
         const agentes = data.map((agente) => agente.Usuario.nombre);
-        const resueltos = data.map((agente) => agente.problemasResueltos);
-        const noResueltos = data.map((agente) => agente.problemasNoResueltos);
+        const Resueltos = data.map((agente) => agente.promedioProblemasResueltos);
+        const NoResueltos = data.map((agente) => agente.promedioProblemasResueltos);
+        const promedioResueltos = data.map((agente) => agente.promedioProblemasResueltos);
 
         setAgentes(agentes);
         setData([
-          { label: 'Resueltos', data: resueltos },
-          { label: 'Pendientes', data: noResueltos }
+          { label: 'Resueltos', data: Resueltos },
+          { label: 'No Resueltos', data: NoResueltos },
+          { label: 'Promedio Resueltos', data: promedioResueltos }
         ]);
       })
       .catch((error) => console.log(error));
@@ -54,7 +56,7 @@ export default function ProblemasAtendidosAgente() {
       height={230}
       sx={{
         [`.${axisClasses.bottom} .${axisClasses.tickLabel}`]: {
-          transform: "rotateZ(-70deg) translateX(-40px)",
+          transform: "rotateZ(-70deg) translateX(-90px)",
           fontSize: "10px !important",
         },
       }}

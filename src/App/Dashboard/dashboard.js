@@ -49,13 +49,13 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>Sentimiento promedio en llamadas por agente</h4>
+            <h4>Sentimientos en llamadas por agente</h4>
             <div className="indicador">
               <SentimientoPromedioAgente />
             </div>
           </div>
           <div className="item">
-            <h4>Total de reportes atendidos por agente</h4>
+            <h4>Promedio de reportes resueltos por agente</h4>
             <div className="indicador">
               <ProblemasAtendidosAgente />
             </div>
