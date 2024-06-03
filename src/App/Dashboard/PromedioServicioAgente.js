@@ -11,6 +11,7 @@ export default function PromedioServicioPorAgente() {
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
 
+  //Esta función se encarga de descargar los datos de la API y actualizar el estado de la variable data que alimenta al componente gráfico
   const descargar = useCallback(() => {
     console.log("Descargando datos");
     fetch(url)
@@ -23,17 +24,16 @@ export default function PromedioServicioPorAgente() {
       })
       .catch((error) => console.log(error));
   });
-
+  
+  //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
+  //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
-    // Llama a la función descargar inmediatamente al montar el componente
     descargar();
 
-    // Configura el intervalo para llamar a descargar cada 10 minutos (600000 ms)
     const interval = setInterval(() => {
       descargar();
     }, 600000);
 
-    // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
   }, []);
 
