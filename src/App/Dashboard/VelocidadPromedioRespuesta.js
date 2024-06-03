@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function VelocidadPromedioRespuesta() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
+    `http://localhost:8080/llamada/velocidadPromedio?idSupervisor=${idSupervisor}`
   );
   const [velocidadPromedio, setVelocidadPromedio] = useState([0]);
 
@@ -15,7 +15,7 @@ export default function VelocidadPromedioRespuesta() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setVelocidadPromedio(data.promedioRespuesta);
+        setVelocidadPromedio(data.velocidadPromedio);
       })
       .catch((error) => console.log(error));
   });
