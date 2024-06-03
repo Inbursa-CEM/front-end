@@ -18,8 +18,8 @@ export default function ProblemasAtendidosAgente() {
       .then((response) => response.json())
       .then((data) => {
         const agentes = data.map((agente) => agente.Usuario.nombre);
-        const Resueltos = data.map((agente) => agente.promedioProblemasResueltos);
-        const NoResueltos = data.map((agente) => agente.promedioProblemasResueltos);
+        const Resueltos = data.map((agente) => agente.problemasResueltos);
+        const NoResueltos = data.map((agente) => agente.problemasNoResueltos);
         const promedioResueltos = data.map((agente) => agente.promedioProblemasResueltos);
 
         setAgentes(agentes);
