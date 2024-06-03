@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function NumeroLlamadasPorAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/numLlamadasPorAgente?idSupervisor=${idSupervisor}`
+    `http://${process.env.REACT_APP_BACK_HOST}:8080/llamada/numLlamadasPorAgente?idSupervisor=${idSupervisor}`
   );
   const [data, setData] = useState([]);
 
@@ -25,7 +25,7 @@ export default function NumeroLlamadasPorAgente() {
       })
       .catch((error) => console.log(error));
   },[url]);
-  
+
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
   //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {

@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 export default function ProblemasAtendidosAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/reportesAtendidosPorAgente?idSupervisor=${idSupervisor}`
+    `http://${process.env.REACT_APP_BACK_HOST}:8080/llamada/reportesAtendidosPorAgente?idSupervisor=${idSupervisor}`
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);
@@ -32,7 +32,7 @@ export default function ProblemasAtendidosAgente() {
       })
       .catch((error) => console.log(error));
   });
-  
+
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
   //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
