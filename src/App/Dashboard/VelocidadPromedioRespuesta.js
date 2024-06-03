@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function VelocidadPromedioRespuesta() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
+    `http://${process.env.HOST}:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
   );
   const [velocidadPromedio, setVelocidadPromedio] = useState([0]);
 

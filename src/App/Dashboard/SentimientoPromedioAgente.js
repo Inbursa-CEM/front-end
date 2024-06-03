@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function SentimientoPromedioAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/sentimientoPorAgente?idSupervisor=${idSupervisor}`
+    `http://${process.env.HOST}:8080/llamada/sentimientoPorAgente?idSupervisor=${idSupervisor}`
   );
   const [data, setData] = useState([]);
   const [agentes, setAgentes] = useState([]);

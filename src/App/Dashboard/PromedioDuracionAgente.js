@@ -6,7 +6,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function PromedioDuracionLlamadasAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/promedioDuracionPorAgente?idSupervisor=${idSupervisor}`
+    `http://${process.env.HOST}:8080/llamada/promedioDuracionPorAgente?idSupervisor=${idSupervisor}`
   );
   const [agentes, setAgentes] = useState([]);
   const [promedios, setPromedios] = useState([]);
@@ -24,7 +24,7 @@ export default function PromedioDuracionLlamadasAgente() {
       })
       .catch((error) => console.log(error));
   });
-  
+
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
   //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {

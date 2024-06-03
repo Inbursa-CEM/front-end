@@ -6,7 +6,7 @@ import { useState, useCallback, useEffect } from "react";
 export default function NumeroLlamadasGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
-    `http://localhost:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
+    `http://${process.env.HOST}:8080/llamada/numLlamadasTotales?idSupervisor=${idSupervisor}`
   );
   const [llamadas, setLlamadas] = useState([0]);
   const [meta, setMeta] = useState([100]);
@@ -22,7 +22,7 @@ export default function NumeroLlamadasGeneral() {
       })
       .catch((error) => console.log(error));
   });
-  
+
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
   //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
