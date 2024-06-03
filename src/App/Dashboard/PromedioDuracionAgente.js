@@ -3,6 +3,7 @@ import { LineChart } from "@mui/x-charts/LineChart";
 import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 
+//PromedioDuracionLlamadasAgente es un componente que muestra el promedio de duración de las llamadas por agente
 export default function PromedioDuracionLlamadasAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

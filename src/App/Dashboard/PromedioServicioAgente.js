@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 import { LineChart, axisClasses } from "@mui/x-charts";
 
+//PromedioServicioPorAgente es un componente que muestra el promedio de calificación de servicio por agente
 export default function PromedioServicioPorAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
 

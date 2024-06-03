@@ -2,6 +2,7 @@ import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
 
+//NumeroLlamadasPorAgente es un componente que muestra la cantidad de llamadas que ha realizado cada agente
 export default function NumeroLlamadasPorAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

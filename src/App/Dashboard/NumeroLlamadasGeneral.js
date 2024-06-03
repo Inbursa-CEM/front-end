@@ -4,7 +4,6 @@ import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 
 //NumeroLlamadasGeneral es un componente funcional que se encarga de mostrar el número total de llamadas atendidas por el conjunto de agentes
-
 export default function NumeroLlamadasGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

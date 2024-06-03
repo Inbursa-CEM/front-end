@@ -2,6 +2,7 @@ import * as React from "react";
 import { BarChart, axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 
+//SentimientoPromedioAgente es un componente que se encarga de mostrar los sentimientos promedio presente en las llamadas por agente
 export default function SentimientoPromedioAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

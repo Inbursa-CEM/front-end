@@ -2,7 +2,7 @@ import * as React from "react";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
 
-
+//EstatusAgentes es un componente que muestra la cantidad de agentes que están activos e inactivos
 export default function EstatusAgentes() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(`http://${process.env.REACT_APP_BACK_HOST}:8080/usuario/estatusAgente?idSupervisor=${idSupervisor}`)

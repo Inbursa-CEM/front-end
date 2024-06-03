@@ -2,6 +2,7 @@ import * as React from "react";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import { useState, useCallback, useEffect } from "react";
 
+//VelocidadPromedioRespuesta es un componente que muestra la velocidad promedio que tarda un agente en dar resultado a un reporte o llamada
 export default function VelocidadPromedioRespuesta() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

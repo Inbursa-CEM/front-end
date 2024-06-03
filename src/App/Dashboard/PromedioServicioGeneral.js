@@ -2,6 +2,7 @@ import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 
+//PromedioServicioGeneral es un componente que muestra el promedio de calificación de servicio general (todos los agentes)
 export default function PromedioServicioGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(

@@ -4,6 +4,7 @@ import { axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
 import { Box } from "@mui/material";
 
+//ProblemasAtendidosAgente es un componente que se encarga de mostrar la cantidad de problemas resueltos, no resueltos y el promedio de problemas resueltos por agente
 export default function ProblemasAtendidosAgente() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
