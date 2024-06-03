@@ -24,17 +24,16 @@ export default function PromedioDuracionLlamadasAgente() {
       })
       .catch((error) => console.log(error));
   });
-
+  
+  //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
+  //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
-    // Llama a la función descargar inmediatamente al montar el componente
     descargar();
 
-    // Configura el intervalo para llamar a descargar cada 10 minutos (600000 ms)
     const interval = setInterval(() => {
       descargar();
     }, 600000);
 
-    // Limpia el intervalo al desmontar el componente
     return () => clearInterval(interval);
   }, []);
 
