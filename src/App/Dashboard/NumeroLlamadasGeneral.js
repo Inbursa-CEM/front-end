@@ -60,7 +60,7 @@ export default function NumeroLlamadasGeneral() {
   }
   return (
     <div>
-      {/* {inputVisible ? (
+      {inputVisible ? (
         <TextField
           className="textInputMeta"
           label="Ingrese una meta"
@@ -68,7 +68,7 @@ export default function NumeroLlamadasGeneral() {
           onChange={(e) => setMeta(e.target.value)}
           onKeyDown={handleKeyDown}
         />
-      ) : null} */}
+      ) : null}
       <Gauge
         width={250}
         height={200}
@@ -84,11 +84,11 @@ export default function NumeroLlamadasGeneral() {
         }}
         text={({ value, valueMax }) => `${value} / ${valueMax}`}
       />
-      {/* {inputVisible ? null : (
+      {inputVisible ? null : (
         <Button className="botonMetas" onClick={mostrarInput}>
           Personalizar Meta
         </Button>
-      )} */}
+      )}
     </div>
   );
 }
