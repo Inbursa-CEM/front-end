@@ -21,14 +21,14 @@ export default function VelocidadPromedioRespuesta() {
       .catch((error) => console.log(error));
   });
 
-  //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 10 
-  //minutos (600000 ms) y se limpia el intervalo al desmontar el componente
+  //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 5 
+  //minutos (300000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
     descargar();
 
     const interval = setInterval(() => {
       descargar();
-    }, 600000);
+    }, 300000);
 
     return () => clearInterval(interval);
   }, []);
