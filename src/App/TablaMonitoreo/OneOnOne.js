@@ -1,3 +1,8 @@
+// Diego Manjarrez Viveros
+// A01753486
+// Description: Componente para agendar un 1:1
+// Date: 17/05/2024
+
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -8,10 +13,12 @@ import "dayjs/locale/es-mx";
 
 import "../../Styles/OneOnOne.css";
 
+// Componente para agendar un 1:1
 const OneOnOne = ({ id }) => {
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const [fechaFinal, setFechaFinal] = useState(null);
 
+  // Cambiar la fecha seleccionada
   const cambiosFecha = (newValue) => {
     setFechaSeleccionada(newValue);
 
@@ -20,12 +27,14 @@ const OneOnOne = ({ id }) => {
     }
   };
 
+  // Mostrar la fecha final seleccionada
   useEffect(() => {
     if (fechaFinal) {
       console.log("Final date: ", fechaFinal.format("DD/MM/YYYY HH:mm"));
     }
   }, [fechaFinal]);
 
+  // Función para mandar una notificación 1:1
   const mandarOneonOne = async (fechaFinal, id) => {
     try {
       const response = await fetch(
@@ -53,6 +62,7 @@ const OneOnOne = ({ id }) => {
     }
   };
 
+  // Función para aceptar la fecha seleccionada
   const handleAccept = () => {
     setFechaFinal(fechaSeleccionada);
     if (fechaSeleccionada) {
@@ -60,6 +70,7 @@ const OneOnOne = ({ id }) => {
     }
   };
 
+  // Renderizado del componente
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
       <DemoContainer components={["DateTimePicker"]}>
