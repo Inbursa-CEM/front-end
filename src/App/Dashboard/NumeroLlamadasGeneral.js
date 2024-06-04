@@ -25,6 +25,18 @@ export default function NumeroLlamadasGeneral() {
       .catch((error) => console.log(error));
   });
 
+  const cambiarMeta = useCallback(() => {
+    console.log("Cambiando meta");
+    fetch(
+      `http://${process.env.REACT_APP_BACK_HOST}:8080/llamada/cambiarMeta?idSupervisor=${idSupervisor}&meta=${meta}`
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => console.log(error));
+  })
+
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 5 
   //minutos (300000 ms) y se limpia el intervalo al desmontar el componente
   useEffect(() => {
@@ -43,6 +55,7 @@ export default function NumeroLlamadasGeneral() {
   const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
       setInputVisible(false);
+      cambiarMeta();
     }
   }
   return (
