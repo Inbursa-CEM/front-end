@@ -1,3 +1,5 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 30 de abril de 2024
+
 import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";

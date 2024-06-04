@@ -1,3 +1,5 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 13 de mayo de 2024
+
 import * as React from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { axisClasses } from "@mui/x-charts";

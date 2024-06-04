@@ -1,3 +1,5 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 13 de mayo de 2024
+
 import * as React from "react";
 import { BarChart, axisClasses } from "@mui/x-charts";
 import { useState, useCallback, useEffect } from "react";
