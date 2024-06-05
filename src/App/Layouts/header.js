@@ -35,6 +35,7 @@ const Header = () => {
 
         {/* asi se debe mandar el id */}
         {/* < OneOnOne id={} /> */}
+        <Notificaciones id={sessionStorage.getItem("userId")}/>
         <TagEmpleado
           icono={<FaceIcon />}
           nombre={sessionStorage.getItem("userName")}
