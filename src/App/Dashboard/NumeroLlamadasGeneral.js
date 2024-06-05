@@ -17,7 +17,7 @@ export default function NumeroLlamadasGeneral() {
   );
 
   const [llamadas, setLlamadas] = useState([0]);
-  const [meta, setMeta] = useState([100]);
+  const [meta, setMeta] = useState([0]);
   const [inputVisible, setInputVisible] = useState(false);
 
   //Esta función se encarga de descargar los datos de la API y actualizar el estado de la variable data que alimenta al componente gráfico.
@@ -36,6 +36,7 @@ export default function NumeroLlamadasGeneral() {
     fetch(metaUrl)
       .then((response) => response.json())
       .then((data) => {
+        console.log("Meta actualizada",data.meta);
         setMeta(data.meta);
       })
       .catch((error) => console.log(error));
@@ -49,6 +50,7 @@ export default function NumeroLlamadasGeneral() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+        descargarMeta();
       })
       .catch((error) => console.log(error));
   });
@@ -61,6 +63,7 @@ export default function NumeroLlamadasGeneral() {
     console.log("Console log de meta", meta);
     const interval = setInterval(() => {
       descargar();
+      descargarMeta();
     }, 300000);
 
     return () => clearInterval(interval);
