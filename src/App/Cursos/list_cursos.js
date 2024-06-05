@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from "uuid";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import Curso from "./curso";
+import Proveedor, { contextoGlobal } from "./proveedor";
 
 const Lista_Cursos = (props) => {
-  const [arrCursos, setArrCursos] = useState([]);
+  const [arrCursos, setArrCursos,eliminarCurso] = React.useContext(contextoGlobal);
   const url =
     "http://localhost:8080/curso/asignados?idAgente=" + props.idOperador;
 
@@ -34,10 +35,12 @@ const Lista_Cursos = (props) => {
 
   return (
     <div>
+      
       <Paper style={{ margin: "20px", overflow: "auto", maxHeight: 250 }}>
         {arrCursos.map((curso) => {
-          console.log("A:" + curso.idCurso);
+         
           return (
+           
             <Curso
               idCurso={curso.idCurso}
               nombre={curso.nombre}
@@ -48,7 +51,9 @@ const Lista_Cursos = (props) => {
               fecha={curso.fecha}
               idUsuario={props.idOperador}
               key={curso.id}
+              borrar={eliminarCurso}
             ></Curso>
+           
           );
         })}
       </Paper>

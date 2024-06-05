@@ -13,9 +13,9 @@ const ProfileCard = () => {
           })
           .catch((error) => console.log(error));  
   }
-//   useEffect(() => {
-//     descargar();
-//   }, []);
+  useEffect(() => {
+    descargar();
+  }, []);
     return (
         <Card className="card">
             <div className="header">
@@ -24,7 +24,7 @@ const ProfileCard = () => {
             <div className="contenedor">
                 <div className="izquierda">
                     <p className='label'>Teléfono:</p>
-                    <p className="value">55224885</p>
+                    <p className="value">{telefono}</p>
                     <p className="label">Correo electrónico:</p>
                     <p className="value">ares.ortizb@inbursa.mx</p>
                     <p className='label'>Duración promedio de llamadas:</p>

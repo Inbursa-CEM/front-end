@@ -10,6 +10,7 @@ const Cursos = () => {
         <Header />
         <div className="tablaCursos">
           <Principal />
+
         </div>
       </div>
     </div>

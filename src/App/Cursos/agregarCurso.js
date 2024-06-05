@@ -1,13 +1,18 @@
 import "../../Styles/agregar.css";
 import Button from "@mui/material/Button";
-import { useState } from "react";
+import { useState,createContext } from "react";
 import TextField from "@mui/material/TextField";
+import AreaSelect from "./areasSelect";
+
+export const contextoGlobal = createContext(); //Espacio global
+
 
 const AgregarCurso = () => {
   const [nombre, setNombre] = useState(0);
   const [descripcion, setDescripcion] = useState(0);
   const [url, setUrl] = useState(0);
-  const [idAreasOportunidad, setAreas] = useState([1]);
+  const [personName, setPersonName] = useState([]);
+  
 
   const modificarNombre = (evento) => {
     setNombre(evento.target.value);
@@ -26,10 +31,11 @@ const AgregarCurso = () => {
     headers: {
       "Content-type": "application/json",
     },
-    body: JSON.stringify({ nombre, descripcion, url, idAreasOportunidad }),
+    body: JSON.stringify({ nombre, descripcion, url, idAreasOportunidad:personName }),
   };
 
   const Guardar = () => {
+    console.log(options.body);
     fetch("http://localhost:8080/curso/crear", options)
       .then((response) => response.json())
       .then((data) => {
@@ -68,6 +74,7 @@ const AgregarCurso = () => {
           onChange={modificarUrl}
         />
       </form>
+      <AreaSelect setPersonName={setPersonName} personName={personName}/>
       <Button variant="contained" style={{ margin: "10px" }} onClick={Guardar}>
         Agregar
       </Button>
