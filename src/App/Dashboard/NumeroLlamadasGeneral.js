@@ -6,6 +6,7 @@ import * as React from "react";
 import { useState, useCallback, useEffect } from "react";
 
 //NumeroLlamadasGeneral es un componente funcional que se encarga de mostrar el número total de llamadas atendidas por el conjunto de agentes
+
 export default function NumeroLlamadasGeneral() {
   const idSupervisor = sessionStorage.getItem("userId");
   const [url, setUrl] = useState(
@@ -21,6 +22,7 @@ export default function NumeroLlamadasGeneral() {
   const [inputVisible, setInputVisible] = useState(false);
 
   //Esta función se encarga de descargar los datos de la API y actualizar el estado de la variable data que alimenta al componente gráfico.
+
   const descargar = useCallback(() => {
     console.log("Descargando datos");
     fetch(url)
@@ -30,6 +32,8 @@ export default function NumeroLlamadasGeneral() {
       })
       .catch((error) => console.log(error));
   });
+
+  //Esta función se encarga de descargar la meta de llamadas de la base de datos y actualizar el estado de la variable meta
 
   const descargarMeta = useCallback(() => {
     console.log("Descargando datos");
@@ -42,6 +46,8 @@ export default function NumeroLlamadasGeneral() {
       })
       .catch((error) => console.log(error));
   });
+
+  //Esta función se encarga de cambiar la meta de llamadas en la base de datos
 
   const cambiarMeta = useCallback(() => {
     console.log("Cambiando meta");
@@ -58,6 +64,7 @@ export default function NumeroLlamadasGeneral() {
 
   //Primero se llama a la función descargar inmediatamente al montar el componente, Configura el intervalo para llamar a descargar cada 5
   //minutos (300000 ms) y se limpia el intervalo al desmontar el componente
+
   useEffect(() => {
     descargar();
     descargarMeta();
