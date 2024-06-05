@@ -1,3 +1,5 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 14 de mayo de 2024
+
 import * as React from "react";
 import { Gauge, gaugeClasses } from "@mui/x-charts/Gauge";
 import { useState, useCallback, useEffect } from "react";

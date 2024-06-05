@@ -1,3 +1,5 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 10 de mayo de 2024
+
 import * as React from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
 import { useState, useCallback, useEffect } from "react";
