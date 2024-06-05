@@ -50,10 +50,13 @@ export default function NumeroLlamadasGeneral() {
     return () => clearInterval(interval);
   }, []);
 
+  //Esta función se encarga de actualizar el estado que determina si el campo de texto es visible o no
+
   const mostrarInput = () => {
     setInputVisible(!inputVisible);
   };
 
+  //Esta función se encarga de cambiar la meta de llamadas y ocultar el campo de texto cuando se da Enter en el campo de texto
   const handleKeyDown = (event) => {
     if(event.key === 'Enter'){
       setInputVisible(false);
