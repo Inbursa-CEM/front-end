@@ -28,7 +28,7 @@ export default function NumeroLlamadasGeneral() {
   const cambiarMeta = useCallback(() => {
     console.log("Cambiando meta");
     fetch(
-      `http://${process.env.REACT_APP_BACK_HOST}:8080/llamada/cambiarMeta?idSupervisor=${idSupervisor}&meta=${meta}`
+      `http://${process.env.REACT_APP_BACK_HOST}:8080/usuario/meta/actualizar?idSupervisor=${idSupervisor}&meta=${meta}`
     )
       .then((response) => response.json())
       .then((data) => {
