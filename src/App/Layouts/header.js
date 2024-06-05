@@ -1,10 +1,11 @@
 import "../../Styles/header.css";
 import OpcionIcono from "./opcionIcono";
 import TagEmpleado from "./tagEmpleado";
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
-import QueryStatsIcon from '@mui/icons-material/QueryStats';
-import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
-import FaceIcon from '@mui/icons-material/Face';
+import SupportAgentIcon from "@mui/icons-material/SupportAgent";
+import QueryStatsIcon from "@mui/icons-material/QueryStats";
+import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
+import FaceIcon from "@mui/icons-material/Face";
+import Notificaciones from "../TablaMonitoreo/listaNotis";
 
 const Header = () => {
   return (
@@ -15,6 +16,13 @@ const Header = () => {
         <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
       </div>
       <div className="tagEmpleado">
+        
+        {/* Asi se puede mandar notis o de la otra forma */}
+        {/* <Notificaciones id={1} /> */}
+        {/* <Notificaciones /> */}
+
+        {/* asi se debe mandar el id */}
+        {/* < OneOnOne id={} /> */}
         <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
       </div>
     </div>

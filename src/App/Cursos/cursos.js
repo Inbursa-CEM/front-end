@@ -1,21 +1,19 @@
-import '../../Styles/App.css'
-import '../../Styles/cursos.css'
-import { Button } from '@mui/material';
-import { Link } from 'react-router-dom';
-import Header from '../Layouts/header';
-import CursosTabla from './tablaCursos';
+import "../../Styles/App.css";
+import "../../Styles/cursos.css";
+import Header from "../Layouts/header";
+import Principal from "./principal";
 
 const Cursos = () => {
-    return (
-        <div>
-            <div className='cursos'>
-                <Header />
-                <div className='tablaCursos'>
-                    <CursosTabla />
-                </div>    
-            </div>
+  return (
+    <div>
+      <div className="cursos">
+        <Header />
+        <div className="tablaCursos">
+          <Principal />
         </div>
-    );
-}
+      </div>
+    </div>
+  );
+};
 
 export default Cursos;
