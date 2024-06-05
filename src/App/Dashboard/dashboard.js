@@ -1,34 +1,21 @@
+//Autor: Gustavo Alejandro Gutiérrez Valdes Fecha: 30 de abril de 2024
+
 import "../../Styles/App.css";
 import "../../Styles/dashboard.css";
 import React from "react";
 import Header from "../Layouts/header";
-import OpcionesDocumentos from "./opcionesDocumentos";
-import OpcionesTranscripciones from "./opcionesTranscripciones";
-import { useState } from "react";
-import { Button } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
-import EstatusAgentes from "./estatusAgente";
-import PromedioDuracionLlamadas from "./promDuracionLlamadas";
-import PromedioCalidadServicio from "./promCalidadServicio";
-import SentimientoPromedioAgente from "./sentimientoPromedioAgente";
-import TotalProblemasAtendidos from "./totalProblemasAtendidos";
-import VelocidadPromedioRespuesta from "./velPromedioRespuesta";
-import NumeroLlamadasDepartamento from "./numeroLlamadasDepto";
-import NumeroLlamadasAtendidas from "./numLlamadasAtendidas";
-import PromedioServicioGeneral from "./promServicioGeneral";
+import NumeroLlamadasPorAgente from "./NumeroLlamadasAgente";
+import PromedioDuracionLlamadasAgente from "./PromedioDuracionAgente";
+import EstatusAgentes from "./EstatusAgentes";
+import PromedioServicioPorAgente from "./PromedioServicioAgente";
+import SentimientoPromedioAgente from "./SentimientoPromedioAgente";
+import VelocidadPromedioRespuesta from "./VelocidadPromedioRespuesta";
+import PromedioServicioGeneral from "./PromedioServicioGeneral";
+import ProblemasAtendidosAgente from "./ProblemasAtendidosAgente";
+import NumeroLlamadasGeneral from "./NumeroLlamadasGeneral";
 
+//Esta función es la encargada de crear y mostrar los componentes gráficos que representan cada KPI dentro del dashboard
 const Dashboard = () => {
-  const [opcionesAnalisis, setOpcionesAnalisis] = useState(false);
-  const [opcionesTranscripciones, setOpcionesTranscripciones] = useState(false);
-
-  const ocultarAnalisis = () => {
-    setOpcionesAnalisis(!opcionesAnalisis);
-  };
-
-  const ocultarTranscripciones = () => {
-    setOpcionesTranscripciones(!opcionesTranscripciones);
-  };
-
   return (
     <div>
       <Header />
@@ -37,13 +24,13 @@ const Dashboard = () => {
           <div className="item">
             <h4>Llamadas atendidas por agente</h4>
             <div className="indicador">
-              <NumeroLlamadasAtendidas />
+              <NumeroLlamadasPorAgente />
             </div>
           </div>
           <div className="item">
             <h4> Promedio de duración de llamadas por agente</h4>
             <div className="indicador">
-              <PromedioDuracionLlamadas />
+              <PromedioDuracionLlamadasAgente />
             </div>
           </div>
           <div className="item">
@@ -55,25 +42,25 @@ const Dashboard = () => {
           <div className="item">
             <h4>Promedio de calidad de servicio por agente</h4>
             <div className="indicador">
-              <PromedioCalidadServicio />
+              <PromedioServicioPorAgente />
             </div>
           </div>
           <div className="item">
-            <h4>Sentimiento promedio en llamadas por agente</h4>
+            <h4>Sentimientos en llamadas por agente</h4>
             <div className="indicador">
               <SentimientoPromedioAgente />
             </div>
           </div>
           <div className="item">
-            <h4>Total de reportes atendidos por agente</h4>
+            <h4>Promedio de reportes resueltos por agente</h4>
             <div className="indicador">
-              <TotalProblemasAtendidos />
+              <ProblemasAtendidosAgente />
             </div>
           </div>
           <div className="item">
-            <h4>Total de llamadas atendidas a nivel departamento</h4>
+            <h4>Total de llamadas atendidas</h4>
             <div className="indicador">
-              <NumeroLlamadasDepartamento />
+              <NumeroLlamadasGeneral  />
             </div>
           </div>
           <div className="item">
@@ -83,7 +70,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="item">
-            <h4>Promedio de Servicio a nivel departamento</h4>
+            <h4>Promedio de Servicio General</h4>
             <div className="indicador">
               <PromedioServicioGeneral />
             </div>
