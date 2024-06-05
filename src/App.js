@@ -5,6 +5,10 @@ import Cursos from "./App/Cursos/cursos";
 import { Route, Routes } from "react-router-dom";
 import LogIn from "./App/LogIn";
 import ProfileCard from "./App/TablaMonitoreo/ProfileCard";
+import CrearCuenta from "./App/CrearCuenta";
+import Verificacion from "./App/Verificacion";
+import RecuperarCuenta from "./App/RecuperarCuenta";
+import CambiarContrasena from "./App/CambiarContrasena";
 
 function App() {
   return (
@@ -15,6 +19,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cursos" element={<Cursos />} />
         <Route path="/profile" element={<ProfileCard />} />
+        <Route path="/crearcuenta" element={<CrearCuenta />} />
+        <Route path="/verificacion" element={<Verificacion />} />
+        <Route path="/recuperarcuenta" element={<RecuperarCuenta />} />
+        <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
       </Routes>
     </div>
   );

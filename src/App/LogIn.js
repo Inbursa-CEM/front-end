@@ -1,17 +1,22 @@
-import React, { useRef, useCallback, useEffect, useState } from "react";
+// Autora: Lauren Lissette Llauradó Reyes
+// Componente que permite a un usuario iniciar sesión en el sistema
+
+import React, { useRef, useState } from "react";
 import "../Styles/login.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LogIn = () => {
-  const url = "http://localhost:8080/usuario/iniciarSesion";
+  const host = process.env.REACT_APP_BACK_HOST;
+  const url = `http://${host}:8080/auth/signin`;
 
   const refCorreo = useRef();
   const refContrasena = useRef();
   const navegar = useNavigate();
+  const [mensajeError, setMensajeError] = useState("");
 
   const iniciarSesion = (evento) => {
     evento.preventDefault();
-    const correo = refCorreo.current.value;
+    const email = refCorreo.current.value;
     const password = refContrasena.current.value;
 
     const options = {
@@ -19,7 +24,7 @@ const LogIn = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ correo, password }),
+      body: JSON.stringify({ email, password }),
     };
 
     console.log("Enviando datos al servidor:", options.body);
@@ -29,12 +34,17 @@ const LogIn = () => {
         if (response.ok) {
           return response.json();
         }
+        if (response.status === 404) {
+          setMensajeError("Correo o contraseña incorrectos");
+        }
         throw new Error("Error en la petición");
       })
       .then((data) => {
-        sessionStorage.setItem("userId", data.idUsuario);
-        sessionStorage.setItem("userName", data.nombre);
-        sessionStorage.setItem("userRole", data.rol);
+        sessionStorage.setItem("userId", data.usuario.idUsuario);
+        sessionStorage.setItem("userName", data.usuario.nombre);
+        sessionStorage.setItem("userRole", data.usuario.rol);
+        sessionStorage.setItem("userPhoto", data.usuario.urlFoto);
+        // sessionStorage.setItem("userToken", data.AccessToken);
       })
       .then(() => {
         navegar("/monitoreo");
@@ -44,34 +54,49 @@ const LogIn = () => {
 
   return (
     <div className="contenedor-login">
-      <img
-        className="logo"
-        alt="Logo de Inbursa"
-        src="https://inbursa-lau.s3.amazonaws.com/inbursa.png"
-      ></img>
-      <div className="caja-contenedora">
+      <div className="contenedor-logo-login">
+        <img
+          className="logo-login"
+          alt="Logo de Inbursa"
+          src="https://inbursa-lau.s3.amazonaws.com/inbursa.png"
+        ></img>
+      </div>
+      <div className="caja-contenedora-login">
         <form onSubmit={iniciarSesion}>
           <input
-            className="input"
+            className="input-login"
             type="email"
             required
             placeholder="Correo electrónico"
             ref={refCorreo}
           ></input>
           <input
-            className="input"
+            className="input-login"
             type="password"
             required
             placeholder="Contraseña"
             ref={refContrasena}
           ></input>
 
-          <div className="contenedor-boton">
-            <button className="boton" type="submit">
+          <div className="contenedor-boton-login">
+            <p className="mensaje-error">{mensajeError}</p>
+            <button className="boton-login" type="submit">
               Iniciar sesión
             </button>
           </div>
         </form>
+        <div>
+          <p>
+            <Link to="/crearcuenta" className="cuenta">
+              Crear una cuenta
+            </Link>
+          </p>
+          <p>
+            <Link to="/recuperarcuenta" className="cuenta">
+              Olvidé mi contraseña
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

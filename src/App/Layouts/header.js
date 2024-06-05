@@ -28,7 +28,13 @@ const Header = () => {
         />
       </div>
       <div className="tagEmpleado">
-        <Notificaciones />
+        
+        {/* Asi se puede mandar notis o de la otra forma */}
+        {/* <Notificaciones id={1} /> */}
+        {/* <Notificaciones /> */}
+
+        {/* asi se debe mandar el id */}
+        {/* < OneOnOne id={} /> */}
         <TagEmpleado
           icono={<FaceIcon />}
           nombre={sessionStorage.getItem("userName")}

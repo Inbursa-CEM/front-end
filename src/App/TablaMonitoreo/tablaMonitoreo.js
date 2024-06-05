@@ -1,3 +1,6 @@
+// Autora: Lauren Lissette Llauradó Reyes
+// Componente que muestra una tabla con los datos, en tiempo real, de los agentes del supervisor
+
 import "../../Styles/App.css";
 import "../../Styles/tabla.css";
 import React, { useCallback, useEffect, useState } from "react";
@@ -10,45 +13,59 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import LightModeIcon from '@mui/icons-material/LightMode';
+import CircleIcon from "@mui/icons-material/Circle";
 import OneOnOne from "./OneOnOne";
+import { useNavigate } from "react-router-dom";
 
 const EmpleadosTabla = () => {
+  const host = process.env.REACT_APP_BACK_HOST;
   const [arrAgentes, setArrAgentes] = useState([]);
-  const url = "http://localhost:8080/usuario/infoActualAgentes?supervisor=1";
+  const navegar = useNavigate();
 
-  const sentimientoPositivo =
-    "https://inbursa-lau.s3.amazonaws.com/calidad-buena.svg";
-  const sentimientoNeutro =
-    "https://inbursa-lau.s3.amazonaws.com/calidad-neutra.svg";
-  const sentimientoNegativo =
-    "https://inbursa-lau.s3.amazonaws.com/calidad-pesima.svg";
+  const url = `http://${host}:8080/usuario/infoActualAgentes?supervisor=${sessionStorage.getItem(
+    "userId"
+  )}`;
 
-  function getSentimientoRandom() {
+  function getSentimiento(duracion) {
+    if (!duracion) {
+      return 4; // BORRAR CUANDO SE IMPLEMENTE API
+    }
     const randomNumber = Math.random();
-
     if (randomNumber < 0.33) {
-      return sentimientoPositivo;
+      return 1; // Sentimiento negativo
     } else if (randomNumber < 0.66) {
-      return sentimientoNeutro;
+      return 2; // Sentimiento neutro
     } else {
-      return sentimientoNegativo;
+      return 3; // Sentimiento positivo
     }
   }
 
-  function getSemaforoRandom() {
-    const randomNumber = Math.random();
-
-    if (randomNumber < 0.33) {
-      return {color: "#43C257"};
-    } else if (randomNumber < 0.66) {
-      return {color: "#D7920C"};
+  function getImgSentimiento(sentimiento) {
+    if (sentimiento === 4) {
+      return null;
+    } else if (sentimiento === 1) {
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-pesima.svg";
+    } else if (sentimiento === 2) {
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-neutra.svg";
     } else {
-      return {color: "#E42424"};
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-buena.svg";
+    }
+  }
+
+  function getSemaforo(duracion) {
+    if (duracion < 45) {
+      return { color: "#43C257" }; // Semáforo verde
+    } else if (duracion < 60) {
+      return { color: "#D7920C" }; // Semáforo amarillo
+    } else {
+      return { color: "#E42424" }; // Semáforo rojo
     }
   }
 
   function formatearDuracion(totalSegundos) {
+    if (totalSegundos === "-" || totalSegundos === 0) {
+      return "-";
+    }
     const horas = Math.floor(totalSegundos / 3600);
     const minutosRestantes = totalSegundos % 3600;
     const minutos = Math.floor(minutosRestantes / 60);
@@ -57,29 +74,69 @@ const EmpleadosTabla = () => {
   }
 
   const descargar = useCallback(() => {
-    fetch(url)
-      .then((response) => response.json())
+
+    const token = sessionStorage.getItem("userToken");
+
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(url, options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      if (response.status === 401) {
+        navegar("/"); // Redirigir al inicio de sesión si el token es inválido
+      }
+      throw new Error("Error en la petición");
+    })
       .then((data) => {
         console.log("Datos obtenidos del servidor:", data);
         const arrNuevo = data.map((agente) => {
+          const sentimiento = getSentimiento(agente.duracion);
           const agenteNuevo = {
             id: agente.id,
             nombre: agente.nombreAgente,
-            duracion: agente.duracion ? formatearDuracion(agente.duracion) : "-",
-            cliente: agente.nombreCliente ? agente.nombreCliente : "-",
-            saldo: agente.saldoCliente ? agente.saldoCliente : "-",
+            duracion: agente.duracion || 0,
+            cliente: agente.nombreCliente || "-",
+            saldo: agente.saldoCliente || "-",
+            sentimiento,
+            sentimientoImg: getImgSentimiento(sentimiento),
+            semaforo: agente.duracion ? getSemaforo(agente.duracion) : "-",
           };
           return agenteNuevo;
         });
         setArrAgentes(arrNuevo);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [url, navegar]);
 
   useEffect(() => {
-    console.log("Descargando datos");
     descargar();
+    const intervalId = setInterval(descargar, 5000); // Repetir la descarga de datos cada 5 segundos
+
+    return () => clearInterval(intervalId);
   }, [descargar]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setArrAgentes((prevAgentes) =>
+        prevAgentes.map((agente) => ({
+          ...agente,
+          duracion: agente.duracion > 0 ? agente.duracion + 1 : "-",
+        }))
+      );
+    }, 1000); // Incrementar la duración cada segundo
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const sortedRows = arrAgentes.sort((a, b) => a.sentimiento - b.sentimiento);
 
   return (
     <TableContainer
@@ -110,17 +167,31 @@ const EmpleadosTabla = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {arrAgentes.map((agente) => (
+          {sortedRows.map((agente) => (
             <TableRow key={agente.id}>
               <TableCell className="tabla-celda">{agente.nombre}</TableCell>
-              <TableCell className="tabla-celda"><LightModeIcon style={getSemaforoRandom()}></LightModeIcon></TableCell>
               <TableCell className="tabla-celda">
-                <img src={getSentimientoRandom()}></img>
+                {agente.semaforo !== "-" ? (
+                  <CircleIcon style={agente.semaforo}></CircleIcon>
+                ) : (
+                  "-"
+                )}
+              </TableCell>
+              <TableCell className="tabla-celda">
+                {agente.sentimientoImg ? (
+                  <img src={agente.sentimientoImg} alt="Sentimiento"></img>
+                ) : (
+                  "-"
+                )}
               </TableCell>
               <TableCell className="tabla-celda">{agente.cliente}</TableCell>
               <TableCell className="tabla-celda">{`$${agente.saldo}`}</TableCell>
-              <TableCell className="tabla-celda">{agente.duracion}</TableCell>
-              <TableCell><OneOnOne id={agente.id}></OneOnOne></TableCell>
+              <TableCell className="tabla-celda">
+                {formatearDuracion(agente.duracion)}
+              </TableCell>
+              <TableCell>
+                <OneOnOne id={agente.id}></OneOnOne>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
