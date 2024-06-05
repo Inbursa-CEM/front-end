@@ -26,7 +26,8 @@ const Notificaciones = ({ id }) => {
   };
 
   // URL para obtener las notificaciones
-  const url = `${process.env.REACT_APP_BACK_HOST}/notificacion/obtenerNotificaciones?idUsuario=${id}`;
+  const url = `http://${process.env.REACT_APP_BACK_HOST}:8080/notificacion/obtenerNotificaciones?idUsuario=${id}`;
+  // const url = `http://localhost:8080/notificacion/obtenerNotificaciones?idUsuario=${id}`;
 
   // Función para descargar las notificaciones
   const descarga = useCallback(() => {
@@ -51,7 +52,8 @@ const Notificaciones = ({ id }) => {
 
   // Función para actualizar el estado de las notificaciones
   const actualizarStatus = (idNotificacion) => {
-    const updateUrl = `${process.env.REACT_APP_BACK_HOST}/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
+    const updateUrl = `http://${process.env.REACT_APP_BACK_HOST}:8080/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
+    // const updateUrl = `http://localhost:8080/notificacion/actualizarStatusNotificacion?idNotificacion=${idNotificacion}`;
     
     // Petición PUT para actualizar el estado de la notificación
     fetch(updateUrl, {

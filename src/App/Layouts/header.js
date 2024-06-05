@@ -16,7 +16,11 @@ const Header = () => {
         <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
       </div>
       <div className="tagEmpleado">
-        <Notificaciones />
+        
+        {/* Asi se puede mandar notis o de la otra forma */}
+        {/* <Notificaciones id={1} /> */}
+        {/* <Notificaciones /> */}
+
         {/* asi se debe mandar el id */}
         {/* < OneOnOne id={} /> */}
         <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
