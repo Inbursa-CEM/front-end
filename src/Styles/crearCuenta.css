@@ -1,57 +1,74 @@
-p {
-  text-align: center;
-  font-size: 15px;
-}
-
-.contenedor-login {
+.contenedor-cuenta {
   height: 100% !important;
   width: 100% !important;
+  margin-bottom: 50px !important;
 }
 
-.contenedor-logo-login {
+.contenedor-logo-cuenta {
   margin: 50px auto -50px auto !important;
   display: grid !important;
   place-items: center !important;
 }
 
-.logo-login {
+.logo-cuenta {
   width: 100px;
   height: 100px;
 }
 
-.caja-contenedora-login {
+.caja-contenedora-cuenta {
   background-color: var(--gris) !important;
-  height: 420px !important;
   display: grid !important;
   place-items: center !important;
+  height: 800px !important;
   width: 500px;
-  border-radius: 5%;
+  border-radius: 25px;
   padding-top: 30px;
   margin: 0 auto !important;
 }
 
-.input-login {
+.form-cuenta {
   display: grid !important;
-  font-family: "Poppins", sans-serif !important;
-  margin: 30px 0 !important;
-  width: 373px !important;
-  height: 30px;
-  border-radius: 15px !important;
-  background-color: rgba(141, 169, 196, 0.48) !important;
-  border: 0;
-  padding: 15px;
-  color: var(--azul-oscuro) !important;
-  text-align: center;
-  font-weight: bold;
+  place-items: center !important;
 }
 
-.contenedor-boton-login {
+.input-cuenta {
+  font-family: "Poppins", sans-serif !important;
+  margin: 10px 0 !important;
+  width: 373px !important;
+  height: 30px !important;
+  border-radius: 15px !important;
+  background-color: rgba(141, 169, 196, 0.48) !important;
+  border: 0 !important;
+  padding: 15px !important;
+  color: var(--azul-oscuro) !important;
+  text-align: center !important;
+  font-weight: bold !important;
+}
+
+.etiqueta-cuenta {
+  color: rgb(116, 116, 116) !important;
+  margin-top: 10px !important;
+}
+
+.select-cuenta {
+  font-family: "Poppins", sans-serif !important;
+  width: 405px !important;
+  height: 50px !important;
+  border-radius: 10px !important;
+  background-color: rgba(141, 169, 196, 0.48) !important;
+  border: 0 !important;
+  text-align: center !important;
+  font-weight: bold !important;
+  margin-bottom: 10px !important;
+}
+
+.contenedor-boton-cuenta {
   display: grid !important;
   place-items: center !important;
   margin-top: 70px !important;
 }
 
-.boton-login {
+.boton-cuenta {
   font-family: "Poppins", sans-serif !important;
   background-color: rgba(45, 139, 186, 0.7) !important;
   color: white;
@@ -61,15 +78,4 @@ p {
   padding: 15px !important;
   border: 0;
   cursor: pointer;
-}
-
-.cuenta {
-  text-decoration: none;
-  color: rgba(45, 139, 186, 0.7) !important;
-}
-
-.mensaje-error {
-  font-size: 15px;
-  color: rgb(192, 0, 0);
-  margin-bottom: 5px;
 }

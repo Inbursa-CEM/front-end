@@ -1,57 +1,56 @@
-p {
-  text-align: center;
-  font-size: 15px;
-}
-
-.contenedor-login {
+.contenedor-verificacion {
   height: 100% !important;
   width: 100% !important;
+  margin-bottom: 50px !important;
 }
 
-.contenedor-logo-login {
+.contenedor-logo-verificacion {
   margin: 50px auto -50px auto !important;
   display: grid !important;
   place-items: center !important;
 }
 
-.logo-login {
+.logo-verificacion {
   width: 100px;
   height: 100px;
 }
 
-.caja-contenedora-login {
+.caja-contenedora-verificacion {
   background-color: var(--gris) !important;
-  height: 420px !important;
   display: grid !important;
   place-items: center !important;
-  width: 500px;
-  border-radius: 5%;
+  height: 300px !important;
+  width: 600px;
+  border-radius: 25px;
   padding-top: 30px;
   margin: 0 auto !important;
+  text-align: center !important;
 }
 
-.input-login {
-  display: grid !important;
+.input-verificacion {
   font-family: "Poppins", sans-serif !important;
-  margin: 30px 0 !important;
+  margin: 20px 0 !important;
   width: 373px !important;
-  height: 30px;
+  height: 30px !important;
   border-radius: 15px !important;
   background-color: rgba(141, 169, 196, 0.48) !important;
-  border: 0;
-  padding: 15px;
-  color: var(--azul-oscuro) !important;
-  text-align: center;
-  font-weight: bold;
+  border: 0 !important;
+  padding: 15px !important;
+  text-align: center !important;
+  font-weight: bold !important;
 }
 
-.contenedor-boton-login {
+.etiqueta-verificacion {
+  color: var(--azul-oscuro) !important;
+}
+
+.contenedor-boton-verificacion {
   display: grid !important;
   place-items: center !important;
-  margin-top: 70px !important;
+  margin-top: 30px !important;
 }
 
-.boton-login {
+.boton-verificacion {
   font-family: "Poppins", sans-serif !important;
   background-color: rgba(45, 139, 186, 0.7) !important;
   color: white;
@@ -61,15 +60,4 @@ p {
   padding: 15px !important;
   border: 0;
   cursor: pointer;
-}
-
-.cuenta {
-  text-decoration: none;
-  color: rgba(45, 139, 186, 0.7) !important;
-}
-
-.mensaje-error {
-  font-size: 15px;
-  color: rgb(192, 0, 0);
-  margin-bottom: 5px;
 }

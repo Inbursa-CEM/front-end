@@ -1,3 +1,6 @@
+// Autora: Lauren Lissette Llauradó Reyes
+// Componente que muestra una tabla con los datos, en tiempo real, de los agentes del supervisor
+
 import "../../Styles/App.css";
 import "../../Styles/tabla.css";
 import React, { useCallback, useEffect, useState } from "react";
@@ -10,44 +13,59 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-import LightModeIcon from '@mui/icons-material/LightMode';
+import CircleIcon from "@mui/icons-material/Circle";
+import OneOnOne from "./OneOnOne";
+import { useNavigate } from "react-router-dom";
 
 const EmpleadosTabla = () => {
+  const host = process.env.REACT_APP_BACK_HOST;
   const [arrAgentes, setArrAgentes] = useState([]);
-  const url = "http://localhost:8080/usuario/infoActualAgentes?supervisor=1";
+  const navegar = useNavigate();
 
-  const sentimientoPositivo =
-    "https://inbursa-lau.s3.us-east-1.amazonaws.com/calidad-buena.svg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDYaCXVzLWVhc3QtMSJHMEUCIQDZthFodCFhi8gyVWBmqv2fwZzBXumI%2FrNlqvD2enz%2B9AIgRJekB6Lanq6ePPOZJg7p41Sg3V1u4k%2F%2BGwJL%2FtOttWAqiQMIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgwyMDY3MTMxMTQ5OTEiDIkqy95c0zwdoA2z1yrdAmA3jof1eDQAmj3If7XkJ89bDQyoeEIQV%2Fdeh4pc0kIPb6swkeFzYRQOWcEpa51dFjWg%2FOdo6I%2Fl28gdhLGzI5fA9agE8LvwJeQBvGODmEzCtZUIiu1ICXy0pgT0pcBNFiYE%2B3DA9r42Add6HyiFAGVfesHyOzNhYT5apwAIrNXW5RcOxY4FWaAYEnHoAUmx99G1EhDWBo4gf5momMD25wWKsjWuA0jcM%2BafDt03H7MDdcwJ4ThWjWSMDb%2FUFbcFpzGdK1kmiskDyYVZWNTPDP01tmmcR%2FyOunahpxEpp%2FnosPDyyfVf0ueCtGoKSzS19ZquUE6D14SP1LPWF9zq5Q1VlaaFMZE0v8Z6dj9X9bXsPVT1o3xnbRQT%2FO16ND3dSRY4Cu9rH2%2FzRUgdOV%2BJOI3N9GADfS%2FcinQLkEGYTkKUSunF%2BIYL8Fl8TILx2dlkhlpqz99Ylhzr6DtvzvYw15SRsgY6hwIQ4B6Bk4xGO0NsT%2Fckl1HENbpPWSOzEr%2FDD4nzCDNriDQoPEPKz8UXINiNQ5YTBSg73Cu79waKqgMsUb84BJi6hN2Vs60Jk6m8WDhcx4u5lTFObEWQb1nLKePx91vmgvmjQJ0jK90yzSVVaMkcMoaTE85LK8kP%2B2N%2B1dnTYpXA6Pb13Y5%2BEWRo2WdB9oDlZgMJ2OYtHiKC5WG4pSKwuAaSzorf8P%2FWfq6%2Fh%2BmwB49qsEFzobIJHBlDyOwCUcIgFYJTylKPICxnTrLMDLCBQ3fWJNbDcgZ0H1pH72vqUbygnlX7FT6nNfKQT5oyAmBi42jcOKk8DUpUzOF6Uu7%2FiIP8D5ppr7i2yA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240515T075031Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIATAIIP2FXY3U2VR74%2F20240515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=892bac612105f2087166c7da9caadb6004ddcb87a7e2a3a30b6be3735efb4e41";
-  const sentimientoNeutro =
-    "https://inbursa-lau.s3.us-east-1.amazonaws.com/calidad-neutra.svg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDYaCXVzLWVhc3QtMSJHMEUCIQDZthFodCFhi8gyVWBmqv2fwZzBXumI%2FrNlqvD2enz%2B9AIgRJekB6Lanq6ePPOZJg7p41Sg3V1u4k%2F%2BGwJL%2FtOttWAqiQMIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgwyMDY3MTMxMTQ5OTEiDIkqy95c0zwdoA2z1yrdAmA3jof1eDQAmj3If7XkJ89bDQyoeEIQV%2Fdeh4pc0kIPb6swkeFzYRQOWcEpa51dFjWg%2FOdo6I%2Fl28gdhLGzI5fA9agE8LvwJeQBvGODmEzCtZUIiu1ICXy0pgT0pcBNFiYE%2B3DA9r42Add6HyiFAGVfesHyOzNhYT5apwAIrNXW5RcOxY4FWaAYEnHoAUmx99G1EhDWBo4gf5momMD25wWKsjWuA0jcM%2BafDt03H7MDdcwJ4ThWjWSMDb%2FUFbcFpzGdK1kmiskDyYVZWNTPDP01tmmcR%2FyOunahpxEpp%2FnosPDyyfVf0ueCtGoKSzS19ZquUE6D14SP1LPWF9zq5Q1VlaaFMZE0v8Z6dj9X9bXsPVT1o3xnbRQT%2FO16ND3dSRY4Cu9rH2%2FzRUgdOV%2BJOI3N9GADfS%2FcinQLkEGYTkKUSunF%2BIYL8Fl8TILx2dlkhlpqz99Ylhzr6DtvzvYw15SRsgY6hwIQ4B6Bk4xGO0NsT%2Fckl1HENbpPWSOzEr%2FDD4nzCDNriDQoPEPKz8UXINiNQ5YTBSg73Cu79waKqgMsUb84BJi6hN2Vs60Jk6m8WDhcx4u5lTFObEWQb1nLKePx91vmgvmjQJ0jK90yzSVVaMkcMoaTE85LK8kP%2B2N%2B1dnTYpXA6Pb13Y5%2BEWRo2WdB9oDlZgMJ2OYtHiKC5WG4pSKwuAaSzorf8P%2FWfq6%2Fh%2BmwB49qsEFzobIJHBlDyOwCUcIgFYJTylKPICxnTrLMDLCBQ3fWJNbDcgZ0H1pH72vqUbygnlX7FT6nNfKQT5oyAmBi42jcOKk8DUpUzOF6Uu7%2FiIP8D5ppr7i2yA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240515T075122Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIATAIIP2FXY3U2VR74%2F20240515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=4d8e55dc34e37d86602a9879bb1ace4bf1917985996c192711b6475f7804a36f";
-  const sentimientoNegativo =
-    "https://inbursa-lau.s3.us-east-1.amazonaws.com/calidad-pesima.svg?response-content-disposition=inline&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEDYaCXVzLWVhc3QtMSJHMEUCIQDZthFodCFhi8gyVWBmqv2fwZzBXumI%2FrNlqvD2enz%2B9AIgRJekB6Lanq6ePPOZJg7p41Sg3V1u4k%2F%2BGwJL%2FtOttWAqiQMIn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgwyMDY3MTMxMTQ5OTEiDIkqy95c0zwdoA2z1yrdAmA3jof1eDQAmj3If7XkJ89bDQyoeEIQV%2Fdeh4pc0kIPb6swkeFzYRQOWcEpa51dFjWg%2FOdo6I%2Fl28gdhLGzI5fA9agE8LvwJeQBvGODmEzCtZUIiu1ICXy0pgT0pcBNFiYE%2B3DA9r42Add6HyiFAGVfesHyOzNhYT5apwAIrNXW5RcOxY4FWaAYEnHoAUmx99G1EhDWBo4gf5momMD25wWKsjWuA0jcM%2BafDt03H7MDdcwJ4ThWjWSMDb%2FUFbcFpzGdK1kmiskDyYVZWNTPDP01tmmcR%2FyOunahpxEpp%2FnosPDyyfVf0ueCtGoKSzS19ZquUE6D14SP1LPWF9zq5Q1VlaaFMZE0v8Z6dj9X9bXsPVT1o3xnbRQT%2FO16ND3dSRY4Cu9rH2%2FzRUgdOV%2BJOI3N9GADfS%2FcinQLkEGYTkKUSunF%2BIYL8Fl8TILx2dlkhlpqz99Ylhzr6DtvzvYw15SRsgY6hwIQ4B6Bk4xGO0NsT%2Fckl1HENbpPWSOzEr%2FDD4nzCDNriDQoPEPKz8UXINiNQ5YTBSg73Cu79waKqgMsUb84BJi6hN2Vs60Jk6m8WDhcx4u5lTFObEWQb1nLKePx91vmgvmjQJ0jK90yzSVVaMkcMoaTE85LK8kP%2B2N%2B1dnTYpXA6Pb13Y5%2BEWRo2WdB9oDlZgMJ2OYtHiKC5WG4pSKwuAaSzorf8P%2FWfq6%2Fh%2BmwB49qsEFzobIJHBlDyOwCUcIgFYJTylKPICxnTrLMDLCBQ3fWJNbDcgZ0H1pH72vqUbygnlX7FT6nNfKQT5oyAmBi42jcOKk8DUpUzOF6Uu7%2FiIP8D5ppr7i2yA%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20240515T075224Z&X-Amz-SignedHeaders=host&X-Amz-Expires=43200&X-Amz-Credential=ASIATAIIP2FXY3U2VR74%2F20240515%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=75cb08dea55432e85c02fad1b160e406dd52eeeab0efbc60b7e2c64289cbe952";
+  const url = `http://${host}:8080/usuario/infoActualAgentes?supervisor=${sessionStorage.getItem(
+    "userId"
+  )}`;
 
-  function getSentimientoRandom() {
+  function getSentimiento(duracion) {
+    if (!duracion) {
+      return 4; // BORRAR CUANDO SE IMPLEMENTE API
+    }
     const randomNumber = Math.random();
-
     if (randomNumber < 0.33) {
-      return sentimientoPositivo;
+      return 1; // Sentimiento negativo
     } else if (randomNumber < 0.66) {
-      return sentimientoNeutro;
+      return 2; // Sentimiento neutro
     } else {
-      return sentimientoNegativo;
+      return 3; // Sentimiento positivo
     }
   }
 
-  function getSemaforoRandom() {
-    const randomNumber = Math.random();
-
-    if (randomNumber < 0.33) {
-      return {color: "#43C257"};
-    } else if (randomNumber < 0.66) {
-      return {color: "#D7920C"};
+  function getImgSentimiento(sentimiento) {
+    if (sentimiento === 4) {
+      return null;
+    } else if (sentimiento === 1) {
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-pesima.svg";
+    } else if (sentimiento === 2) {
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-neutra.svg";
     } else {
-      return {color: "#E42424"};
+      return "https://inbursa-lau.s3.amazonaws.com/calidad-buena.svg";
+    }
+  }
+
+  function getSemaforo(duracion) {
+    if (duracion < 45) {
+      return { color: "#43C257" }; // Semáforo verde
+    } else if (duracion < 60) {
+      return { color: "#D7920C" }; // Semáforo amarillo
+    } else {
+      return { color: "#E42424" }; // Semáforo rojo
     }
   }
 
   function formatearDuracion(totalSegundos) {
+    if (totalSegundos === "-" || totalSegundos === 0) {
+      return "-";
+    }
     const horas = Math.floor(totalSegundos / 3600);
     const minutosRestantes = totalSegundos % 3600;
     const minutos = Math.floor(minutosRestantes / 60);
@@ -56,29 +74,69 @@ const EmpleadosTabla = () => {
   }
 
   const descargar = useCallback(() => {
-    fetch(url)
-      .then((response) => response.json())
+
+    const token = sessionStorage.getItem("userToken");
+
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    fetch(url, options)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      if (response.status === 401) {
+        navegar("/"); // Redirigir al inicio de sesión si el token es inválido
+      }
+      throw new Error("Error en la petición");
+    })
       .then((data) => {
         console.log("Datos obtenidos del servidor:", data);
         const arrNuevo = data.map((agente) => {
+          const sentimiento = getSentimiento(agente.duracion);
           const agenteNuevo = {
             id: agente.id,
             nombre: agente.nombreAgente,
-            duracion: agente.duracion ? formatearDuracion(agente.duracion) : "-",
-            cliente: agente.nombreCliente ? agente.nombreCliente : "-",
-            saldo: agente.saldoCliente ? agente.saldoCliente : "-",
+            duracion: agente.duracion || 0,
+            cliente: agente.nombreCliente || "-",
+            saldo: agente.saldoCliente || "-",
+            sentimiento,
+            sentimientoImg: getImgSentimiento(sentimiento),
+            semaforo: agente.duracion ? getSemaforo(agente.duracion) : "-",
           };
           return agenteNuevo;
         });
         setArrAgentes(arrNuevo);
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [url, navegar]);
 
   useEffect(() => {
-    console.log("Descargando datos");
     descargar();
+    const intervalId = setInterval(descargar, 5000); // Repetir la descarga de datos cada 5 segundos
+
+    return () => clearInterval(intervalId);
   }, [descargar]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setArrAgentes((prevAgentes) =>
+        prevAgentes.map((agente) => ({
+          ...agente,
+          duracion: agente.duracion > 0 ? agente.duracion + 1 : "-",
+        }))
+      );
+    }, 1000); // Incrementar la duración cada segundo
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const sortedRows = arrAgentes.sort((a, b) => a.sentimiento - b.sentimiento);
 
   return (
     <TableContainer
@@ -109,16 +167,31 @@ const EmpleadosTabla = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {arrAgentes.map((agente) => (
+          {sortedRows.map((agente) => (
             <TableRow key={agente.id}>
               <TableCell className="tabla-celda">{agente.nombre}</TableCell>
-              <TableCell className="tabla-celda"><LightModeIcon style={getSemaforoRandom()}></LightModeIcon></TableCell>
               <TableCell className="tabla-celda">
-                <img src={getSentimientoRandom()}></img>
+                {agente.semaforo !== "-" ? (
+                  <CircleIcon style={agente.semaforo}></CircleIcon>
+                ) : (
+                  "-"
+                )}
+              </TableCell>
+              <TableCell className="tabla-celda">
+                {agente.sentimientoImg ? (
+                  <img src={agente.sentimientoImg} alt="Sentimiento"></img>
+                ) : (
+                  "-"
+                )}
               </TableCell>
               <TableCell className="tabla-celda">{agente.cliente}</TableCell>
               <TableCell className="tabla-celda">{`$${agente.saldo}`}</TableCell>
-              <TableCell className="tabla-celda">{agente.duracion}</TableCell>
+              <TableCell className="tabla-celda">
+                {formatearDuracion(agente.duracion)}
+              </TableCell>
+              <TableCell>
+                <OneOnOne id={agente.id}></OneOnOne>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
