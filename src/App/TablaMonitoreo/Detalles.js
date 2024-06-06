@@ -10,14 +10,14 @@ const ProfileCard = ({ idAgente }) => {
   const [promedioCalificacion, setPromedioCalificacion] = useState();
   const [duracionPromedio, setDuracionPromedio] = useState();
   const [llamadasAtendidas, setLlamadasAtendidas] = useState();
-  const [recomendacion, setRecomendacion] = useState('');  // Asegúrate de definir esta variable de estado
+  const [recomendacion, setRecomendacion] = useState('');  
   const [error, setError] = useState(null);
 
   const descargar = () => {
     fetch(`http://localhost:8080/usuario/getTarjeta?idAgente=${idAgente}`)
       .then((response) => response.json())
       .then((data) => {
-        setTelefono(data.telefono);
+        setTelefono(data.telefono); 
         setCorreo(data.correo);
         setNombre(data.nombre);
         setPromedioCalificacion(data.promedioCalificacion);
@@ -31,7 +31,7 @@ const ProfileCard = ({ idAgente }) => {
     fetch(`http://localhost:8080/recomendaciones/${idAgente}`)
       .then((response) => response.json())
       .then((data) => {
-        setRecomendacion(data.recomendacion);  // Asegúrate de usar la función setRecomendacion
+        setRecomendacion(data.recomendacion);  
       })
       .catch((error) => console.log(error));
   };
