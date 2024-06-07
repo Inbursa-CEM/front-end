@@ -1,3 +1,5 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
+
 import * as React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -16,6 +18,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { useContext } from "react";
 import { contextoGlobal } from "./proveedor";
 
+//Componente que muestra la informacion de un curso
 const Curso = ({
   idCurso,
   nombre,
@@ -56,7 +59,7 @@ const Curso = ({
 
   const Eliminar = () => {
     console.log(idCurso);
-    fetch("http://localhost:8080/curso/desasignar", options)
+    fetch(`http://${process.env.REACT_APP_BACK_HOST}:8080/curso/desasignar`, options)
       .then((response) => response.json())
       .then((data) => {
         eliminarCurso(idCurso);
@@ -86,7 +89,7 @@ const Curso = ({
 
   const Guardar = () => {
     console.log(options2.body);
-    fetch("http://localhost:8080/curso/modificarAsignacion", options2)
+    fetch(`http://${process.env.REACT_APP_BACK_HOST}:8080/curso/modificarAsignacion`, options2)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

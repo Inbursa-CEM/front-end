@@ -1,3 +1,4 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import { ClickAwayListener } from '@mui/base/ClickAwayListener';
@@ -6,6 +7,8 @@ import { Unstable_Popup as BasePopup } from '@mui/base/Unstable_Popup';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import { IconButton } from '@mui/material';
 
+
+//Componente para el pop up del agente
 export default function ClickAway() {
   const [open, setOpen] = React.useState(false);
   const [anchor, setAnchor] = React.useState(null);

@@ -1,3 +1,4 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
 import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import Paper from "@mui/material/Paper";
@@ -5,10 +6,11 @@ import { useState, useEffect } from "react";
 import Curso from "./curso";
 import Proveedor, { contextoGlobal } from "./proveedor";
 
+//Componente que muestra los cursos que se han asignado
 const Lista_Cursos = (props) => {
   const [arrCursos, setArrCursos,eliminarCurso] = React.useContext(contextoGlobal);
   const url =
-    "http://localhost:8080/curso/asignados?idAgente=" + props.idOperador;
+  `http://${process.env.REACT_APP_BACK_HOST}:8080/curso/asignados?idAgente=` + props.idOperador;
 
   const descargar = React.useCallback(async () => {
     const response = await fetch(url);

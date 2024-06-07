@@ -1,3 +1,5 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
+
 import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -11,6 +13,7 @@ import Chip from '@mui/material/Chip';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
+//Propiedades del selector
 const MenuProps = {
   PaperProps: {
     style: {
@@ -30,11 +33,12 @@ function getStyles(name, personName, theme) {
   };
 }
 
+//Componente que despliega un menu de las areas de oportunidad
 const AreaSelect = (props) => {
   const [arrAreas, setArrAreas] = useState([]);
   const [temp, setTemp] = useState([]);
 
-  const url = "http://localhost:8080/areaOportunidad/all";
+  const url = `http://${process.env.REACT_APP_BACK_HOST}:8080/areaOportunidad/all`;
 
   const descargar = React.useCallback(async () => {
     const response = await fetch(url);

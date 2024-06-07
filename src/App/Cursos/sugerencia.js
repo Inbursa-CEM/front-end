@@ -1,14 +1,15 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
+
 import * as React from "react";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { useRef } from "react";
 import { contextoGlobal } from "./proveedor";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
 
+//Componente que muestra la informacion de la sugerencia
 const Sugerencia = ({ idCurso, nombre, descripcion, url, idUsuario }) => {
   
   const [arrCursos, setArrCursos, agregarCurso, eliminarCurso] = React.useContext(contextoGlobal);
@@ -22,7 +23,7 @@ const Sugerencia = ({ idCurso, nombre, descripcion, url, idUsuario }) => {
   };
 
   const Asignar = () => {
-    fetch("http://localhost:8080/curso/asignar", options)
+    fetch(`http://${process.env.REACT_APP_BACK_HOST}:8080/curso/asignar`, options)
       .then((response) => response.json())
       .then((data) => {
         console.log("Asignado");
@@ -33,7 +34,7 @@ const Sugerencia = ({ idCurso, nombre, descripcion, url, idUsuario }) => {
   };
 
   const SendNoti = () => {
-    fetch("http://localhost:8080/notificacion/mandarOneonOne", {
+    fetch(`http://${process.env.REACT_APP_BACK_HOST}:8080/notificacion/mandarOneonOne`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",

@@ -1,3 +1,5 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
+
 import * as React from "react";
 import { v4 as uuidv5 } from "uuid";
 import Paper from "@mui/material/Paper";
@@ -5,10 +7,11 @@ import Operador from "./operador";
 import { useState } from "react";
 import { useEffect } from "react";
 
+//Componente que muestra la lista de los operadores
 const Operadores = (props) => {
   const [arrOperadores, setArrOperadores] = useState([]);
   const url =
-    "http://localhost:8080/usuario/agentesDeSupervisor?idSupervisor=" +
+  `http://${process.env.REACT_APP_BACK_HOST}:8080/usuario/agentesDeSupervisor?idSupervisor` +
     props.idSupervisor;
 
   const descargar = React.useCallback(async () => {

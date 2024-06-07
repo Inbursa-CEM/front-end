@@ -1,3 +1,4 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
 import "../../Styles/App.css";
 import React from "react";
 import {
@@ -9,7 +10,7 @@ import {
   TableRow,
   Paper,
 } from "@mui/material";
-
+//Componente que muestra los cursos 
 const CursosTabla = () => {
   // Datos de ejemplo de empleados
   const empleados = [
