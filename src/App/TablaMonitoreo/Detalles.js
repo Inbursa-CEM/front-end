@@ -7,8 +7,15 @@ const ProfileCard = ({ idAgente }) => {
   const [telefono, setTelefono] = useState();
   const [correo, setCorreo] = useState();
   const [nombre, setNombre] = useState();
+  const [numLlamadas, setNumLlamadas] = useState('');
   const [promedioCalificacion, setPromedioCalificacion] = useState();
   const [duracionPromedio, setDuracionPromedio] = useState();
+  const [asignaciones, setAsignaciones] = useState([]);
+  const [PromedioServicio, setPromediosServicio] = useState();
+  
+
+
+  
   const [llamadasAtendidas, setLlamadasAtendidas] = useState();
   const [recomendacion, setRecomendacion] = useState('');  
   const [error, setError] = useState(null);
@@ -20,25 +27,50 @@ const ProfileCard = ({ idAgente }) => {
         setTelefono(data.telefono); 
         setCorreo(data.correo);
         setNombre(data.nombre);
-        setPromedioCalificacion(data.promedioCalificacion);
-        setDuracionPromedio(data.duracionPromedio);
-        setLlamadasAtendidas(data.llamadasAtendidas);
       })
       .catch((error) => console.log(error));
   };
-
-  const descargarRecomendacion = () => {
-    fetch(`http://localhost:8080/recomendaciones/${idAgente}`)
-      .then((response) => response.json())
-      .then((data) => {
-        setRecomendacion(data.recomendacion);  
+  const descargarServiciopromedio = () => {
+    fetch(`http://localhost:8080/promedioDuracion?idUsuario=${idAgente}`)
+      .then(response => response.json())
+      .then(data => {
+        setPromediosServicio(data.promedioDuracion);
       })
-      .catch((error) => console.log(error));
+      .catch(error => {
+        console.log(error);
+        setError('Error al cargar la duración promedio');
+      });
+  };
+
+  const descargarNumLlamadasPorAgente = () => {
+    fetch(`http://localhost:8080/numLlamadasPorAgente?idUsuario=${idAgente}`)
+      .then(response => response.json())
+      .then(data => {
+        setNumLlamadas(data.totalLlamadasHoy);
+      })
+      .catch(error => {
+        console.log(error);
+        setError('Error al cargar el número de llamadas por agente');
+      });
+  };
+
+  const descargarAsignacionesPorAgente = () => {
+    fetch(`http://localhost:8080/asignadas?idUsuario=${idAgente}`)
+      .then(response => response.json())
+      .then(data => {
+        setAsignaciones(data);
+      })
+      .catch(error => {
+        console.log(error);
+        setError('Error al cargar las asignaciones por agente');
+      });
   };
 
   useEffect(() => {
+    descargarServiciopromedio();
+    descargarNumLlamadasPorAgente();
+    descargarAsignacionesPorAgente();
     descargar();
-    descargarRecomendacion();
   }, [idAgente]);
   return (
     <Card className="card">
@@ -59,15 +91,17 @@ const ProfileCard = ({ idAgente }) => {
           <p className="label">Correo electrónico:</p>
           <p className="value">{correo}landerosluis15@hotmail.com</p>
           <p className='label'>Duración promedio de llamadas:</p>
-          <p className="value">{duracionPromedio} 56 minutos</p>
+          <p className="value">{duracionPromedio} 56 minutos</p> ----- Falta aquí
+
           <p className="label">Promedio de calificación de llamadas:</p>
-          <p className="value">{promedioCalificacion}45%</p>
+          <p className="value">{PromedioServicio}45%</p>
+          
           <p className="label">Número de llamadas atendidas al día:</p>
-          <p className="value">{llamadasAtendidas} 35</p>
+          <p className="value">{numLlamadas} 35</p>
           <p className="label">Recomendaciones</p>
-          <p className="value">{recomendacion} Mejorar al paciente</p>
+          <p className="value">{asignaciones} Mejorar al paciente</p>
         </div>
-      </div>
+      </div>  
     </Card>
   );
 };
