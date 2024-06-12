@@ -1,26 +1,34 @@
+//Autor: Luis Eduardo Landeros Hernández
+
 import React, { useState, useEffect } from 'react';
 import { Card, Avatar } from '@mui/material';
 import '../../Styles/Detalles.css';
 
-
+//Componente para mostrar información del agente.
 const ProfileCard = ({ idAgente }) => {
   const [telefono, setTelefono] = useState();
   const [correo, setCorreo] = useState();
+  const [duracionPromedio, setDuracionPromedio] = useState('');
   const [nombre, setNombre] = useState();
   const [numLlamadas, setNumLlamadas] = useState('');
-  const [promedioCalificacion, setPromedioCalificacion] = useState();
-  const [duracionPromedio, setDuracionPromedio] = useState();
   const [asignaciones, setAsignaciones] = useState([]);
   const [PromedioServicio, setPromediosServicio] = useState();
-  
-
-
-  
-  const [llamadasAtendidas, setLlamadasAtendidas] = useState();
-  const [recomendacion, setRecomendacion] = useState('');  
   const [error, setError] = useState(null);
 
-  const descargar = () => {
+//Función para obtener y establecer la duración promedio de llamadas del agente.
+  const obtenerPromedioDuracionPorAgente = () => {
+    fetch(`http://localhost:8080/promedioDuracionPorAgente?idUsuario=${idAgente}`)
+      .then(response => response.json())
+      .then(data => {
+        setDuracionPromedio(data.promedioDuracion);
+      })
+      .catch(error => {
+        console.log(error);
+        setError('Error al cargar la duración promedio del agente');
+      });
+  };
+//Función para obtener y establecer teléfono, correo y nombre.
+  const obtenerDatos = () => {
     fetch(`http://localhost:8080/usuario/getTarjeta?idAgente=${idAgente}`)
       .then((response) => response.json())
       .then((data) => {
@@ -28,9 +36,14 @@ const ProfileCard = ({ idAgente }) => {
         setCorreo(data.correo);
         setNombre(data.nombre);
       })
-      .catch((error) => console.log(error));
-  };
-  const descargarServiciopromedio = () => {
+      .catch(error => {
+        console.log(error);
+        setError('Error al cargar los datos del qgente');
+  });
+};
+
+  //Función para obtener y establecer la duración promedio del agente.
+  const obtenerServiciopromedio = () => {
     fetch(`http://localhost:8080/promedioDuracion?idUsuario=${idAgente}`)
       .then(response => response.json())
       .then(data => {
@@ -41,8 +54,8 @@ const ProfileCard = ({ idAgente }) => {
         setError('Error al cargar la duración promedio');
       });
   };
-
-  const descargarNumLlamadasPorAgente = () => {
+  //Función para obtener y establecer el número total de llamadas realizadas por un agente en el día.
+  const obtenerNumLlamadasPorAgente = () => {
     fetch(`http://localhost:8080/numLlamadasPorAgente?idUsuario=${idAgente}`)
       .then(response => response.json())
       .then(data => {
@@ -50,11 +63,12 @@ const ProfileCard = ({ idAgente }) => {
       })
       .catch(error => {
         console.log(error);
-        setError('Error al cargar el número de llamadas por agente');
+        setError('Error al cargar el número de llamadas del agente');
       });
   };
+  //Función para obtener y establecer el curso asignado al agente.
 
-  const descargarAsignacionesPorAgente = () => {
+  const obtenerAsignacionesPorAgente = () => {
     fetch(`http://localhost:8080/asignadas?idUsuario=${idAgente}`)
       .then(response => response.json())
       .then(data => {
@@ -62,15 +76,21 @@ const ProfileCard = ({ idAgente }) => {
       })
       .catch(error => {
         console.log(error);
-        setError('Error al cargar las asignaciones por agente');
+        setError('Error al cargar las asignaciones del agente');
       });
-  };
+  }
 
+  //Llamado de las funciones cada que cambia el id del agente.
   useEffect(() => {
-    descargarServiciopromedio();
-    descargarNumLlamadasPorAgente();
-    descargarAsignacionesPorAgente();
-    descargar();
+    obtenerServiciopromedio();
+    obtenerAsignacionesPorAgente
+    obtenerDatos
+    obtenerNumLlamadasPorAgente
+    obtenerPromedioDuracionPorAgente
+  
+
+
+    
   }, [idAgente]);
   return (
     <Card className="card">
@@ -87,19 +107,18 @@ const ProfileCard = ({ idAgente }) => {
         </div>
         <div className="derecha">
           <p className='label'>Teléfono:</p>
-          <p className="value">{telefono} 5539060844</p>
+          <p className="value">{telefono}</p> 
           <p className="label">Correo electrónico:</p>
-          <p className="value">{correo}landerosluis15@hotmail.com</p>
+          <p className="value">{correo}</p>
           <p className='label'>Duración promedio de llamadas:</p>
-          <p className="value">{duracionPromedio} 56 minutos</p> ----- Falta aquí
-
+          <p className="value">{duracionPromedio} </p> 
           <p className="label">Promedio de calificación de llamadas:</p>
-          <p className="value">{PromedioServicio}45%</p>
+          <p className="value">{PromedioServicio}</p>
           
           <p className="label">Número de llamadas atendidas al día:</p>
-          <p className="value">{numLlamadas} 35</p>
+          <p className="value">{numLlamadas} </p>
           <p className="label">Recomendaciones</p>
-          <p className="value">{asignaciones} Mejorar al paciente</p>
+          <p className="value">{asignaciones} </p>
         </div>
       </div>  
     </Card>
