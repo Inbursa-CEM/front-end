@@ -19,6 +19,7 @@ import { useNavigate } from "react-router-dom";
 import buena from "../../Assets/calidad-buena.svg";
 import neutra from "../../Assets/calidad-neutra.svg";
 import pesima from "../../Assets/calidad-pesima.svg";
+import PopProfile from "./popUp";
 
 const EmpleadosTabla = () => {
   const host = process.env.REACT_APP_BACK_HOST;
@@ -42,7 +43,7 @@ const EmpleadosTabla = () => {
         throw new Error("Error en la petición");
       })
       .then((data) => {
-        console.log("Datos obtenidos del servidor:", data);
+        // console.log("Datos obtenidos del servidor:", data);
         const sentiments = data[0]?.Segments.map(
           (segment) => segment.Transcript.Sentiment
         );
@@ -90,15 +91,15 @@ const EmpleadosTabla = () => {
 
   // Función que regresa la imagen del sentimiento de una llamada
   function getImgSentimiento(sentimiento) {
-    console.log("Sentimiento:", sentimiento);
+    // console.log("Sentimiento:", sentimiento);
     if (sentimiento === 4) {
-      return null;
+      return null; // No hay sentimiento
     } else if (sentimiento === 1) {
-      return pesima;
+      return pesima; // Sentimiento negativo
     } else if (sentimiento === 2) {
-      return neutra;
+      return neutra; // Sentimiento neutro
     } else {
-      return buena;
+      return buena; // Sentimiento positivo
     }
   }
 
@@ -129,7 +130,7 @@ const EmpleadosTabla = () => {
   const descargar = useCallback(() => {
     const token = sessionStorage.getItem("userToken");
 
-    // Se crea un objeto con los datos a enviar al servidor
+    // Objeto con las opciones de la petición
     const options = {
       method: "GET",
       headers: {
@@ -149,7 +150,7 @@ const EmpleadosTabla = () => {
         throw new Error("Error en la petición");
       })
       .then((data) => {
-        console.log("Datos obtenidos del servidor:", data);
+        // console.log("Datos obtenidos del servidor:", data);
         const arrNuevo = data.map((agente) => {
           const sentimiento = getSentimiento(agente.duracion, agente.contactId);
           const agenteNuevo = {
@@ -226,9 +227,9 @@ const EmpleadosTabla = () => {
           {sortedRows.map((agente) => (
             <TableRow key={agente.id}>
               {/* Nombre del agente*/}
-              <TableCell className="tabla-celda">
-                {agente.nombre}
-              </TableCell>{" "}
+              <TableCell className="tabla-celda pointer-celda">
+                <PopProfile idAgente={agente.id} nombreAgente={agente.nombre}></PopProfile>
+              </TableCell>
               {/* Semáforo */}
               <TableCell className="tabla-celda">
                 {agente.semaforo !== "-" ? (

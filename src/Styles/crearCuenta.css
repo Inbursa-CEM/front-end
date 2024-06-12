@@ -19,7 +19,7 @@
   background-color: var(--gris) !important;
   display: grid !important;
   place-items: center !important;
-  height: 800px !important;
+  height: 900px !important;
   width: 500px;
   border-radius: 25px;
   padding-top: 30px;
@@ -78,4 +78,10 @@
   padding: 15px !important;
   border: 0;
   cursor: pointer;
+}
+
+.requerimientos-contraseña {
+  color: rgb(116, 116, 116) !important;
+  margin: 0 0 10px 0 !important;
+  font-size: small;
 }

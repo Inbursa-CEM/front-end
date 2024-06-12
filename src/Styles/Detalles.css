@@ -1,45 +1,42 @@
-body {
+/* body {
   background-color: #f0f4f8;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
+} */
+
+.card-parent {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000 !important;
 }
 
 .card {
-  width: 800px;
+  width: 700px;
   margin: 20px auto;
-  padding: 0;
-  border-radius: 15px;
-  background: #ffffff;
-  font-family: 'Roboto', sans-serif;
-  position: relative;
-  overflow: hidden;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.19);
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.19) !important;
+  font-family: "Poppins", sans-serif !important;
 }
 
-.card:hover {
-  transform: scale(1.05);
-}
-
-.header {
+.header-card {
   text-align: center;
   padding: 20px;
-  background-color: #0d47a1;
+  background-color: var(--azul-oscuro);
   color: #ffffff;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
 }
 
-.header h1 {
+h1 {
   font-size: 24px;
   margin: 0;
 }
 
-.contenedor {
+.contenedor-card {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
@@ -56,34 +53,25 @@ body {
 .derecha {
   flex: 1;
   padding-left: 20px;
-  border-left: 2px solid #0d47a1;
-}
-
-.divisor {
-  width: 2px;
-  background-color: #0d47a1;
-  margin: 0 20px;
+  border-left: 2px solid var(--azul-oscuro);
 }
 
 .label {
   font-weight: bold;
-  margin-top: 10px;
+  margin: 0 0 5px 0;
   display: flex;
   align-items: center;
-  color: #0d47a1;
 }
 
 .value {
-  
-  margin-bottom: 10px;
+  margin: 0 0 5px 0;
   font-size: 16px;
-  color: #1a237e;
 }
 
 .avatar {
   border-radius: 50%;
   margin-top: 75px;
-  border: 2px solid #1a237e;
+  border: 2px solid var(--azul-oscuro);
   padding: 5px;
   background-color: #ffffff;
 }
@@ -99,17 +87,13 @@ body {
     align-items: center;
   }
 
-  .izquierda, .derecha {
+  .izquierda,
+  .derecha {
     align-items: center;
   }
 
-  .label, .value {
+  .label,
+  .value {
     text-align: center;
-  }
-
-  .divisor {
-    width: 100%;
-    height: 2px;
-    margin: 20px 0;
   }
 }

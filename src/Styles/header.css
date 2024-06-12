@@ -1,16 +1,20 @@
-.header{
+.header {
   display: flex;
-  color: white;
-  padding: 20px; 
+  padding: 20px;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(132, 173, 173);
+  height: 60px;
 }
 
-.menuIconos{
+.menuIconos {
   display: flex;
   gap: 10px;
   padding-left: 30px;
 }
 
-.tagEmpleado{
+.tagEmpleado {
   margin-left: auto;
   display: flex;
   align-items: center;
