@@ -13,12 +13,14 @@ const CambiarContrasena = () => {
   const url = `http://${host}:8080/auth/changepassword`;
   const navegar = useNavigate();
 
+  // Función que se encarga de enviar los datos al servidor para cambiar la contraseña
   const cambiarContrasena = (evento) => {
     evento.preventDefault();
     const email = correo;
     const code = refCodigo.current.value;
     const password = refContrasena.current.value;
 
+    // Se crea un objeto con los datos a enviar al servidor
     const options = {
       method: "POST",
       headers: {
