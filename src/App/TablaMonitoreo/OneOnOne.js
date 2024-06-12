@@ -70,13 +70,16 @@ const OneOnOne = ({ id }) => {
       mandarOneonOne(fechaSeleccionada, id);
     }
   };
-
+  
+  // Determinar si la fecha seleccionada es anterior a la fecha actual
+  const isDatePast = fechaSeleccionada && dayjs(fechaSeleccionada).isBefore(dayjs(), 'day');
+  
   // Renderizado del componente
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
       <DemoContainer components={["DateTimePicker"]}>
         <DateTimePicker
-          className="select"
+          className={`select ${isDatePast ? 'red-picker' : ''}`} // Aplicar clase condicionalmente
           label="Agendar un 1:1"
           value={fechaSeleccionada}
           onChange={cambiosFecha}
