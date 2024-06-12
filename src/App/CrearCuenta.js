@@ -77,7 +77,7 @@ const CrearCuenta = () => {
     const rol = rolSelected;
     const supervisor = supervisorSelected !== "" ? supervisorSelected : null;
     const idConnect = "IDC123";
-    const urlFoto = "url_foto_yo.jpg"
+    const urlFoto = "url_foto_yo.jpg";
 
     const options = {
       method: "POST",

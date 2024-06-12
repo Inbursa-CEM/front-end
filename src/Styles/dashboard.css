@@ -28,7 +28,7 @@
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 400px;
+    width: 410px;
     height: 300px;
     background-color: var(--azul-hielo);
 }
@@ -90,4 +90,19 @@
     align-items: center;
     border-radius: 20px;
     padding: 15px;
+}
+
+.botonMetas{
+    width: 250px !important;
+    height: 40px !important;
+    border-radius: 20px !important;
+    background-color: var(--azul-oscuro) !important;
+    color: white !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.textInputMeta{
+    border-radius: 20px !important;
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
 }

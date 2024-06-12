@@ -11,9 +11,21 @@ const Header = () => {
   return (
     <div className="header">
       <div className="menuIconos">
-        <OpcionIcono icono={<SupportAgentIcon />} texto="Monitoreo" ruta="/monitoreo" />
-        <OpcionIcono icono={<QueryStatsIcon />} texto="Estadísticas" ruta="/dashboard" />
-        <OpcionIcono icono={<ReceiptLongIcon />} texto="Cursos" ruta="/cursos" />
+        <OpcionIcono
+          icono={<SupportAgentIcon />}
+          texto="Monitoreo"
+          ruta="/monitoreo"
+        />
+        <OpcionIcono
+          icono={<QueryStatsIcon />}
+          texto="Estadísticas"
+          ruta="/dashboard"
+        />
+        <OpcionIcono
+          icono={<ReceiptLongIcon />}
+          texto="Cursos"
+          ruta="/cursos"
+        />
       </div>
       <div className="tagEmpleado">
         
@@ -23,7 +35,12 @@ const Header = () => {
 
         {/* asi se debe mandar el id */}
         {/* < OneOnOne id={} /> */}
-        <TagEmpleado icono={<FaceIcon/>} texto="Carlos Sánchez" subtexto="Supervisor" />
+        <Notificaciones id={sessionStorage.getItem("userId")}/>
+        <TagEmpleado
+          icono={<FaceIcon />}
+          nombre={sessionStorage.getItem("userName")}
+          rol={sessionStorage.getItem("userRole")}
+        />
       </div>
     </div>
   );

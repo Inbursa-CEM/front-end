@@ -27,7 +27,7 @@ const LogIn = () => {
       body: JSON.stringify({ email, password }),
     };
 
-    console.log("Enviando datos al servidor:", options.body)
+    console.log("Enviando datos al servidor:", options.body);
 
     fetch(url, options)
       .then((response) => {

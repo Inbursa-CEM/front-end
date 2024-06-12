@@ -11,7 +11,6 @@ const Monitoreo = () => {
     <div>
       <div className="monitoreo">
         <Header />
-        < OneOnOne id={1} />
         <div className="tablaMonitoreo">
           <EmpleadosTabla />
         </div>

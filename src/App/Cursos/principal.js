@@ -5,6 +5,7 @@ import Area from "./areas";
 import Sugerencias from "./sugerencias";
 import { useState } from "react";
 import AgregarCurso from "./agregarCurso";
+import Proveedor from "./proveedor"
 
 const Principal = () => {
   const [idOperador, setIdOperador] = useState(0);
@@ -22,11 +23,7 @@ const Principal = () => {
           />
         </div>
         <div className="box-2">
-          <div className="box-3">
-            <h2 className="texto">Cursos y Recomendaciones Asignadas</h2>
-
-            <Lista_Cursos idOperador={idOperador}></Lista_Cursos>
-          </div>
+          <Proveedor>
           <div className="box-4">
             <div className="box-5">
               <h2 className="texto">Areas de Oportunidad</h2>
@@ -38,6 +35,13 @@ const Principal = () => {
               <Sugerencias area={idArea} idOperador={idOperador}></Sugerencias>
             </div>
           </div>
+          
+          <div className="box-3">
+            <h2 className="texto">Cursos y Recomendaciones Asignadas</h2>
+
+            <Lista_Cursos idOperador={idOperador}></Lista_Cursos>
+          </div>
+          </Proveedor>
         </div>
       </div>
       <div className="box-7">
