@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { useState, useEffect } from "react";
+import dayjs from "dayjs";
 import "dayjs/locale/es-mx";
 
 import "../../Styles/OneOnOne.css";
@@ -22,7 +23,7 @@ const OneOnOne = ({ id }) => {
     setFechaSeleccionada(newValue);
 
     if (newValue) {
-      setFechaFinal(newValue); 
+      setFechaFinal(newValue);
     }
   };
 
@@ -45,7 +46,7 @@ const OneOnOne = ({ id }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            idUsuario: id, 
+            idUsuario: id,
             contenido:
               "La fecha para tu sesión con el supervisor es el " +
               fechaFinal.format("DD/MM/YYYY HH:mm"),
@@ -69,10 +70,10 @@ const OneOnOne = ({ id }) => {
       mandarOneonOne(fechaSeleccionada, id);
     }
   };
-  
+
   // Determinar si la fecha seleccionada es anterior a la fecha actual
   const isDatePast = fechaSeleccionada && dayjs(fechaSeleccionada).isBefore(dayjs(), 'day');
-  
+
   // Renderizado del componente
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="es-mx">
