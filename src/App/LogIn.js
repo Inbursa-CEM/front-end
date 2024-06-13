@@ -64,8 +64,10 @@ const LogIn = () => {
           navegar("/monitoreo");
         }
         if (data.usuario.rol === "agente") {
-          localStorage.setItem("userId", data.usuario.idUsuario);
-          window.location.href = "http://localhost:3000";
+          // localStorage.setItem("userId", data.usuario.idUsuario);
+          // window.location.href = "http://localhost:3000";
+          const userId = data.usuario.idUsuario;
+          window.location.href = `http://localhost:3000/?userId=${userId}`;
         }
       })
       .catch((error) => console.log(error));
