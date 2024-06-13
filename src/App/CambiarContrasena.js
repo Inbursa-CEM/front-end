@@ -4,21 +4,28 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/cambiarContrasena.css";
+import logo from "../Assets/inbursa.png";
 
 const CambiarContrasena = () => {
+  // Se obtiene el correo del usuario de la sesión
   const correo = sessionStorage.getItem("userEmail");
+
+  // Referencias a los campos del formulario
   const refCodigo = useRef();
   const refContrasena = useRef();
+  
   const host = process.env.REACT_APP_BACK_HOST;
   const url = `http://${host}:8080/auth/changepassword`;
   const navegar = useNavigate();
 
+  // Función que se encarga de enviar los datos al servidor para cambiar la contraseña
   const cambiarContrasena = (evento) => {
     evento.preventDefault();
     const email = correo;
     const code = refCodigo.current.value;
     const password = refContrasena.current.value;
 
+    // Objeto con las opciones de la petición
     const options = {
       method: "POST",
       headers: {
@@ -41,8 +48,8 @@ const CambiarContrasena = () => {
         throw new Error("Error en la petición");
       })
       .then(() => {
-        sessionStorage.removeItem("userEmail");
-        navegar("/");
+        sessionStorage.removeItem("userEmail"); // Se elimina el correo de la sesión
+        navegar("/"); // Se redirige al usuario a la página de inicio de sesión
       })
       .catch((error) => console.log(error));
   };
@@ -53,7 +60,7 @@ const CambiarContrasena = () => {
         <img
           className="logo-cambiar-contrasena"
           alt="Logo de Inbursa"
-          src="https://inbursa-lau.s3.amazonaws.com/inbursa.png"
+          src={logo}
         ></img>
       </div>
       <div className="caja-contenedora-cambiar-contrasena">

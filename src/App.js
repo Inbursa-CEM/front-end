@@ -4,11 +4,11 @@ import Monitoreo from "./App/TablaMonitoreo/monitoreo";
 import Cursos from "./App/Cursos/cursos";
 import { Route, Routes } from "react-router-dom";
 import LogIn from "./App/LogIn";
-import ProfileCard from "./App/TablaMonitoreo/ProfileCard";
 import CrearCuenta from "./App/CrearCuenta";
 import Verificacion from "./App/Verificacion";
 import RecuperarCuenta from "./App/RecuperarCuenta";
 import CambiarContrasena from "./App/CambiarContrasena";
+import ProfileCard from "./App/TablaMonitoreo/ProfileCard";
 
 function App() {
   return (

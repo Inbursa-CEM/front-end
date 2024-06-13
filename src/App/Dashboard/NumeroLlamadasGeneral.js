@@ -40,9 +40,8 @@ export default function NumeroLlamadasGeneral() {
     fetch(metaUrl)
       .then((response) => response.json())
       .then((data) => {
-        const metaRecibida = data.map((agente) => agente.meta);
-        setMeta(metaRecibida[0]);
-        console.log(meta)
+        setMeta(data[0].meta);
+        console.log("Meta", data[0].meta)
       })
       .catch((error) => console.log(error));
   });
@@ -56,7 +55,7 @@ export default function NumeroLlamadasGeneral() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        console.log("Datos para actualizar",data);
         descargarMeta();
       })
       .catch((error) => console.log(error));

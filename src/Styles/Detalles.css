@@ -1,0 +1,99 @@
+/* body {
+  background-color: #f0f4f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+} */
+
+.card-parent {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 1000 !important;
+}
+
+.card {
+  width: 700px;
+  margin: 20px auto;
+  border-radius: 15px !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2), 0 16px 32px rgba(0, 0, 0, 0.19) !important;
+  font-family: "Poppins", sans-serif !important;
+}
+
+.header-card {
+  text-align: center;
+  padding: 20px;
+  background-color: var(--azul-oscuro);
+  color: #ffffff;
+}
+
+h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.contenedor-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.izquierda {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.derecha {
+  flex: 1;
+  padding-left: 20px;
+  border-left: 2px solid var(--azul-oscuro);
+}
+
+.label {
+  font-weight: bold;
+  margin: 0 0 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  margin: 0 0 5px 0;
+  font-size: 16px;
+}
+
+.avatar {
+  border-radius: 50%;
+  margin-top: 75px;
+  border: 2px solid var(--azul-oscuro);
+  padding: 5px;
+  background-color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 90%;
+    flex-direction: column;
+  }
+
+  .contenedor {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .izquierda,
+  .derecha {
+    align-items: center;
+  }
+
+  .label,
+  .value {
+    text-align: center;
+  }
+}

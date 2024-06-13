@@ -12,3 +12,7 @@
   font-family: "Poppins", sans-serif !important;
   font-size: medium !important;
 }
+
+.pointer-celda {
+  cursor: pointer !important;
+}

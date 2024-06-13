@@ -4,21 +4,26 @@
 import React, { useRef, useState } from "react";
 import "../Styles/login.css";
 import { Link, useNavigate } from "react-router-dom";
+import logo from "../Assets/inbursa.png";
 
 const LogIn = () => {
   const host = process.env.REACT_APP_BACK_HOST;
   const url = `http://${host}:8080/auth/signin`;
 
+  // Referencias a los campos del formulario
   const refCorreo = useRef();
   const refContrasena = useRef();
+
   const navegar = useNavigate();
   const [mensajeError, setMensajeError] = useState("");
 
+  // Función que se encarga de enviar los datos al servidor para iniciar sesión
   const iniciarSesion = (evento) => {
     evento.preventDefault();
     const email = refCorreo.current.value;
     const password = refContrasena.current.value;
 
+    // Objeto con las opciones de la petición
     const options = {
       method: "POST",
       headers: {
@@ -27,7 +32,7 @@ const LogIn = () => {
       body: JSON.stringify({ email, password }),
     };
 
-    console.log("Enviando datos al servidor:", options.body);
+    // console.log("Enviando datos al servidor:", options.body);
 
     fetch(url, options)
       .then((response) => {
@@ -40,6 +45,7 @@ const LogIn = () => {
         throw new Error("Error en la petición");
       })
       .then((data) => {
+        // Se almacenan los datos del usuario en la sesión
         sessionStorage.setItem("userId", data.usuario.idUsuario);
         sessionStorage.setItem("userName", data.usuario.nombre);
         sessionStorage.setItem("userRole", data.usuario.rol);
@@ -47,7 +53,13 @@ const LogIn = () => {
         // sessionStorage.setItem("userToken", data.AccessToken);
       })
       .then(() => {
-        navegar("/monitoreo");
+        // Se redirige al usuario a la página correspondiente según su rol
+        if (sessionStorage.getItem("userRole") === "supervisor") {
+          navegar("/monitoreo");
+        }
+        if (sessionStorage.getItem("userRole") === "agente") {
+          window.location.href = "http://localhost:3000";
+        }
       })
       .catch((error) => console.log(error));
   };
@@ -58,7 +70,7 @@ const LogIn = () => {
         <img
           className="logo-login"
           alt="Logo de Inbursa"
-          src="https://inbursa-lau.s3.amazonaws.com/inbursa.png"
+          src={logo}
         ></img>
       </div>
       <div className="caja-contenedora-login">

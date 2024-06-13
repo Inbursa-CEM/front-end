@@ -1,3 +1,4 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
 import "../../Styles/prueba.css";
 import Lista_Cursos from "./list_cursos";
 import Operadores from "./operadores";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import AgregarCurso from "./agregarCurso";
 import Proveedor from "./proveedor"
 
+//Componente que incluye las distintas funcionalidades de recomendaciones
 const Principal = () => {
   const [idOperador, setIdOperador] = useState(0);
   const [idSupervisor, setIdSupervisor] = useState(1);

@@ -4,17 +4,23 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/recuperarCuenta.css";
+import logo from "../Assets/inbursa.png";
 
 const RecuperarCuenta = () => {
   const host = process.env.REACT_APP_BACK_HOST;
   const url = `http://${host}:8080/auth/forgotpassword`;
+
+  // Referencia al campo del formulario
   const refCorreo = useRef();
+  
   const navegar = useNavigate();
 
+  // Función que se encarga de enviar los datos al servidor para recuperar la cuenta
   const verificar = (evento) => {
     evento.preventDefault();
     const email = refCorreo.current.value;
 
+    // Objeto con las opciones de la petición
     const options = {
       method: "POST",
       headers: {
@@ -35,8 +41,8 @@ const RecuperarCuenta = () => {
         throw new Error("Error en la petición");
       })
       .then(() => {
-        sessionStorage.setItem("userEmail", email);
-        navegar("/cambiarcontrasena");
+        sessionStorage.setItem("userEmail", email); // Se almacena el correo en la sesión
+        navegar("/cambiarcontrasena"); // Se redirige al usuario a la página de cambio de contraseña
       })
       .catch((error) => console.log(error));
   };
@@ -47,7 +53,7 @@ const RecuperarCuenta = () => {
         <img
           className="logo-recuperacion"
           alt="Logo de Inbursa"
-          src="https://inbursa-lau.s3.amazonaws.com/inbursa.png"
+          src={logo}
         ></img>
       </div>
       <div className="caja-contenedora-recuperacion">

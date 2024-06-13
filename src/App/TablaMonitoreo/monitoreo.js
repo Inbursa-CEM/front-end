@@ -1,10 +1,11 @@
+// Autores:
+// Gustavo Alejandro Gutiérrez Valdes
+// Lauren Lissette Llauradó Reyes
+// Componente de la pestaña de la tabla de monitoreo
+
 import "../../Styles/App.css";
 import Header from "../Layouts/header";
-import TagEmpleado from "../Layouts/tagEmpleado";
-import OneOnOne from "./OneOnOne";
-import Notificaciones from "./listaNotis";
 import EmpleadosTabla from "./tablaMonitoreo";
-import FaceIcon from "@mui/icons-material/Face";
 
 const Monitoreo = () => {
   return (

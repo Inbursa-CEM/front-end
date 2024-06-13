@@ -16,6 +16,10 @@ import {
 import CircleIcon from "@mui/icons-material/Circle";
 import OneOnOne from "./OneOnOne";
 import { useNavigate } from "react-router-dom";
+import buena from "../../Assets/calidad-buena.svg";
+import neutra from "../../Assets/calidad-neutra.svg";
+import pesima from "../../Assets/calidad-pesima.svg";
+import PopProfile from "./popUp";
 
 const EmpleadosTabla = () => {
   const host = process.env.REACT_APP_BACK_HOST;
@@ -26,32 +30,80 @@ const EmpleadosTabla = () => {
     "userId"
   )}`;
 
-  function getSentimiento(duracion) {
+  // Función que obtiene el sentimiento real de una llamada a partir de su contactId
+  const getSentimientoReal = useCallback((contactId) => {
+    const urlSentimiento = `http://${host}:8080/llamada/transcripcion/${contactId}`;
+    let sentimiento = "NEUTRAL";
+
+    fetch(urlSentimiento)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Error en la petición");
+      })
+      .then((data) => {
+        // console.log("Datos obtenidos del servidor:", data);
+        const sentiments = data[0]?.Segments.map(
+          (segment) => segment.Transcript.Sentiment
+        );
+        const latestSentiment = sentiments
+          ? sentiments[sentiments.length - 1]
+          : "NEUTRAL";
+        if (latestSentiment !== sentimiento) {
+          sentimiento = latestSentiment;
+        }
+      })
+      .catch((error) => console.log(error));
+    
+    return sentimiento;
+  });
+
+  // Función que obtiene el sentimiento de una llamada a partir de su duración y contactId
+  // Si se tiene un contactId, se obtiene el sentimiento real de la llamada
+  // Si no se tiene un contactId, se asigna un sentimiento aleatorio
+  function getSentimiento(duracion, contactId) {
+    // Si no hay duración, se asigna 4 para indicar que no hay sentimiento
     if (!duracion) {
-      return 4; // BORRAR CUANDO SE IMPLEMENTE API
+      return 4;
     }
-    const randomNumber = Math.random();
-    if (randomNumber < 0.33) {
+    // Si no hay contactId, se asigna un sentimiento aleatorio
+    if (!contactId) {
+      const randomNumber = Math.random();
+      if (randomNumber < 0.33) {
+        return 1; // Sentimiento negativo
+      } else if (randomNumber < 0.66) {
+        return 2; // Sentimiento neutro
+      } else {
+        return 3; // Sentimiento positivo
+      }
+    }
+    // Si hay contactId, se obtiene el sentimiento real de la llamada
+    const sentimiento = getSentimientoReal(contactId);
+    if (sentimiento === "NEGATIVE") {
       return 1; // Sentimiento negativo
-    } else if (randomNumber < 0.66) {
+    } else if (sentimiento === "NEUTRAL") {
       return 2; // Sentimiento neutro
     } else {
       return 3; // Sentimiento positivo
     }
   }
 
+  // Función que regresa la imagen del sentimiento de una llamada
   function getImgSentimiento(sentimiento) {
+    // console.log("Sentimiento:", sentimiento);
     if (sentimiento === 4) {
-      return null;
+      return null; // No hay sentimiento
     } else if (sentimiento === 1) {
-      return "https://inbursa-lau.s3.amazonaws.com/calidad-pesima.svg";
+      return pesima; // Sentimiento negativo
     } else if (sentimiento === 2) {
-      return "https://inbursa-lau.s3.amazonaws.com/calidad-neutra.svg";
+      return neutra; // Sentimiento neutro
     } else {
-      return "https://inbursa-lau.s3.amazonaws.com/calidad-buena.svg";
+      return buena; // Sentimiento positivo
     }
   }
 
+  // Función que regresa el color del semáforo dependiendo de la duración de la llamada
   function getSemaforo(duracion) {
     if (duracion < 45) {
       return { color: "#43C257" }; // Semáforo verde
@@ -62,6 +114,7 @@ const EmpleadosTabla = () => {
     }
   }
 
+  // Función que formatea la duración de la llamada en formato HH:MM:SS
   function formatearDuracion(totalSegundos) {
     if (totalSegundos === "-" || totalSegundos === 0) {
       return "-";
@@ -73,10 +126,11 @@ const EmpleadosTabla = () => {
     return `${horas}:${minutos}:${segundos}`;
   }
 
+  // Función que descarga los datos de los agentes del servidor
   const descargar = useCallback(() => {
-
     const token = sessionStorage.getItem("userToken");
 
+    // Objeto con las opciones de la petición
     const options = {
       method: "GET",
       headers: {
@@ -86,19 +140,19 @@ const EmpleadosTabla = () => {
     };
 
     fetch(url, options)
-    .then((response) => {
-      if (response.ok) {
-        return response.json();
-      }
-      if (response.status === 401) {
-        navegar("/"); // Redirigir al inicio de sesión si el token es inválido
-      }
-      throw new Error("Error en la petición");
-    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        if (response.status === 401) {
+          navegar("/"); // Redirigir al inicio de sesión si el token es inválido
+        }
+        throw new Error("Error en la petición");
+      })
       .then((data) => {
-        console.log("Datos obtenidos del servidor:", data);
+        // console.log("Datos obtenidos del servidor:", data);
         const arrNuevo = data.map((agente) => {
-          const sentimiento = getSentimiento(agente.duracion);
+          const sentimiento = getSentimiento(agente.duracion, agente.contactId);
           const agenteNuevo = {
             id: agente.id,
             nombre: agente.nombreAgente,
@@ -116,6 +170,7 @@ const EmpleadosTabla = () => {
       .catch((error) => console.log(error));
   }, [url, navegar]);
 
+  // Descargar los datos de los agentes y actualizar cada 5 segundos
   useEffect(() => {
     descargar();
     const intervalId = setInterval(descargar, 5000); // Repetir la descarga de datos cada 5 segundos
@@ -123,6 +178,7 @@ const EmpleadosTabla = () => {
     return () => clearInterval(intervalId);
   }, [descargar]);
 
+  // Incrementar la duración de la llamada cada segundo
   useEffect(() => {
     const intervalId = setInterval(() => {
       setArrAgentes((prevAgentes) =>
@@ -136,6 +192,7 @@ const EmpleadosTabla = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  // Ordenar los agentes por sentimiento
   const sortedRows = arrAgentes.sort((a, b) => a.sentimiento - b.sentimiento);
 
   return (
@@ -169,7 +226,11 @@ const EmpleadosTabla = () => {
         <TableBody>
           {sortedRows.map((agente) => (
             <TableRow key={agente.id}>
-              <TableCell className="tabla-celda">{agente.nombre}</TableCell>
+              {/* Nombre del agente*/}
+              <TableCell className="tabla-celda pointer-celda">
+                <PopProfile idAgente={agente.id} nombreAgente={agente.nombre}></PopProfile>
+              </TableCell>
+              {/* Semáforo */}
               <TableCell className="tabla-celda">
                 {agente.semaforo !== "-" ? (
                   <CircleIcon style={agente.semaforo}></CircleIcon>
@@ -177,6 +238,7 @@ const EmpleadosTabla = () => {
                   "-"
                 )}
               </TableCell>
+              {/* Sentimiento */}
               <TableCell className="tabla-celda">
                 {agente.sentimientoImg ? (
                   <img src={agente.sentimientoImg} alt="Sentimiento"></img>
@@ -184,11 +246,15 @@ const EmpleadosTabla = () => {
                   "-"
                 )}
               </TableCell>
+              {/* Nombre del cliente */}
               <TableCell className="tabla-celda">{agente.cliente}</TableCell>
+              {/* Saldo del cliente */}
               <TableCell className="tabla-celda">{`$${agente.saldo}`}</TableCell>
+              {/* Duración de la llamada */}
               <TableCell className="tabla-celda">
                 {formatearDuracion(agente.duracion)}
               </TableCell>
+              {/* Agendar 1:1 */}
               <TableCell>
                 <OneOnOne id={agente.id}></OneOnOne>
               </TableCell>
