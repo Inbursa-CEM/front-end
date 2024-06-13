@@ -11,7 +11,7 @@ import { useEffect } from "react";
 const Operadores = (props) => {
   const [arrOperadores, setArrOperadores] = useState([]);
   const url =
-  `http://${process.env.REACT_APP_BACK_HOST}:8080/usuario/agentesDeSupervisor?idSupervisor` +
+  `http://${process.env.REACT_APP_BACK_HOST}:8080/usuario/agentesDeSupervisor?idSupervisor=` +
     props.idSupervisor;
 
   const descargar = React.useCallback(async () => {
