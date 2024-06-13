@@ -1,12 +1,14 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
 import * as React from "react";
 import { v4 as uuidv5 } from "uuid";
 import Paper from "@mui/material/Paper";
 import { useState, useEffect } from "react";
 import Sugerencia from "./sugerencia";
 
+//Componente que muestra las sugerencias dependiendo del area de oportunidad
 const Sugerencias = (props) => {
   const [arrCursos, setArrCursos] = useState([]);
-  const url = "http://localhost:8080/curso/porArea?idArea=" + props.area;
+  const url = `http://${process.env.REACT_APP_BACK_HOST}:8080/curso/porArea?idArea=` + props.area;
 
   const descargar = React.useCallback(async () => {
     const response = await fetch(url);

@@ -1,7 +1,11 @@
+//Autores: Carlos Alberto Sánchez Calderón, Alonso Segura De Lucio
+
 import { createContext, useState } from "react";
 
 export const contextoGlobal = createContext(); //Espacio global
 
+
+//Componente que guarda y provee la informacion de los cursos
 const Proveedor = ({ children }) => {
   const [arrCursos, setArrCursos] = useState([]);
 
