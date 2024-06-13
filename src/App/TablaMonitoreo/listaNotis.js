@@ -15,7 +15,7 @@ import Checkbox from "@mui/material/Checkbox";
 import "../../Styles/listaNotis.css";
 
 // Componente de notificaciones
-const Notificaciones = ({ id }) => {
+const Notificaciones = ({ id = " " }) => {
   const [notificaciones, setNotificaciones] = useState([]);
   const [show, setShow] = useState(false);
 
