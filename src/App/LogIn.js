@@ -51,13 +51,20 @@ const LogIn = () => {
         sessionStorage.setItem("userRole", data.usuario.rol);
         sessionStorage.setItem("userPhoto", data.usuario.urlFoto);
         // sessionStorage.setItem("userToken", data.AccessToken);
-      })
-      .then(() => {
+
         // Se redirige al usuario a la página correspondiente según su rol
-        if (sessionStorage.getItem("userRole") === "supervisor") {
+        if (data.usuario.rol === "supervisor") {
+          // Se almacenan los datos del usuario en la sesión
+          sessionStorage.setItem("userId", data.usuario.idUsuario);
+          sessionStorage.setItem("userName", data.usuario.nombre);
+          sessionStorage.setItem("userRole", data.usuario.rol);
+          sessionStorage.setItem("userPhoto", data.usuario.urlFoto);
+          // sessionStorage.setItem("userToken", data.AccessToken);
+
           navegar("/monitoreo");
         }
-        if (sessionStorage.getItem("userRole") === "agente") {
+        if (data.usuario.rol === "agente") {
+          localStorage.setItem("userId", data.usuario.idUsuario);
           window.location.href = "http://localhost:3000";
         }
       })
@@ -67,11 +74,7 @@ const LogIn = () => {
   return (
     <div className="contenedor-login">
       <div className="contenedor-logo-login">
-        <img
-          className="logo-login"
-          alt="Logo de Inbursa"
-          src={logo}
-        ></img>
+        <img className="logo-login" alt="Logo de Inbursa" src={logo}></img>
       </div>
       <div className="caja-contenedora-login">
         <form onSubmit={iniciarSesion}>
