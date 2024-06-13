@@ -8,3 +8,7 @@
 .select {
   width: 1rem;
 }
+
+.red-picker {
+  color: red; /* O cualquier estilo que quieras aplicar */
+}
