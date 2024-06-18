@@ -21,7 +21,7 @@ p {
 
 .caja-contenedora-login {
   background-color: var(--gris) !important;
-  height: 420px !important;
+  height: 450px !important;
   display: grid !important;
   place-items: center !important;
   width: 500px;
@@ -70,6 +70,6 @@ p {
 
 .mensaje-error {
   font-size: 15px;
-  color: rgb(192, 0, 0);
+  color: rgb(192, 0, 0) !important;
   margin-bottom: 5px;
 }

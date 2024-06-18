@@ -8,7 +8,7 @@ import CrearCuenta from "./App/CrearCuenta";
 import Verificacion from "./App/Verificacion";
 import RecuperarCuenta from "./App/RecuperarCuenta";
 import CambiarContrasena from "./App/CambiarContrasena";
-import ProfileCard from "./App/TablaMonitoreo/ProfileCard";
+import PageNotFound from "./App/PageNotFound";
 
 function App() {
   return (
@@ -18,11 +18,11 @@ function App() {
         <Route path="/monitoreo" element={<Monitoreo />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/cursos" element={<Cursos />} />
-        <Route path="/profile" element={<ProfileCard />} />
         <Route path="/crearcuenta" element={<CrearCuenta />} />
         <Route path="/verificacion" element={<Verificacion />} />
         <Route path="/recuperarcuenta" element={<RecuperarCuenta />} />
         <Route path="/cambiarcontrasena" element={<CambiarContrasena />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );

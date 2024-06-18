@@ -96,7 +96,7 @@ const CrearCuenta = () => {
         password,
         departamento,
         rol,
-        supervisor,
+        idSupervisor: supervisor,
         urlFoto,
         meta,
       }),
