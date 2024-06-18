@@ -1,0 +1,108 @@
+.PaginaDashboard{
+    display: flex;
+    justify-content: flex-start;
+}
+
+.botonesReportes{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.dashboard{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 10px; */
+    align-items: center;
+    justify-content: center;
+    /* padding: 20px; */
+    /* margin: 10px; */
+    width: 100%;
+}
+
+.item{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 410px;
+    height: 300px;
+    background-color: var(--azul-hielo);
+}
+
+.indicador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.porcentajeUp{
+    color: green;
+}
+
+.porcentajeDown{
+    color: red;
+}
+
+.opcionesDocumentos{
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    background-color: var(--azul-hielo);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.opcionesTranscripciones{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+    background-color: var(--azul-hielo);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.cerrarOpciones{
+    height: 20px;
+    width: 10px;
+}
+
+.ventanaReportes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--azul-hielo);
+    align-items: center;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.ventanaTranscripciones{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: var(--azul-hielo);
+    align-items: center;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.botonMetas{
+    width: 250px !important;
+    height: 40px !important;
+    border-radius: 20px !important;
+    background-color: var(--azul-oscuro) !important;
+    color: white !important;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+.textInputMeta{
+    border-radius: 20px !important;
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+}

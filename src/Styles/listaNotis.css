@@ -1,0 +1,33 @@
+/*  
+ Diego Manjarrez Viveros
+ A01753486
+ Description: Estilos para la lista de notificaciones
+ Date: 22/05/2024 
+*/
+
+.container-notis {
+  margin: 20px;
+  position: relative;
+}
+
+.button-notis {
+  background-color: var(--azul-claro) !important;
+}
+
+.icon-notis {
+  color: var(--azul-oscuro);
+}
+
+.collapse-container {
+  margin: 0.5rem;
+  position: fixed;
+  z-index: 10 !important;
+  background-color: var(--gris);
+  border-radius: 15px;
+  box-shadow: 12px 10px 55px -8px rgba(128, 128, 128, 0.88);
+  width: 17rem;
+}
+
+.checkbox {
+  margin-left: 1.5rem;
+}

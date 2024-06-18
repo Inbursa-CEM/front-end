@@ -1,0 +1,30 @@
+.titulo-error {
+    font-size: 50px;
+    color: #FF0000;
+    text-align: center;
+    margin-top: 100px;
+}
+
+.mensaje-error-404 {
+    font-size: 30px;
+    color: #FF0000;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.contenedor-boton-error {
+    display: grid;
+    place-items: center;
+    margin-top: 50px;
+}
+
+.boton-error {
+    font-size: 20px;
+    background-color: var(--azul-marino);
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    padding: 7px;
+    border-radius: 15px;
+    border: 0;
+    cursor: pointer;
+}
