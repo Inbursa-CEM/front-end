@@ -1,7 +1,12 @@
+// Autores: 
+// Lauren Lissette Llauradó Reyes
+// Gustavo Alejandro Gutiérrez Valdes
+// Componente general de la aplicación
+
 import "./Styles/App.css";
-import Dashboard from "./App/Dashboard/dashboard";
-import Monitoreo from "./App/TablaMonitoreo/monitoreo";
-import Cursos from "./App/Cursos/cursos";
+import Dashboard from "./App/Dashboard/Dashboard";
+import Monitoreo from "./App/TablaMonitoreo/Monitoreo";
+import Cursos from "./App/Cursos/Cursos";
 import { Route, Routes } from "react-router-dom";
 import LogIn from "./App/LogIn";
 import CrearCuenta from "./App/CrearCuenta";
